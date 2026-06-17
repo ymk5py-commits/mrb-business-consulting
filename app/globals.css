@@ -24,6 +24,7 @@
   /* Typography */
   --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-display-face), var(--font-body), system-ui, sans-serif;
+  --font-serif: var(--font-serif-accent), Georgia, "Times New Roman", serif;
 
   /* Motion */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
@@ -144,5 +145,58 @@ body {
   60%,
   100% {
     transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+/* ============================================================
+   Hero: glass shimmer headline + entities marquee
+   ============================================================ */
+.glass-text {
+  color: transparent;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.55) 24%,
+    rgba(160, 205, 255, 0.75) 45%,
+    rgba(255, 255, 255, 0.95) 56%,
+    rgba(255, 255, 255, 0.5) 76%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 14px 32px rgba(0, 6, 20, 0.45));
+  animation: mrb-shimmer 9s linear infinite;
+}
+
+@keyframes mrb-shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+@keyframes mrb-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: mrb-marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-text {
+    animation: none;
+    background-position: 50% center;
+  }
+  .animate-marquee {
+    animation: none;
   }
 }

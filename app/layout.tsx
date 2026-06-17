@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Schibsted_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, Schibsted_Grotesk, Spectral } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -21,6 +21,15 @@ const bodyFont = Hanken_Grotesk({
 const displayFont = Schibsted_Grotesk({
   subsets: ["latin"],
   variable: "--font-display-face",
+  display: "swap",
+});
+
+// Acento editorial: serif itálica refinada para el hero.
+const serifFont = Spectral({
+  subsets: ["latin"],
+  weight: ["500"],
+  style: ["italic"],
+  variable: "--font-serif-accent",
   display: "swap",
 });
 
@@ -84,7 +93,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es-PY" className={`${bodyFont.variable} ${displayFont.variable}`}>
+    <html
+      lang="es-PY"
+      className={`${bodyFont.variable} ${displayFont.variable} ${serifFont.variable}`}
+    >
       <body className="flex min-h-dvh flex-col bg-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <MotionProvider>

@@ -12,7 +12,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
-import { Hero } from "@/components/Hero";
+import { PixelHero } from "@/components/PixelHero";
 import { Reveal, Stagger, StaggerItem, CountUp } from "@/components/motion";
 import { services } from "@/lib/services";
 import { whatsappHref } from "@/lib/site.config";
@@ -84,7 +84,7 @@ export default function HomePage() {
     <>
       <JsonLd data={faqSchema(homeFaqs)} />
 
-      <Hero />
+      <PixelHero />
 
       {/* ============ SERVICIOS ============ */}
       <Section id="servicios" tone="surface">
