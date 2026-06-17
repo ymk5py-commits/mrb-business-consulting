@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { ScrollProgress } from "@/components/motion";
 import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
@@ -85,6 +86,7 @@ export default function RootLayout({
     <html lang="es-PY" className={`${inter.variable} ${arialRounded.variable}`}>
       <body className="flex min-h-dvh flex-col bg-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        <ScrollProgress />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

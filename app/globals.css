@@ -97,3 +97,48 @@ body {
 .gradient-rule {
   background: linear-gradient(90deg, var(--color-accent), var(--color-accent-bright));
 }
+
+/* Subtle grid pattern for dark sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 60%, transparent 100%);
+}
+
+/* Slow drifting aurora glow (decorative). Disabled for reduced motion. */
+@keyframes mrb-aurora {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(4%, 3%, 0) scale(1.12);
+    opacity: 0.8;
+  }
+}
+
+.aurora {
+  animation: mrb-aurora 14s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora {
+    animation: none;
+  }
+}
+
+/* Animated sheen sweep for primary buttons */
+@keyframes mrb-sheen {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  60%,
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}

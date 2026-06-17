@@ -11,6 +11,7 @@ import {
 } from "@/components/icons";
 import { site, whatsappHref } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contacto",
@@ -47,13 +48,15 @@ export default function ContactoPage() {
       <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
         <Container className="py-16 sm:py-20">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Contacto" }]} />
-          <h1 className="font-display mt-6 text-4xl leading-tight text-white sm:text-5xl">
-            Hablemos de tu empresa
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
-            Estamos para ayudarte. Escribinos por WhatsApp, completá el formulario o
-            visitanos en {site.city}. Te respondemos a la brevedad.
-          </p>
+          <Reveal>
+            <h1 className="font-display mt-6 text-4xl leading-tight text-white sm:text-5xl">
+              Hablemos de tu empresa
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
+              Estamos para ayudarte. Escribinos por WhatsApp, completá el formulario o
+              visitanos en {site.city}. Te respondemos a la brevedad.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
@@ -62,11 +65,13 @@ export default function ContactoPage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
             {/* Form */}
             <div>
-              <h2 className="font-display text-2xl text-navy-900">Envianos tu consulta</h2>
-              <p className="mt-2 text-sm text-slate-600">
-                Completá tus datos y te contactamos. Los campos con{" "}
-                <span className="text-accent">*</span> son obligatorios.
-              </p>
+              <Reveal>
+                <h2 className="font-display text-2xl text-navy-900">Envianos tu consulta</h2>
+                <p className="mt-2 text-sm text-slate-600">
+                  Completá tus datos y te contactamos. Los campos con{" "}
+                  <span className="text-accent">*</span> son obligatorios.
+                </p>
+              </Reveal>
               <div className="mt-6">
                 <ContactForm />
               </div>
@@ -74,34 +79,46 @@ export default function ContactoPage() {
 
             {/* Info */}
             <div>
-              <h2 className="font-display text-2xl text-navy-900">Datos de contacto</h2>
-              <p className="mt-2 text-sm text-slate-600">
-                Elegí el canal que prefieras.
-              </p>
+              <Reveal delay={0.1}>
+                <h2 className="font-display text-2xl text-navy-900">Datos de contacto</h2>
+                <p className="mt-2 text-sm text-slate-600">
+                  Elegí el canal que prefieras.
+                </p>
+              </Reveal>
 
-              <ul className="mt-6 space-y-4">
-                <ContactRow icon={<WhatsappIcon className="h-5 w-5" />} label="WhatsApp">
-                  <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                    Escribir por WhatsApp
-                  </a>
-                </ContactRow>
-                <ContactRow icon={<Phone className="h-5 w-5" />} label="Teléfono">
-                  <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className="hover:text-accent">
-                    {site.contact.phone}
-                  </a>
-                </ContactRow>
-                <ContactRow icon={<Mail className="h-5 w-5" />} label="Correo">
-                  <a href={`mailto:${site.contact.email}`} className="hover:text-accent">
-                    {site.contact.email}
-                  </a>
-                </ContactRow>
-                <ContactRow icon={<MapPin className="h-5 w-5" />} label="Dirección">
-                  {site.contact.address.street}, {site.contact.address.city}, {site.country}
-                </ContactRow>
-                <ContactRow icon={<Clock className="h-5 w-5" />} label="Horario">
-                  {site.contact.hours}
-                </ContactRow>
-              </ul>
+              <Stagger className="mt-6 space-y-4">
+                <StaggerItem>
+                  <ContactRow icon={<WhatsappIcon className="h-5 w-5" />} label="WhatsApp">
+                    <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                      Escribir por WhatsApp
+                    </a>
+                  </ContactRow>
+                </StaggerItem>
+                <StaggerItem>
+                  <ContactRow icon={<Phone className="h-5 w-5" />} label="Teléfono">
+                    <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className="hover:text-accent">
+                      {site.contact.phone}
+                    </a>
+                  </ContactRow>
+                </StaggerItem>
+                <StaggerItem>
+                  <ContactRow icon={<Mail className="h-5 w-5" />} label="Correo">
+                    <a href={`mailto:${site.contact.email}`} className="hover:text-accent">
+                      {site.contact.email}
+                    </a>
+                  </ContactRow>
+                </StaggerItem>
+                <StaggerItem>
+                  <ContactRow icon={<MapPin className="h-5 w-5" />} label="Dirección">
+                    {site.contact.address.street}, {site.contact.address.city}, {site.country}
+                  </ContactRow>
+                </StaggerItem>
+                <StaggerItem>
+                  <ContactRow icon={<Clock className="h-5 w-5" />} label="Horario">
+                    {site.contact.hours}
+                  </ContactRow>
+                </StaggerItem>
+              </Stagger>
 
               <div className="mt-7 flex items-center gap-3">
                 <SocialLink href={site.social.instagram} label="Instagram">
@@ -115,7 +132,7 @@ export default function ContactoPage() {
                 </SocialLink>
               </div>
 
-              <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200">
+              <Reveal className="mt-8 overflow-hidden rounded-2xl border border-slate-200">
                 <iframe
                   title="Ubicación de MRB Business Consulting"
                   src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
@@ -125,7 +142,7 @@ export default function ContactoPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="block w-full"
                 />
-              </div>
+              </Reveal>
             </div>
           </div>
         </Container>
@@ -144,7 +161,7 @@ function ContactRow({
   children: React.ReactNode;
 }) {
   return (
-    <li className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4">
+    <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4">
       <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-white">
         {icon}
       </span>
@@ -154,7 +171,7 @@ function ContactRow({
         </p>
         <p className="mt-0.5 text-sm text-navy-900">{children}</p>
       </div>
-    </li>
+    </div>
   );
 }
 

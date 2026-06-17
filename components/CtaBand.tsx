@@ -1,5 +1,6 @@
 import { Button, Container } from "./ui";
 import { WhatsappIcon } from "./icons";
+import { Reveal } from "./motion";
 import { whatsappHref } from "@/lib/site.config";
 
 export function CtaBand({
@@ -10,9 +11,14 @@ export function CtaBand({
   subtitle?: string;
 }) {
   return (
-    <section className="bg-linear-to-br from-navy-900 via-navy-800 to-navy-700">
-      <Container className="py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
+    <section className="relative overflow-hidden bg-linear-to-br from-navy-900 via-navy-800 to-navy-700">
+      <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-60" />
+      <div
+        aria-hidden="true"
+        className="aurora pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
+      />
+      <Container className="relative py-16 sm:py-20">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl text-white sm:text-4xl">{title}</h2>
           <p className="mx-auto mt-4 max-w-xl text-slate-300">{subtitle}</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -24,7 +30,7 @@ export function CtaBand({
               Otras formas de contacto
             </Button>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

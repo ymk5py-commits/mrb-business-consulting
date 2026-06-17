@@ -3,6 +3,7 @@ import { Target, Eye, Handshake, ShieldCheck, Heart, Sparkles } from "lucide-rea
 import { Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBand } from "@/components/CtaBand";
+import { Reveal, Stagger, StaggerItem, CountUp } from "@/components/motion";
 import { site } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
 
@@ -66,13 +67,15 @@ export default function NosotrosPage() {
       <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
         <Container className="py-16 sm:py-20">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Nosotros" }]} />
-          <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
-            Tu estudio de confianza en Paraguay
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
-            En MRB Business Consulting acompañamos a empresas y emprendedores con
-            soluciones contables, fiscales y societarias claras, confiables y a medida.
-          </p>
+          <Reveal>
+            <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
+              Tu estudio de confianza en Paraguay
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
+              En MRB Business Consulting acompañamos a empresas y emprendedores con
+              soluciones contables, fiscales y societarias claras, confiables y a medida.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
@@ -80,12 +83,14 @@ export default function NosotrosPage() {
       <Section tone="light">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <SectionHeading
-              align="left"
-              kicker="Quiénes somos"
-              title="Un equipo que entiende tu negocio"
-            />
-            <div className="space-y-5 text-base leading-relaxed text-slate-600">
+            <Reveal>
+              <SectionHeading
+                align="left"
+                kicker="Quiénes somos"
+                title="Un equipo que entiende tu negocio"
+              />
+            </Reveal>
+            <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-slate-600">
               <p>
                 MRB Business Consulting nace para resolver un problema concreto: la gestión
                 contable, tributaria y legal de una empresa en Paraguay suele estar
@@ -102,7 +107,7 @@ export default function NosotrosPage() {
                 rubros, desde su constitución hasta su operación diaria, con un trato
                 cercano y honorarios transparentes.
               </p>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </Section>
@@ -110,73 +115,79 @@ export default function NosotrosPage() {
       {/* Misión / Visión */}
       <Section tone="surface">
         <Container>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-white p-8">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-white">
-                <Target className="h-6 w-6" strokeWidth={1.75} />
-              </span>
-              <h2 className="font-display mt-5 text-xl text-navy-900">Nuestra misión</h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Acompañar a empresas y emprendedores de Paraguay con soluciones contables,
-                fiscales y legales claras y confiables, para que puedan enfocarse en hacer
-                crecer su negocio.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white p-8">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-white">
-                <Eye className="h-6 w-6" strokeWidth={1.75} />
-              </span>
-              <h2 className="font-display mt-5 text-xl text-navy-900">Nuestra visión</h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Ser el estudio de consultoría empresarial de referencia para las PYMEs del
-                Paraguay, reconocido por la cercanía, la excelencia técnica y los
-                resultados.
-              </p>
-            </div>
-          </div>
+          <Stagger className="grid gap-6 md:grid-cols-2">
+            <StaggerItem className="h-full">
+              <div className="h-full rounded-2xl border border-slate-200 bg-white p-8">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-white">
+                  <Target className="h-6 w-6" strokeWidth={1.75} />
+                </span>
+                <h2 className="font-display mt-5 text-xl text-navy-900">Nuestra misión</h2>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  Acompañar a empresas y emprendedores de Paraguay con soluciones contables,
+                  fiscales y legales claras y confiables, para que puedan enfocarse en hacer
+                  crecer su negocio.
+                </p>
+              </div>
+            </StaggerItem>
+            <StaggerItem className="h-full">
+              <div className="h-full rounded-2xl border border-slate-200 bg-white p-8">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-white">
+                  <Eye className="h-6 w-6" strokeWidth={1.75} />
+                </span>
+                <h2 className="font-display mt-5 text-xl text-navy-900">Nuestra visión</h2>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  Ser el estudio de consultoría empresarial de referencia para las PYMEs del
+                  Paraguay, reconocido por la cercanía, la excelencia técnica y los
+                  resultados.
+                </p>
+              </div>
+            </StaggerItem>
+          </Stagger>
         </Container>
       </Section>
 
       {/* Valores */}
       <Section tone="light">
         <Container>
-          <SectionHeading
-            kicker="Nuestros valores"
-            title="Lo que nos guía cada día"
-          />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal>
+            <SectionHeading
+              kicker="Nuestros valores"
+              title="Lo que nos guía cada día"
+            />
+          </Reveal>
+          <Stagger className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => {
               const Icon = v.icon;
               return (
-                <div key={v.title} className="rounded-2xl border border-slate-200 p-7">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-slate-200">
-                    <Icon className="h-5 w-5" strokeWidth={1.75} />
-                  </span>
-                  <h3 className="font-display mt-4 text-lg text-navy-900">{v.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{v.text}</p>
-                </div>
+                <StaggerItem key={v.title} className="h-full">
+                  <div className="h-full rounded-2xl border border-slate-200 p-7">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-slate-200">
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </span>
+                    <h3 className="font-display mt-4 text-lg text-navy-900">{v.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{v.text}</p>
+                  </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* Stats */}
       <section className="bg-navy-900">
         <Container className="py-16">
-          <dl className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <Stagger className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <dt className="sr-only">{s.label}</dt>
-                <dd>
-                  <span className="font-display block text-4xl text-white sm:text-5xl">
-                    {s.value}
-                  </span>
-                  <span className="mt-2 block text-sm text-slate-400">{s.label}</span>
-                </dd>
-              </div>
+              <StaggerItem key={s.label} className="text-center">
+                <CountUp
+                  value={s.value}
+                  className="font-display block text-4xl text-white sm:text-5xl"
+                />
+                <span className="mt-2 block text-sm text-slate-400">{s.label}</span>
+              </StaggerItem>
             ))}
-          </dl>
+          </Stagger>
         </Container>
       </section>
 

@@ -3,6 +3,7 @@ import { Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { services } from "@/lib/services";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
 
@@ -41,24 +42,28 @@ export default function ServiciosPage() {
           <Breadcrumbs
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
           />
-          <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
-            Servicios para tu empresa en Paraguay
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
-            Desde la constitución de tu sociedad hasta la gestión contable, fiscal y
-            laboral del día a día. Elegí el servicio que necesitás o escribinos y te
-            asesoramos.
-          </p>
+          <Reveal>
+            <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
+              Servicios para tu empresa en Paraguay
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
+              Desde la constitución de tu sociedad hasta la gestión contable, fiscal y
+              laboral del día a día. Elegí el servicio que necesitás o escribinos y te
+              asesoramos.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
       <Section tone="surface">
         <Container>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <ServiceCard key={service.slug} service={service} />
+              <StaggerItem key={service.slug} className="h-full">
+                <ServiceCard service={service} />
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 

@@ -7,7 +7,7 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/servicios/${service.slug}`}
-      className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-xl hover:shadow-navy-900/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      className="group relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-xl hover:shadow-navy-900/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-white transition-colors duration-200 group-hover:bg-accent">
         <Icon className="h-6 w-6" strokeWidth={1.75} />
