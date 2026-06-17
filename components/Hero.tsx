@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, Check, ShieldCheck, Clock, MapPin } from "lucide-react";
 import { Button, Container } from "./ui";
@@ -44,15 +44,6 @@ const cardItems = [
 ];
 
 export function Hero() {
-  const reduce = useReducedMotion();
-
-  // Cuando hay reduced-motion: sin variants/initial/animate → todo se renderiza visible.
-  const animate = (variants: Variants) =>
-    reduce
-      ? {}
-      : { variants, initial: "hidden" as const, animate: "show" as const };
-  const itemV = reduce ? undefined : item;
-
   return (
     <section className="relative overflow-hidden bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
       {/* grid + aurora glows */}
@@ -69,9 +60,9 @@ export function Hero() {
 
       <Container className="relative py-20 sm:py-24 lg:py-32">
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
-          <motion.div {...animate(container)}>
+          <motion.div variants={container} initial="hidden" animate="show">
             <motion.span
-              variants={itemV}
+              variants={item}
               className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright ring-1 ring-white/15"
             >
               <span className="relative flex h-2 w-2">
@@ -82,7 +73,7 @@ export function Hero() {
             </motion.span>
 
             <motion.h1
-              variants={itemV}
+              variants={item}
               className="font-display mt-6 text-4xl leading-[1.08] text-white sm:text-5xl lg:text-6xl"
             >
               Contabilidad, impuestos y tu{" "}
@@ -90,7 +81,7 @@ export function Hero() {
             </motion.h1>
 
             <motion.p
-              variants={itemV}
+              variants={item}
               className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300"
             >
               Estudio de consultoría contable, fiscal y societaria. Constituimos tu
@@ -98,7 +89,7 @@ export function Hero() {
               la DNIT — bajo las leyes de Paraguay.
             </motion.p>
 
-            <motion.div variants={itemV} className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <motion.div variants={item} className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href={whatsappHref} external variant="whatsapp" size="lg">
                 <WhatsappIcon className="h-5 w-5" />
                 Consultá por WhatsApp
@@ -110,7 +101,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              variants={itemV}
+              variants={item}
               className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-400"
             >
               <span className="inline-flex items-center gap-2">
@@ -126,16 +117,26 @@ export function Hero() {
           </motion.div>
 
           {/* Floating card */}
-          <motion.div {...animate(card)} className="lg:justify-self-end">
+          <motion.div
+            variants={card}
+            initial="hidden"
+            animate="show"
+            className="lg:justify-self-end"
+          >
             <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-7 shadow-2xl shadow-navy-950/40 backdrop-blur-sm">
               <p className="text-sm font-semibold uppercase tracking-wider text-accent-bright">
                 Resolvemos por vos
               </p>
-              <motion.ul {...animate(listVariants)} className="mt-5 space-y-3.5">
+              <motion.ul
+                variants={listVariants}
+                initial="hidden"
+                animate="show"
+                className="mt-5 space-y-3.5"
+              >
                 {cardItems.map((it) => (
                   <motion.li
                     key={it}
-                    variants={reduce ? undefined : checkItem}
+                    variants={checkItem}
                     className="flex items-start gap-3 text-slate-200"
                   >
                     <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-white">

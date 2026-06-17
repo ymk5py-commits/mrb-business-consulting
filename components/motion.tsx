@@ -14,7 +14,9 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/* ---------------- Reveal (fade + slide on scroll) ---------------- */
+/* ---------------- Reveal (fade + slide on scroll) ----------------
+   Bajo prefers-reduced-motion, MotionConfig (en MotionProvider) desactiva
+   el desplazamiento pero la opacidad llega a 1 igual → nunca queda oculto. */
 export function Reveal({
   children,
   className,
@@ -26,12 +28,11 @@ export function Reveal({
   delay?: number;
   y?: number;
 }) {
-  const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.65, delay, ease: EASE }}
     >
@@ -57,13 +58,12 @@ export function Stagger({
   children: ReactNode;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
       variants={containerVariants}
-      initial={reduce ? false : "hidden"}
-      whileInView={reduce ? undefined : "show"}
+      initial="hidden"
+      whileInView="show"
       viewport={{ once: true, margin: "-60px" }}
     >
       {children}
@@ -78,9 +78,8 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
   return (
-    <motion.div className={className} variants={reduce ? undefined : itemVariants}>
+    <motion.div className={className} variants={itemVariants}>
       {children}
     </motion.div>
   );
@@ -180,12 +179,11 @@ export function MotionCard({
   children: ReactNode;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
-      variants={reduce ? undefined : itemVariants}
-      whileHover={reduce ? undefined : { y: -6 }}
+      variants={itemVariants}
+      whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
     >
       {children}
