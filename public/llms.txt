@@ -1,0 +1,29 @@
+# MRB Business Consulting
+
+> Estudio de consultoría contable, fiscal y societaria en Paraguay (Asunción).
+> Ayudamos a empresas y emprendedores a constituirse, cumplir con sus obligaciones
+> ante la DNIT y el IPS, y crecer en regla. Atención en todo el país.
+
+Idioma: español (es-PY). Contacto principal: WhatsApp y formulario en /contacto.
+
+## Servicios
+
+- [Contabilidad](https://mrb-business-consulting.vercel.app/servicios/contabilidad): registros contables mensuales, libros legales, estados financieros y conciliaciones (NIIF para PYMEs).
+- [Impuestos y fiscal](https://mrb-business-consulting.vercel.app/servicios/impuestos): liquidación y presentación de IVA, IRE, IRP e IDU ante la DNIT (Marangatú); planificación tributaria y facturación electrónica (SIFEN).
+- [Constitución de sociedades](https://mrb-business-consulting.vercel.app/servicios/constitucion-de-sociedades): S.A., S.R.L., E.A.S. (Ley 6480/2020), E.I.R.L. y unipersonal; estatutos, inscripción en Registros Públicos y obtención de RUC.
+- [Asesoría laboral e IPS](https://mrb-business-consulting.vercel.app/servicios/asesoria-laboral-ips): liquidación de salarios, aportes al IPS y trámites ante el MTESS.
+- [Auditoría y consultoría](https://mrb-business-consulting.vercel.app/servicios/auditoria-consultoria): auditoría de estados financieros, revisión tributaria preventiva, due diligence.
+- [Trámites e inscripciones](https://mrb-business-consulting.vercel.app/servicios/tramites-inscripciones): RUC, patente municipal, habilitaciones, inscripción IPS/MTESS, registro de marca (DINAPI).
+- [Asesoría legal societaria](https://mrb-business-consulting.vercel.app/servicios/asesoria-legal-societaria): reformas de estatutos, actas, aumentos de capital, transferencia de acciones, gobierno corporativo.
+
+## Páginas
+
+- [Inicio](https://mrb-business-consulting.vercel.app/)
+- [Servicios](https://mrb-business-consulting.vercel.app/servicios)
+- [Nosotros](https://mrb-business-consulting.vercel.app/nosotros)
+- [Contacto](https://mrb-business-consulting.vercel.app/contacto)
+
+## Notas
+
+- Marco legal: Paraguay (DNIT, IPS, MTESS, Registros Públicos, DINAPI).
+- La información del sitio es general e informativa; no constituye asesoramiento vinculante.

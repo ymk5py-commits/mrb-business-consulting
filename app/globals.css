@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* ============================================================
+   MRB Business Consulting — Design System (Tailwind v4)
+   Brand: monochromatic blue · Trust & Authority
+   ============================================================ */
+
+@theme {
+  /* Brand — Navy scale */
+  --color-navy-950: #00112b;
+  --color-navy-900: #001b43; /* primary brand navy */
+  --color-navy-800: #022873;
+  --color-navy-700: #03258c;
+
+  /* Brand — Accent blues */
+  --color-accent: #056cf2; /* primary CTA / links */
+  --color-accent-600: #0560d8;
+  --color-accent-bright: #0597f2; /* highlights / gradients */
+
+  /* Neutrals (surface) */
+  --color-surface: #f6f8fb;
+  --color-surface-2: #eef2f8;
+
+  /* Typography */
+  --font-display: var(--font-arial-rounded), "Arial", "Helvetica Neue", sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f1b2d;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Offset for sticky header when jumping to anchors */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Selection on-brand */
+::selection {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* Display font helper */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Subtle reveal-on-scroll (progressive enhancement, respects reduced-motion) */
+@keyframes mrb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: mrb-rise 0.7s var(--ease-out-soft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
+
+/* Thin brand gradient rule */
+.gradient-rule {
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-bright));
+}

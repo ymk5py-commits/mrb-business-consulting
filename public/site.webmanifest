@@ -1,0 +1,18 @@
+{
+  "name": "MRB Business Consulting",
+  "short_name": "MRB",
+  "description": "Contabilidad, impuestos y constitución de empresas en Paraguay.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#001b43",
+  "lang": "es-PY",
+  "icons": [
+    {
+      "src": "/brand/logo-mrb-circle.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
