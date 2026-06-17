@@ -4,10 +4,9 @@ import { MotionConfig } from "motion/react";
 import type { ReactNode } from "react";
 
 /**
- * Respeta prefers-reduced-motion a nivel global: para esos usuarios, Framer Motion
- * desactiva los desplazamientos (transform/layout) pero las animaciones igualmente
- * llegan a su estado final visible (opacity 1). Así nada queda atascado en "hidden".
+ * Las animaciones de marca (hero, reveals, orbital) se reproducen siempre, incluso
+ * si el sistema tiene activado "Reducir movimiento", por pedido explícito del dueño.
  */
 export function MotionProvider({ children }: { children: ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return <MotionConfig reducedMotion="never">{children}</MotionConfig>;
 }

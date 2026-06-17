@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import {
-  motion,
-  useAnimationFrame,
-  useMotionValue,
-  useReducedMotion,
-} from "motion/react";
+import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import { cn } from "@/components/ui";
 
 type InfiniteSliderProps = {
@@ -34,7 +29,6 @@ export function InfiniteSlider({
   reverse = false,
   className,
 }: InfiniteSliderProps) {
-  const reduce = useReducedMotion();
   const [hovered, setHovered] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const halfRef = useRef(0);
@@ -51,7 +45,6 @@ export function InfiniteSlider({
   }, [gap, children]);
 
   useAnimationFrame((_, delta) => {
-    if (reduce) return;
     const half = halfRef.current;
     if (!half) return;
     const v = hovered && speedOnHover != null ? speedOnHover : speed;

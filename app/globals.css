@@ -190,13 +190,3 @@ body {
 .animate-marquee {
   animation: mrb-marquee 30s linear infinite;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .glass-text {
-    animation: none;
-    background-position: 50% center;
-  }
-  .animate-marquee {
-    animation: none;
-  }
-}

@@ -98,7 +98,6 @@ function PixelCanvas({
   const pixelsRef = useRef<Pixel[]>([]);
   const animationRef = useRef<number>(0);
   const lastFrameRef = useRef(0);
-  const reducedMotionRef = useRef(false);
 
   const init = useCallback(() => {
     const canvas = canvasRef.current;
@@ -114,18 +113,14 @@ function PixelCanvas({
     canvas.width = w;
     canvas.height = h;
 
-    const effectiveSpeed = reducedMotionRef.current
-      ? 0
-      : Math.min(speed, 100) * 0.001;
+    const effectiveSpeed = Math.min(speed, 100) * 0.001;
     const pixels: Pixel[] = [];
     for (let x = 0; x < w; x += gap) {
       for (let y = 0; y < h; y += gap) {
         const color = colors[Math.floor(Math.random() * colors.length)];
         const dx = x - w / 2;
         const dy = y - h / 2;
-        const delay = reducedMotionRef.current
-          ? 0
-          : Math.sqrt(dx * dx + dy * dy) * 0.6;
+        const delay = Math.sqrt(dx * dx + dy * dy) * 0.6;
         pixels.push(createPixel(ctx, canvas, x, y, color, effectiveSpeed, delay));
       }
     }
@@ -133,9 +128,6 @@ function PixelCanvas({
   }, [colors, gap, speed]);
 
   useEffect(() => {
-    reducedMotionRef.current = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
     init();
 
     const frameInterval = 1000 / 60;

@@ -45,9 +45,6 @@ export function ServicesOrbital() {
     };
     apply();
     window.addEventListener("resize", apply);
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setAutoRotate(false);
-    }
     return () => window.removeEventListener("resize", apply);
   }, []);
 
@@ -88,9 +85,7 @@ export function ServicesOrbital() {
       } else {
         setActiveId(null);
         setPulse({});
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          setAutoRotate(true);
-        }
+        setAutoRotate(true);
       }
       return next;
     });
@@ -101,9 +96,7 @@ export function ServicesOrbital() {
       setExpanded({});
       setActiveId(null);
       setPulse({});
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setAutoRotate(true);
-      }
+      setAutoRotate(true);
     }
   };
 
@@ -132,16 +125,22 @@ export function ServicesOrbital() {
         className="absolute inset-0 flex items-center justify-center"
         style={{ perspective: "1000px" }}
       >
-        {/* Núcleo */}
-        <div className="absolute z-10 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-navy-700 via-accent to-accent-bright">
-          <div className="absolute h-20 w-20 animate-ping rounded-full border border-white/20 opacity-70 motion-reduce:hidden" />
+        {/* Núcleo: logo de marca */}
+        <div className="absolute z-10 flex items-center justify-center">
+          <div className="absolute h-28 w-28 animate-ping rounded-full border border-accent/30 opacity-70" />
           <div
-            className="absolute h-24 w-24 animate-ping rounded-full border border-white/10 opacity-50 motion-reduce:hidden"
-            style={{ animationDelay: "0.5s" }}
+            className="absolute h-36 w-36 animate-ping rounded-full border border-accent/15 opacity-50"
+            style={{ animationDelay: "0.6s" }}
           />
-          <span className="font-display text-xs font-extrabold tracking-tight text-white">
-            MRB
-          </span>
+          <div className="absolute h-24 w-24 rounded-full bg-accent/25 blur-2xl" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/logo-mrb-circle.png"
+            alt="MRB Business Consulting"
+            width={96}
+            height={96}
+            className="relative h-24 w-24 rounded-full shadow-[0_0_40px_rgba(5,151,242,0.45)] ring-2 ring-accent/40"
+          />
         </div>
 
         {/* Anillo */}
