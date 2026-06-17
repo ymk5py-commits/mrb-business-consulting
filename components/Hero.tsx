@@ -26,6 +26,10 @@ const card: Variants = {
     transition: { duration: 0.75, ease: EASE, delay: 0.35 },
   },
 };
+const listVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.6 } },
+};
 const checkItem: Variants = {
   hidden: { opacity: 0, x: 12 },
   show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: EASE } },
@@ -41,8 +45,13 @@ const cardItems = [
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const animate = reduce ? undefined : "show";
-  const initial = reduce ? false : "hidden";
+
+  // Cuando hay reduced-motion: sin variants/initial/animate → todo se renderiza visible.
+  const animate = (variants: Variants) =>
+    reduce
+      ? {}
+      : { variants, initial: "hidden" as const, animate: "show" as const };
+  const itemV = reduce ? undefined : item;
 
   return (
     <section className="relative overflow-hidden bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
@@ -60,9 +69,9 @@ export function Hero() {
 
       <Container className="relative py-20 sm:py-24 lg:py-32">
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
-          <motion.div variants={container} initial={initial} animate={animate}>
+          <motion.div {...animate(container)}>
             <motion.span
-              variants={item}
+              variants={itemV}
               className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright ring-1 ring-white/15"
             >
               <span className="relative flex h-2 w-2">
@@ -73,7 +82,7 @@ export function Hero() {
             </motion.span>
 
             <motion.h1
-              variants={item}
+              variants={itemV}
               className="font-display mt-6 text-4xl leading-[1.08] text-white sm:text-5xl lg:text-6xl"
             >
               Contabilidad, impuestos y tu{" "}
@@ -81,7 +90,7 @@ export function Hero() {
             </motion.h1>
 
             <motion.p
-              variants={item}
+              variants={itemV}
               className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300"
             >
               Estudio de consultoría contable, fiscal y societaria. Constituimos tu
@@ -89,7 +98,7 @@ export function Hero() {
               la DNIT — bajo las leyes de Paraguay.
             </motion.p>
 
-            <motion.div variants={item} className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <motion.div variants={itemV} className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href={whatsappHref} external variant="whatsapp" size="lg">
                 <WhatsappIcon className="h-5 w-5" />
                 Consultá por WhatsApp
@@ -101,7 +110,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              variants={item}
+              variants={itemV}
               className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-400"
             >
               <span className="inline-flex items-center gap-2">
@@ -117,22 +126,12 @@ export function Hero() {
           </motion.div>
 
           {/* Floating card */}
-          <motion.div
-            variants={card}
-            initial={initial}
-            animate={animate}
-            className="lg:justify-self-end"
-          >
+          <motion.div {...animate(card)} className="lg:justify-self-end">
             <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-7 shadow-2xl shadow-navy-950/40 backdrop-blur-sm">
               <p className="text-sm font-semibold uppercase tracking-wider text-accent-bright">
                 Resolvemos por vos
               </p>
-              <motion.ul
-                variants={{ show: { transition: { staggerChildren: 0.08, delayChildren: 0.6 } } }}
-                initial={initial}
-                animate={animate}
-                className="mt-5 space-y-3.5"
-              >
+              <motion.ul {...animate(listVariants)} className="mt-5 space-y-3.5">
                 {cardItems.map((it) => (
                   <motion.li
                     key={it}
