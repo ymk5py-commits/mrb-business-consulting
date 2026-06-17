@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
-import Link from "next/link";
-import { ArrowRight, Check, ShieldCheck, Clock, MapPin } from "lucide-react";
+import { ArrowRight, ShieldCheck, Clock, MapPin } from "lucide-react";
 import { Button, Container } from "./ui";
 import { WhatsappIcon } from "./icons";
+import { HeroGraphic } from "./HeroGraphic";
 import { whatsappHref, site } from "@/lib/site.config";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -17,31 +17,6 @@ const item: Variants = {
   hidden: { opacity: 0, y: 26 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
-const card: Variants = {
-  hidden: { opacity: 0, y: 32, scale: 0.98 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.75, ease: EASE, delay: 0.35 },
-  },
-};
-const listVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.6 } },
-};
-const checkItem: Variants = {
-  hidden: { opacity: 0, x: 12 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: EASE } },
-};
-
-const cardItems = [
-  "Constitución de S.A., S.R.L. y E.A.S.",
-  "Liquidación de IVA, IRE e IRP",
-  "Contabilidad mensual y estados financieros",
-  "Aportes al IPS y gestión laboral",
-  "Inscripción de RUC y patente municipal",
-];
 
 export function Hero() {
   return (
@@ -59,7 +34,7 @@ export function Hero() {
       />
 
       <Container className="relative py-20 sm:py-24 lg:py-32">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
           <motion.div variants={container} initial="hidden" animate="show">
             <motion.span
               variants={item}
@@ -116,45 +91,10 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Floating card */}
-          <motion.div
-            variants={card}
-            initial="hidden"
-            animate="show"
-            className="lg:justify-self-end"
-          >
-            <div className="w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-7 shadow-2xl shadow-navy-950/40 backdrop-blur-sm">
-              <p className="text-sm font-semibold uppercase tracking-wider text-accent-bright">
-                Resolvemos por vos
-              </p>
-              <motion.ul
-                variants={listVariants}
-                initial="hidden"
-                animate="show"
-                className="mt-5 space-y-3.5"
-              >
-                {cardItems.map((it) => (
-                  <motion.li
-                    key={it}
-                    variants={checkItem}
-                    className="flex items-start gap-3 text-slate-200"
-                  >
-                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-white">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </span>
-                    <span className="text-sm leading-relaxed">{it}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <Link
-                href="/servicios"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-bright transition-colors hover:text-white"
-              >
-                Conocé todos los servicios
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </motion.div>
+          {/* Gráfico animado */}
+          <div className="pb-6 lg:pb-0">
+            <HeroGraphic />
+          </div>
         </div>
       </Container>
     </section>
