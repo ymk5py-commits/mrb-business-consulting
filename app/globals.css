@@ -22,8 +22,8 @@
   --color-surface-2: #eef2f8;
 
   /* Typography */
-  --font-display: var(--font-arial-rounded), "Arial", "Helvetica Neue", sans-serif;
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-display-face), var(--font-body), system-ui, sans-serif;
 
   /* Motion */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
@@ -49,6 +49,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -68,7 +71,8 @@ body {
 /* Display font helper */
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 /* Subtle reveal-on-scroll (progressive enhancement, respects reduced-motion) */

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
+import { Hanken_Grotesk, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -11,16 +10,17 @@ import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 
-const inter = Inter({
+// Cuerpo: grotesca humanista, muy legible y sobria.
+const bodyFont = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-body",
   display: "swap",
 });
 
-const arialRounded = localFont({
-  src: "./fonts/ArialRoundedMTBold.ttf",
-  variable: "--font-arial-rounded",
-  weight: "700",
+// Titulares: neo-grotesca moderna con carácter, sobria.
+const displayFont = Schibsted_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display-face",
   display: "swap",
 });
 
@@ -84,7 +84,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es-PY" className={`${inter.variable} ${arialRounded.variable}`}>
+    <html lang="es-PY" className={`${bodyFont.variable} ${displayFont.variable}`}>
       <body className="flex min-h-dvh flex-col bg-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <MotionProvider>
