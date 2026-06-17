@@ -14,6 +14,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { PixelHero } from "@/components/PixelHero";
 import { Reveal, Stagger, StaggerItem, CountUp } from "@/components/motion";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { services } from "@/lib/services";
 import { whatsappHref } from "@/lib/site.config";
 import { faqSchema } from "@/lib/seo";
@@ -71,6 +72,22 @@ const steps = [
   { n: "04", title: "Acompañamiento", text: "Te acompañamos mes a mes para mantener todo al día." },
 ];
 
+// Rubros que atiende el estudio (banda tipo "logo cloud").
+const rubros = [
+  "Comercio",
+  "Servicios",
+  "Importadoras",
+  "Construcción",
+  "Gastronomía",
+  "Tecnología",
+  "Salud",
+  "Inmobiliario",
+  "Transporte y logística",
+  "Agropecuario",
+  "E-commerce",
+  "Profesionales independientes",
+];
+
 // Métricas de confianza — EDITÁ con tus números reales.
 const stats = [
   { value: "+10", label: "años de experiencia" },
@@ -120,6 +137,30 @@ export default function HomePage() {
           </Stagger>
         </Container>
       </Section>
+
+      {/* ============ RUBROS (banda slider) ============ */}
+      <section className="border-y border-slate-200 bg-white py-12">
+        <Container>
+          <p className="mb-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            Acompañamos a empresas de todos los rubros
+          </p>
+          <InfiniteSlider
+            gap={48}
+            speed={45}
+            speedOnHover={15}
+            className="[mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+          >
+            {rubros.map((r) => (
+              <span
+                key={r}
+                className="whitespace-nowrap text-base font-semibold uppercase tracking-wider text-slate-400 transition-colors duration-300 hover:text-navy-900"
+              >
+                {r}
+              </span>
+            ))}
+          </InfiniteSlider>
+        </Container>
+      </section>
 
       {/* ============ POR QUÉ MRB ============ */}
       <Section tone="light">
