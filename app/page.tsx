@@ -8,15 +8,12 @@ import {
   MessageSquareText,
 } from "lucide-react";
 import { Button, Container, Section, SectionHeading, JsonLd } from "@/components/ui";
-import { ServiceCard } from "@/components/ServiceCard";
 import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
-import { WhatsappIcon } from "@/components/icons";
 import { PixelHero } from "@/components/PixelHero";
+import { ServicesOrbital } from "@/components/ServicesOrbital";
 import { Reveal, Stagger, StaggerItem, CountUp } from "@/components/motion";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { services } from "@/lib/services";
-import { whatsappHref } from "@/lib/site.config";
 import { faqSchema } from "@/lib/seo";
 
 const homeFaqs = [
@@ -103,38 +100,25 @@ export default function HomePage() {
 
       <PixelHero />
 
-      {/* ============ SERVICIOS ============ */}
+      {/* ============ SERVICIOS (orbital) ============ */}
       <Section id="servicios" tone="surface">
         <Container>
           <Reveal>
             <SectionHeading
               kicker="Nuestros servicios"
               title="Soluciones integrales para tu empresa"
-              subtitle="Todo lo que tu negocio necesita para constituirse, operar y crecer en regla en Paraguay."
+              subtitle="Tocá cada servicio para ver el detalle y cómo se conectan entre sí."
             />
           </Reveal>
-          <Stagger className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <StaggerItem key={service.slug} className="h-full">
-                <ServiceCard service={service} />
-              </StaggerItem>
-            ))}
-            <StaggerItem className="h-full">
-              <div className="flex h-full w-full flex-col justify-between rounded-2xl bg-navy-900 p-7 text-white">
-                <div>
-                  <h3 className="font-display text-xl">¿No sabés cuál necesitás?</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                    Contanos sobre tu empresa y te recomendamos el servicio justo, sin
-                    compromiso.
-                  </p>
-                </div>
-                <Button href={whatsappHref} external variant="whatsapp" className="mt-6 w-fit">
-                  <WhatsappIcon className="h-4 w-4" />
-                  Hablemos
-                </Button>
-              </div>
-            </StaggerItem>
-          </Stagger>
+          <Reveal className="mt-12">
+            <ServicesOrbital />
+          </Reveal>
+          <div className="mt-10 flex justify-center">
+            <Button href="/servicios" variant="secondary">
+              Ver todos los servicios
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
         </Container>
       </Section>
 
