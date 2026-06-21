@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { GsapScope } from "@/components/GsapScope";
+import { Tilt } from "@/components/Tilt";
 import { services } from "@/lib/services";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
 
@@ -59,9 +60,9 @@ export default function ServiciosPage() {
         <Container>
           <div data-gsap="stagger" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <div key={service.slug} className="h-full">
+              <Tilt key={service.slug} className="h-full">
                 <ServiceCard service={service} />
-              </div>
+              </Tilt>
             ))}
           </div>
         </Container>

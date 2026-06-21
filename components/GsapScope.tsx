@@ -3,9 +3,10 @@
 import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
 /**
  * Envuelve la Home y cablea animaciones de scroll (GSAP ScrollTrigger) a los
@@ -24,15 +25,40 @@ export function GsapScope({ children }: { children: ReactNode }) {
         document.fonts.ready.then(() => ScrollTrigger.refresh());
       }
 
-      // Reveals simples (fade + subida)
+      // Reveals: si el bloque tiene un encabezado, se revela palabra por palabra
+      // (SplitText con máscara); el resto del bloque hace fade + subida.
       gsap.utils.toArray<HTMLElement>('[data-gsap="reveal"]').forEach((el) => {
-        gsap.from(el, {
-          opacity: 0,
-          y: 44,
-          duration: 0.85,
-          ease,
-          scrollTrigger: { trigger: el, start: "top 85%" },
-        });
+        const heading = el.querySelector<HTMLElement>("h1, h2");
+        if (heading) {
+          SplitText.create(heading, {
+            type: "words",
+            mask: "words",
+            autoSplit: true,
+            onSplit: (self) =>
+              gsap.from(self.words, {
+                yPercent: 115,
+                duration: 0.9,
+                ease: "power4.out",
+                stagger: 0.045,
+                scrollTrigger: { trigger: el, start: "top 84%" },
+              }),
+          });
+          gsap.from(el, {
+            opacity: 0,
+            y: 24,
+            duration: 0.8,
+            ease,
+            scrollTrigger: { trigger: el, start: "top 85%" },
+          });
+        } else {
+          gsap.from(el, {
+            opacity: 0,
+            y: 44,
+            duration: 0.85,
+            ease,
+            scrollTrigger: { trigger: el, start: "top 85%" },
+          });
+        }
       });
 
       // Grupos escalonados (anima los hijos directos)

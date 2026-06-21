@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { ScrollProgress } from "@/components/motion";
+import { CustomCursor } from "@/components/CustomCursor";
 import { MotionProvider } from "@/components/MotionProvider";
 import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
@@ -101,6 +102,7 @@ export default function RootLayout({
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <MotionProvider>
           <ScrollProgress />
+          <CustomCursor />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

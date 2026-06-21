@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useAnimationFrame, useMotionValue } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { cn } from "@/components/ui";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type InfiniteSliderProps = {
   children: ReactNode;
@@ -30,9 +35,38 @@ export function InfiniteSlider({
   className,
 }: InfiniteSliderProps) {
   const [hovered, setHovered] = useState(false);
+  const outerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const halfRef = useRef(0);
   const x = useMotionValue(0);
+
+  // Skew reactivo a la velocidad de scroll (vuelve a 0 al frenar).
+  useGSAP(
+    () => {
+      const el = outerRef.current;
+      if (!el) return;
+      const proxy = { skew: 0 };
+      const setter = gsap.quickSetter(el, "skewX", "deg");
+      const clamp = gsap.utils.clamp(-6, 6);
+      const st = ScrollTrigger.create({
+        onUpdate: (self) => {
+          const skew = clamp(self.getVelocity() / -380);
+          if (Math.abs(skew) > Math.abs(proxy.skew)) {
+            proxy.skew = skew;
+            gsap.to(proxy, {
+              skew: 0,
+              duration: 0.7,
+              ease: "power3",
+              overwrite: true,
+              onUpdate: () => setter(proxy.skew),
+            });
+          }
+        },
+      });
+      return () => st.kill();
+    },
+    { scope: outerRef },
+  );
 
   useEffect(() => {
     const measure = () => {
@@ -57,6 +91,7 @@ export function InfiniteSlider({
 
   return (
     <div
+      ref={outerRef}
       className={cn("w-full overflow-hidden", className)}
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
