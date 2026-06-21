@@ -11,6 +11,7 @@ import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
 import { PixelHero } from "@/components/PixelHero";
 import { ServicesOrbital } from "@/components/ServicesOrbital";
+import { ProcessHorizontal } from "@/components/ProcessHorizontal";
 import { GsapScope } from "@/components/GsapScope";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { faqSchema } from "@/lib/seo";
@@ -59,13 +60,6 @@ const whyUs = [
     title: "Atención cercana",
     text: "Un asesor asignado que entiende tu negocio y te responde rápido cuando lo necesitás.",
   },
-];
-
-const steps = [
-  { n: "01", title: "Diagnóstico", text: "Escuchamos tu caso y revisamos la situación actual de tu empresa." },
-  { n: "02", title: "Propuesta", text: "Te presentamos un plan claro, con alcance y honorarios definidos." },
-  { n: "03", title: "Ejecución", text: "Implementamos: contabilidad, impuestos, trámites o constitución." },
-  { n: "04", title: "Acompañamiento", text: "Te acompañamos mes a mes para mantener todo al día." },
 ];
 
 const rubros = [
@@ -177,38 +171,8 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* ============ PROCESO ============ */}
-      <Section tone="surface">
-        <Container>
-          <div data-gsap="reveal">
-            <SectionHeading
-              kicker="Cómo trabajamos"
-              title="Un proceso simple y transparente"
-              subtitle="Desde la primera consulta hasta el acompañamiento mensual, sabés exactamente qué esperar."
-            />
-          </div>
-          <div data-gsap="process" className="relative mt-14">
-            <div
-              data-gsap="process-line"
-              aria-hidden="true"
-              className="absolute left-0 right-0 top-12 hidden h-px bg-linear-to-r from-transparent via-accent/40 to-transparent lg:block"
-            />
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {steps.map((step) => (
-                <div
-                  key={step.n}
-                  data-gsap="process-step"
-                  className="relative h-full rounded-2xl border border-slate-200 bg-white p-7"
-                >
-                  <span className="font-display text-4xl text-accent/30">{step.n}</span>
-                  <h3 className="font-display mt-3 text-lg text-navy-900">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
+      {/* ============ PROCESO (scroll horizontal anclado) ============ */}
+      <ProcessHorizontal />
 
       {/* ============ STATS ============ */}
       <section className="relative overflow-hidden bg-navy-900">
