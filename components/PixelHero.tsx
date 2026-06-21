@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight } from "lucide-react";
 import { WhatsappIcon } from "./icons";
+import { MagneticButton } from "./MagneticButton";
 import { whatsappHref, site } from "@/lib/site.config";
 
 gsap.registerPlugin(useGSAP);
@@ -269,22 +270,26 @@ export function PixelHero() {
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-linear-to-b from-[#2bd96c] to-[#1ebe5b] px-7 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_24px_rgba(30,190,91,0.25)] ring-1 ring-emerald-400/30 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <WhatsappIcon className="h-5 w-5" />
-            Consultá por WhatsApp
-          </a>
-          <Link
-            href="/servicios"
-            className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-7 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-md transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Ver servicios
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
+          <MagneticButton>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-linear-to-b from-[#2bd96c] to-[#1ebe5b] px-7 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_24px_rgba(30,190,91,0.25)] ring-1 ring-emerald-400/30"
+            >
+              <WhatsappIcon className="h-5 w-5" />
+              Consultá por WhatsApp
+            </a>
+          </MagneticButton>
+          <MagneticButton>
+            <Link
+              href="/servicios"
+              className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-7 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-md"
+            >
+              Ver servicios
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+          </MagneticButton>
         </div>
 
         {/* Marquee de entidades */}
