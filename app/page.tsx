@@ -9,7 +9,7 @@ import {
 import { Button, Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
-import { PixelHero } from "@/components/PixelHero";
+import { VideoHero } from "@/components/VideoHero";
 import { ServicesOrbital } from "@/components/ServicesOrbital";
 import { ProcessHorizontal } from "@/components/ProcessHorizontal";
 import { GsapScope } from "@/components/GsapScope";
@@ -90,7 +90,7 @@ export default function HomePage() {
     <GsapScope>
       <JsonLd data={faqSchema(homeFaqs)} />
 
-      <PixelHero />
+      <VideoHero />
 
       {/* ============ SERVICIOS (orbital) ============ */}
       <Section id="servicios" tone="surface">

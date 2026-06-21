@@ -23,6 +23,10 @@ export const site = {
   country: "Paraguay",
   city: "Asunción",
 
+  /** Video de fondo del hero. PLACEHOLDER (stock) — reemplazá por tu propio video .mp4. */
+  heroVideo:
+    "https://videos.pexels.com/video-files/3254066/3254066-uhd_2560_1440_25fps.mp4",
+
   /* ---- CONTACTO (PLACEHOLDER — reemplazá con tus datos reales) ---- */
   contact: {
     /** Teléfono visible */
