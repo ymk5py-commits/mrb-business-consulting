@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { ScrollProgress } from "@/components/motion";
 import { CustomCursor } from "@/components/CustomCursor";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { MotionProvider } from "@/components/MotionProvider";
 import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
@@ -98,14 +99,16 @@ export default function RootLayout({
       lang="es-PY"
       className={`${bodyFont.variable} ${displayFont.variable} ${serifFont.variable}`}
     >
-      <body className="flex min-h-dvh flex-col bg-white antialiased">
+      <body className="bg-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <MotionProvider>
           <ScrollProgress />
           <CustomCursor />
           <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <SmoothScroll>
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
           <WhatsAppFab />
         </MotionProvider>
       </body>

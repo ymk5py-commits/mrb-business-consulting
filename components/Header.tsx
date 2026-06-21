@@ -40,7 +40,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full bg-white/90 backdrop-blur transition-[transform,box-shadow] duration-300 ease-out",
+        "fixed inset-x-0 top-0 z-50 w-full bg-white/90 backdrop-blur transition-[transform,box-shadow] duration-300 ease-out",
         scrolled ? "shadow-sm shadow-slate-900/5 ring-1 ring-slate-900/5" : "",
         hidden && !open ? "-translate-y-full" : "translate-y-0",
       )}

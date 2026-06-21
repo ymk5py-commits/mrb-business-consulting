@@ -39,7 +39,7 @@ export default function ServiciosPage() {
 
       {/* Header band */}
       <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
-        <Container className="py-16 sm:py-20">
+        <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
           />
