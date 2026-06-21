@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Check,
   ShieldCheck,
   Layers,
   MapPin,
@@ -12,6 +11,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { VideoHero } from "@/components/VideoHero";
 import { ServicesOrbital } from "@/components/ServicesOrbital";
 import { ProcessHorizontal } from "@/components/ProcessHorizontal";
+import { DisplayCards } from "@/components/DisplayCards";
 import { GsapScope } from "@/components/GsapScope";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { faqSchema } from "@/lib/seo";
@@ -218,23 +218,11 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
-            <div data-gsap="stagger" className="grid gap-4 sm:grid-cols-2">
-              {[
-                "Trato directo y personalizado",
-                "Información clara, sin tecnicismos",
-                "Tecnología y procesos al día",
-                "Confidencialidad y compromiso",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 rounded-2xl bg-surface p-5"
-                >
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-white">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                  </span>
-                  <span className="text-sm font-medium text-navy-900">{item}</span>
-                </div>
-              ))}
+            <div
+              data-gsap="reveal"
+              className="flex min-h-[24rem] items-center justify-center overflow-hidden"
+            >
+              <DisplayCards />
             </div>
           </div>
         </Container>
