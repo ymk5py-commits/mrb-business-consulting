@@ -3,7 +3,7 @@ import { Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { GsapScope } from "@/components/GsapScope";
 import { services } from "@/lib/services";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
 
@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ServiciosPage() {
   return (
-    <>
+    <GsapScope>
       <JsonLd
         data={[
           breadcrumbSchema([
@@ -42,7 +42,7 @@ export default function ServiciosPage() {
           <Breadcrumbs
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
           />
-          <Reveal>
+          <div data-gsap="reveal">
             <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
               Servicios para tu empresa en Paraguay
             </h1>
@@ -51,23 +51,23 @@ export default function ServiciosPage() {
               laboral del día a día. Elegí el servicio que necesitás o escribinos y te
               asesoramos.
             </p>
-          </Reveal>
+          </div>
         </Container>
       </section>
 
       <Section tone="surface">
         <Container>
-          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div data-gsap="stagger" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <StaggerItem key={service.slug} className="h-full">
+              <div key={service.slug} className="h-full">
                 <ServiceCard service={service} />
-              </StaggerItem>
+              </div>
             ))}
-          </Stagger>
+          </div>
         </Container>
       </Section>
 
       <CtaBand />
-    </>
+    </GsapScope>
   );
 }

@@ -1,11 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ArrowRight } from "lucide-react";
-import { cn } from "./ui";
 import { WhatsappIcon } from "./icons";
 import { whatsappHref, site } from "@/lib/site.config";
+
+gsap.registerPlugin(useGSAP);
 
 /* ----------------------------------------------------------------------------
  * Canvas de píxeles (motor físico de aparición + shimmer en ripple radial)
@@ -186,15 +189,45 @@ const ENTITIES = [
 ];
 
 export function PixelHero() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const t = setTimeout(() => setIsLoaded(true), 60);
-    return () => clearTimeout(t);
-  }, []);
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from(".hero-kicker", { y: 26, autoAlpha: 0, duration: 0.6 })
+        .fromTo(
+          ".hero-word",
+          { clipPath: "inset(0 100% 0 0)", autoAlpha: 0 },
+          {
+            clipPath: "inset(0 0% 0 0)",
+            autoAlpha: 1,
+            duration: 1.1,
+            stagger: 0.18,
+            ease: "power4.inOut",
+          },
+          "-=0.2",
+        )
+        .from(".hero-desc", { y: 28, autoAlpha: 0, duration: 0.8 }, "-=0.55")
+        .from(
+          ".hero-cta",
+          {
+            y: 20,
+            autoAlpha: 0,
+            scale: 0.95,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "back.out(1.5)",
+          },
+          "-=0.45",
+        )
+        .from(".hero-marquee", { y: 22, autoAlpha: 0, duration: 0.7 }, "-=0.35");
+    },
+    { scope: sectionRef },
+  );
 
   return (
     <section
+      ref={sectionRef}
       data-gsap="hero-section"
       className="relative isolate flex min-h-[88svh] flex-col justify-center overflow-hidden bg-linear-to-br from-navy-950 via-navy-900 to-navy-800 py-16 sm:py-20"
     >
@@ -214,55 +247,40 @@ export function PixelHero() {
         data-gsap="hero-parallax"
         className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center sm:px-8"
       >
-        <span
-          className={cn(
-            "inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright ring-1 ring-white/15 transition-all duration-700",
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
-          )}
-        >
+        <span className="hero-kicker inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright ring-1 ring-white/15">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-bright/70 motion-reduce:hidden" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-bright/70" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-bright" />
           </span>
           Consultoría contable y fiscal en Paraguay
         </span>
 
         <h1 className="glass-text mt-7 flex flex-wrap items-baseline justify-center gap-x-3 gap-y-0 text-5xl leading-[0.98] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-          <span className="font-serif italic font-medium">Tu empresa,</span>
-          <span className="font-display font-extrabold tracking-tight">en regla.</span>
+          <span className="hero-word font-serif italic font-medium">Tu empresa,</span>
+          <span className="hero-word font-display font-extrabold tracking-tight">
+            en regla.
+          </span>
         </h1>
 
-        <p
-          className={cn(
-            "mt-7 max-w-2xl text-base leading-relaxed text-slate-300 transition-all duration-700 sm:text-lg",
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-          )}
-          style={{ transitionDelay: "150ms" }}
-        >
+        <p className="hero-desc mt-7 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
           Contabilidad, impuestos y constitución de sociedades bajo las leyes de
           Paraguay. Llevamos tu empresa al día ante la DNIT, el IPS y los Registros
           Públicos, desde un solo estudio.
         </p>
 
-        <div
-          className={cn(
-            "mt-9 flex flex-col items-center justify-center gap-3 transition-all duration-700 sm:flex-row",
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-          )}
-          style={{ transitionDelay: "300ms" }}
-        >
+        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-linear-to-b from-[#2bd96c] to-[#1ebe5b] px-7 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_24px_rgba(30,190,91,0.25)] ring-1 ring-emerald-400/30 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-linear-to-b from-[#2bd96c] to-[#1ebe5b] px-7 text-sm font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_10px_24px_rgba(30,190,91,0.25)] ring-1 ring-emerald-400/30 transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
             <WhatsappIcon className="h-5 w-5" />
             Consultá por WhatsApp
           </a>
           <Link
             href="/servicios"
-            className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-7 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-md transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            className="hero-cta group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-7 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur-md transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
             Ver servicios
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -270,13 +288,7 @@ export function PixelHero() {
         </div>
 
         {/* Marquee de entidades */}
-        <div
-          className={cn(
-            "mt-16 w-full transition-all duration-700",
-            isLoaded ? "opacity-100" : "opacity-0",
-          )}
-          style={{ transitionDelay: "450ms" }}
-        >
+        <div className="hero-marquee mt-16 w-full">
           <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400/80">
             Gestionamos tus trámites ante
           </p>

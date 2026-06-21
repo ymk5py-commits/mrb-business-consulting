@@ -3,7 +3,7 @@ import { Target, Eye, Handshake, ShieldCheck, Heart, Sparkles } from "lucide-rea
 import { Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBand } from "@/components/CtaBand";
-import { Reveal, Stagger, StaggerItem, CountUp } from "@/components/motion";
+import { GsapScope } from "@/components/GsapScope";
 import { site } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
 
@@ -38,15 +38,15 @@ const values = [
 ];
 
 const stats = [
-  { value: "+10", label: "años de experiencia" },
-  { value: "+150", label: "empresas constituidas" },
-  { value: "+200", label: "clientes acompañados" },
-  { value: "100%", label: "obligaciones en regla" },
+  { to: 10, prefix: "+", suffix: "", label: "años de experiencia" },
+  { to: 150, prefix: "+", suffix: "", label: "empresas constituidas" },
+  { to: 200, prefix: "+", suffix: "", label: "clientes acompañados" },
+  { to: 100, prefix: "", suffix: "%", label: "obligaciones en regla" },
 ];
 
 export default function NosotrosPage() {
   return (
-    <>
+    <GsapScope>
       <JsonLd
         data={[
           breadcrumbSchema([
@@ -67,7 +67,7 @@ export default function NosotrosPage() {
       <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
         <Container className="py-16 sm:py-20">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Nosotros" }]} />
-          <Reveal>
+          <div data-gsap="reveal">
             <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
               Tu estudio de confianza en Paraguay
             </h1>
@@ -75,7 +75,7 @@ export default function NosotrosPage() {
               En MRB Business Consulting acompañamos a empresas y emprendedores con
               soluciones contables, fiscales y societarias claras, confiables y a medida.
             </p>
-          </Reveal>
+          </div>
         </Container>
       </section>
 
@@ -83,14 +83,14 @@ export default function NosotrosPage() {
       <Section tone="light">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <Reveal>
+            <div data-gsap="reveal">
               <SectionHeading
                 align="left"
                 kicker="Quiénes somos"
                 title="Un equipo que entiende tu negocio"
               />
-            </Reveal>
-            <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-slate-600">
+            </div>
+            <div data-gsap="reveal" className="space-y-5 text-base leading-relaxed text-slate-600">
               <p>
                 MRB Business Consulting nace para resolver un problema concreto: la gestión
                 contable, tributaria y legal de una empresa en Paraguay suele estar
@@ -107,7 +107,7 @@ export default function NosotrosPage() {
                 rubros, desde su constitución hasta su operación diaria, con un trato
                 cercano y honorarios transparentes.
               </p>
-            </Reveal>
+            </div>
           </div>
         </Container>
       </Section>
@@ -115,8 +115,8 @@ export default function NosotrosPage() {
       {/* Misión / Visión */}
       <Section tone="surface">
         <Container>
-          <Stagger className="grid gap-6 md:grid-cols-2">
-            <StaggerItem className="h-full">
+          <div data-gsap="stagger" className="grid gap-6 md:grid-cols-2">
+            <div className="h-full">
               <div className="h-full rounded-2xl border border-slate-200 bg-white p-8">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-white">
                   <Target className="h-6 w-6" strokeWidth={1.75} />
@@ -128,8 +128,8 @@ export default function NosotrosPage() {
                   crecer su negocio.
                 </p>
               </div>
-            </StaggerItem>
-            <StaggerItem className="h-full">
+            </div>
+            <div className="h-full">
               <div className="h-full rounded-2xl border border-slate-200 bg-white p-8">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-white">
                   <Eye className="h-6 w-6" strokeWidth={1.75} />
@@ -141,25 +141,25 @@ export default function NosotrosPage() {
                   resultados.
                 </p>
               </div>
-            </StaggerItem>
-          </Stagger>
+            </div>
+          </div>
         </Container>
       </Section>
 
       {/* Valores */}
       <Section tone="light">
         <Container>
-          <Reveal>
+          <div data-gsap="reveal">
             <SectionHeading
               kicker="Nuestros valores"
               title="Lo que nos guía cada día"
             />
-          </Reveal>
-          <Stagger className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          </div>
+          <div data-gsap="stagger" className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => {
               const Icon = v.icon;
               return (
-                <StaggerItem key={v.title} className="h-full">
+                <div key={v.title} className="h-full">
                   <div className="h-full rounded-2xl border border-slate-200 p-7">
                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-slate-200">
                       <Icon className="h-5 w-5" strokeWidth={1.75} />
@@ -167,31 +167,36 @@ export default function NosotrosPage() {
                     <h3 className="font-display mt-4 text-lg text-navy-900">{v.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-600">{v.text}</p>
                   </div>
-                </StaggerItem>
+                </div>
               );
             })}
-          </Stagger>
+          </div>
         </Container>
       </Section>
 
       {/* Stats */}
       <section className="bg-navy-900">
         <Container className="py-16">
-          <Stagger className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <div data-gsap="stagger" className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {stats.map((s) => (
-              <StaggerItem key={s.label} className="text-center">
-                <CountUp
-                  value={s.value}
+              <div key={s.label} className="text-center">
+                <span
+                  data-gsap="count"
+                  data-to={s.to}
+                  data-prefix={s.prefix}
+                  data-suffix={s.suffix}
                   className="font-display block text-4xl text-white sm:text-5xl"
-                />
+                >
+                  {s.prefix}0{s.suffix}
+                </span>
                 <span className="mt-2 block text-sm text-slate-400">{s.label}</span>
-              </StaggerItem>
+              </div>
             ))}
-          </Stagger>
+          </div>
         </Container>
       </section>
 
       <CtaBand title="¿Trabajamos juntos?" />
-    </>
+    </GsapScope>
   );
 }
