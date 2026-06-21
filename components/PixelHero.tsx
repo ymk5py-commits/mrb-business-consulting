@@ -194,9 +194,12 @@ export function PixelHero() {
   }, []);
 
   return (
-    <section className="relative isolate flex min-h-[88svh] flex-col justify-center overflow-hidden bg-linear-to-br from-navy-950 via-navy-900 to-navy-800 py-16 sm:py-20">
+    <section
+      data-gsap="hero-section"
+      className="relative isolate flex min-h-[88svh] flex-col justify-center overflow-hidden bg-linear-to-br from-navy-950 via-navy-900 to-navy-800 py-16 sm:py-20"
+    >
       {/* Canvas de píxeles + viñeta */}
-      <div className="pointer-events-none absolute inset-0 z-0">
+      <div data-gsap="hero-bg" className="pointer-events-none absolute inset-0 z-0">
         <PixelCanvas colors={PIXEL_COLORS} gap={10} speed={35} />
         <div
           className="absolute inset-0"
@@ -207,7 +210,10 @@ export function PixelHero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center sm:px-8">
+      <div
+        data-gsap="hero-parallax"
+        className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center sm:px-8"
+      >
         <span
           className={cn(
             "inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright ring-1 ring-white/15 transition-all duration-700",
