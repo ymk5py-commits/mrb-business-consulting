@@ -50,6 +50,9 @@ export function ServicesOrbital() {
 
   useEffect(() => {
     if (!autoRotate) return;
+    // El orbital solo se muestra en desktop (lg+); evitamos el timer en mobile.
+    if (typeof window !== "undefined" && !window.matchMedia("(min-width:1024px)").matches)
+      return;
     const t = setInterval(() => {
       setRotationAngle((prev) => Number(((prev + 0.3) % 360).toFixed(3)));
     }, 50);
@@ -111,11 +114,42 @@ export function ServicesOrbital() {
   };
 
   return (
-    <div
-      ref={containerRef}
-      onClick={reset}
-      className="relative mx-auto h-[540px] w-full overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-navy-950 via-navy-900 to-navy-800 sm:h-[620px]"
-    >
+    <>
+      {/* Mobile / tablet: grilla clara y tocable (el orbital se apretaba demasiado) */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:hidden">
+        {NODES.map((node) => {
+          const Icon = node.icon;
+          return (
+            <Link
+              key={node.id}
+              href={`/servicios/${node.slug}`}
+              className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-accent/40 hover:bg-surface"
+            >
+              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-white transition-colors group-hover:bg-accent">
+                <Icon size={20} strokeWidth={1.75} />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-accent">
+                  {node.kicker}
+                </p>
+                <h3 className="font-display mt-0.5 text-base font-semibold text-navy-900">
+                  {node.title}
+                </h3>
+                <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-slate-600">
+                  {node.content}
+                </p>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Desktop: orbital animado */}
+      <div
+        ref={containerRef}
+        onClick={reset}
+        className="relative mx-auto hidden h-[620px] w-full overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-navy-950 via-navy-900 to-navy-800 lg:block"
+      >
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-grid opacity-50"
@@ -257,9 +291,10 @@ export function ServicesOrbital() {
         })}
       </div>
 
-      <p className="pointer-events-none absolute inset-x-0 bottom-5 text-center text-xs text-slate-400/80">
-        Tocá un servicio para ver el detalle
-      </p>
-    </div>
+        <p className="pointer-events-none absolute inset-x-0 bottom-5 text-center text-xs text-slate-400/80">
+          Tocá un servicio para ver el detalle
+        </p>
+      </div>
+    </>
   );
 }

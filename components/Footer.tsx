@@ -72,10 +72,10 @@ export function Footer() {
 
         <div className="mt-14 border-t border-white/10 pt-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400">
               © {year} {site.legalName}. Todos los derechos reservados.
             </p>
-            <p className="max-w-xl text-xs leading-relaxed text-slate-500">
+            <p className="max-w-xl text-xs leading-relaxed text-slate-400">
               La información de este sitio es de carácter general e informativo y no
               constituye asesoramiento legal, contable o tributario vinculante.
             </p>

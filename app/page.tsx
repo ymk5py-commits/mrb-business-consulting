@@ -132,7 +132,7 @@ export default function HomePage() {
             {rubros.map((r) => (
               <span
                 key={r}
-                className="whitespace-nowrap text-base font-semibold uppercase tracking-wider text-slate-400 transition-colors duration-300 hover:text-navy-900"
+                className="whitespace-nowrap text-base font-semibold uppercase tracking-wider text-slate-600 transition-colors duration-300 hover:text-navy-900"
               >
                 {r}
               </span>

@@ -45,7 +45,7 @@ const cards: DisplayCardProps[] = [
     description: "Registros y estados al día",
     meta: "Mes a mes",
     className:
-      "grayscale-[100%] [grid-area:stack] before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl before:bg-white/55 before:content-[''] before:transition-opacity before:duration-700 hover:-translate-y-10 hover:grayscale-0 hover:before:opacity-0",
+      "lg:grayscale-[100%] [grid-area:stack] before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl lg:before:bg-white/55 before:content-[''] before:transition-opacity before:duration-700 hover:-translate-y-10 hover:grayscale-0 hover:before:opacity-0",
   },
   {
     icon: <ReceiptText className="size-4 text-white" />,
@@ -53,7 +53,7 @@ const cards: DisplayCardProps[] = [
     description: "IVA, IRE e IRP ante la DNIT",
     meta: "En término",
     className:
-      "grayscale-[100%] [grid-area:stack] translate-x-14 translate-y-10 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl before:bg-white/55 before:content-[''] before:transition-opacity before:duration-700 hover:-translate-y-1 hover:grayscale-0 hover:before:opacity-0",
+      "lg:grayscale-[100%] [grid-area:stack] translate-x-14 translate-y-10 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-xl lg:before:bg-white/55 before:content-[''] before:transition-opacity before:duration-700 hover:-translate-y-1 hover:grayscale-0 hover:before:opacity-0",
   },
   {
     icon: <Building2 className="size-4 text-white" />,
