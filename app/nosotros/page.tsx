@@ -3,6 +3,7 @@ import { Target, Eye, Handshake, ShieldCheck, Heart, Sparkles } from "lucide-rea
 import { Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBand } from "@/components/CtaBand";
+import { TeamSection } from "@/components/TeamSection";
 import { GsapScope } from "@/components/GsapScope";
 import { site } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
@@ -112,8 +113,11 @@ export default function NosotrosPage() {
         </Container>
       </Section>
 
+      {/* Equipo */}
+      <TeamSection />
+
       {/* Misión / Visión */}
-      <Section tone="surface">
+      <Section tone="light">
         <Container>
           <div data-gsap="stagger" className="grid gap-6 md:grid-cols-2">
             <div className="h-full">
@@ -147,7 +151,7 @@ export default function NosotrosPage() {
       </Section>
 
       {/* Valores */}
-      <Section tone="light">
+      <Section tone="surface">
         <Container>
           <div data-gsap="reveal">
             <SectionHeading
