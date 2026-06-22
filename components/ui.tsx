@@ -78,7 +78,7 @@ export function SectionHeading({
         <span
           className={cn(
             "inline-block text-sm font-semibold uppercase tracking-[0.18em]",
-            isLight ? "text-accent-bright" : "text-accent",
+            isLight ? "text-accent-bright" : "text-accent-600",
           )}
         >
           {kicker}

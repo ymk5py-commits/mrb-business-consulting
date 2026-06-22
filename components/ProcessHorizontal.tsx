@@ -74,7 +74,9 @@ export function ProcessHorizontal() {
               key={step.n}
               className="relative flex w-[78vw] shrink-0 flex-col rounded-3xl border border-slate-200 bg-white p-8 sm:w-[20rem] lg:w-[24rem]"
             >
-              <span className="font-display text-6xl text-accent/25">{step.n}</span>
+              <span aria-hidden="true" className="font-display text-6xl text-accent/25">
+                {step.n}
+              </span>
               <h3 className="font-display mt-4 text-2xl text-navy-900">{step.title}</h3>
               <p className="mt-3 text-base leading-relaxed text-slate-600">{step.text}</p>
               <span className="mt-6 h-1 w-12 rounded-full bg-linear-to-r from-accent to-accent-bright" />
