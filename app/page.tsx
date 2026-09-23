@@ -12,6 +12,7 @@ import { VideoHero } from "@/components/VideoHero";
 import { ServicesOrbital } from "@/components/ServicesOrbital";
 import { ProcessHorizontal } from "@/components/ProcessHorizontal";
 import { DisplayCards } from "@/components/DisplayCards";
+import { ExperienceBand } from "@/components/ExperienceBand";
 import { GsapScope } from "@/components/GsapScope";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { faqSchema } from "@/lib/seo";
@@ -42,8 +43,8 @@ const homeFaqs = [
 const whyUs = [
   {
     icon: ShieldCheck,
-    title: "Cumplimiento garantizado",
-    text: "Tus obligaciones ante la DNIT, el IPS y los Registros Públicos siempre en regla y en término.",
+    title: "Seguimiento de obligaciones",
+    text: "Te ayudamos a organizar vencimientos y gestiones ante la DNIT, el IPS y los Registros Públicos.",
   },
   {
     icon: Layers,
@@ -75,14 +76,6 @@ const rubros = [
   "Agropecuario",
   "E-commerce",
   "Profesionales independientes",
-];
-
-// Métricas de confianza — EDITÁ con tus números reales.
-const stats = [
-  { to: 10, prefix: "+", suffix: "", label: "años de experiencia" },
-  { to: 150, prefix: "+", suffix: "", label: "empresas constituidas" },
-  { to: 200, prefix: "+", suffix: "", label: "clientes acompañados" },
-  { to: 100, prefix: "", suffix: "%", label: "obligaciones en regla" },
 ];
 
 export default function HomePage() {
@@ -174,33 +167,7 @@ export default function HomePage() {
       {/* ============ PROCESO (scroll horizontal anclado) ============ */}
       <ProcessHorizontal />
 
-      {/* ============ STATS ============ */}
-      <section className="relative overflow-hidden bg-navy-900">
-        <div
-          data-gsap="parallax"
-          data-speed="-10"
-          aria-hidden="true"
-          className="absolute inset-0 bg-grid opacity-60"
-        />
-        <Container className="relative py-16">
-          <div data-gsap="stagger" className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <span
-                  data-gsap="count"
-                  data-to={s.to}
-                  data-prefix={s.prefix}
-                  data-suffix={s.suffix}
-                  className="font-display block text-4xl text-white tabular-nums sm:text-5xl"
-                >
-                  {s.prefix}0{s.suffix}
-                </span>
-                <span className="mt-2 block text-sm text-slate-400">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ExperienceBand />
 
       {/* ============ NOSOTROS TEASER ============ */}
       <Section tone="light">

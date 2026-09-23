@@ -2,8 +2,7 @@
  * MRB Business Consulting — Equipo
  * ============================================================
  * La sección de /nosotros se construye a partir de este archivo.
- * La foto actual proviene del CV proporcionado y se puede sustituir
- * por un retrato de mayor resolución cuando esté disponible.
+ * La foto actual fue proporcionada para la ficha de Manuel.
  * ============================================================ */
 
 export type TeamMember = {
@@ -27,9 +26,9 @@ export const team: TeamMember[] = [
   {
     name: "Manuel Rolón",
     role: "Director · Licenciado en Ciencias Contables y Administrativas",
-    bio: "Más de 15 años de experiencia en gestión administrativa y financiera, contabilidad y outsourcing, liderando equipos en empresas de diversos sectores en Paraguay.",
+    bio: "Más de 15 años en gestión contable y financiera, outsourcing y liderazgo de equipos en sectores como importación, construcción y automotor.",
     director: true,
-    photo: "/team/manuel-rolon.jpg",
+    photo: "/team/manuel-rolon.png",
   },
 ];
 

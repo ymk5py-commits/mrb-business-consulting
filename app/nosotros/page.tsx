@@ -4,6 +4,7 @@ import { Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBand } from "@/components/CtaBand";
 import { TeamSection } from "@/components/TeamSection";
+import { ExperienceBand } from "@/components/ExperienceBand";
 import { GsapScope } from "@/components/GsapScope";
 import { site } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
@@ -36,13 +37,6 @@ const values = [
     title: "Compromiso",
     text: "Tu tranquilidad y el cumplimiento de tu empresa son nuestra prioridad.",
   },
-];
-
-const stats = [
-  { to: 15, prefix: "+", suffix: "", label: "años de experiencia" },
-  { to: 150, prefix: "+", suffix: "", label: "empresas constituidas" },
-  { to: 200, prefix: "+", suffix: "", label: "clientes acompañados" },
-  { to: 100, prefix: "", suffix: "%", label: "obligaciones en regla" },
 ];
 
 export default function NosotrosPage() {
@@ -100,8 +94,7 @@ export default function NosotrosPage() {
               <p>
                 Reunimos en un mismo estudio a contadores y asesores que dominan el marco
                 normativo local —la DNIT, el IPS, los Registros Públicos— para que tengas
-                un único punto de contacto, respuestas rápidas y la tranquilidad de estar
-                siempre en regla.
+                un único punto de contacto y una gestión más ordenada.
               </p>
               <p>
                 Trabajamos con empresas unipersonales, S.R.L., S.A. y E.A.S. de distintos
@@ -178,27 +171,7 @@ export default function NosotrosPage() {
         </Container>
       </Section>
 
-      {/* Stats */}
-      <section className="bg-navy-900">
-        <Container className="py-16">
-          <div data-gsap="stagger" className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <span
-                  data-gsap="count"
-                  data-to={s.to}
-                  data-prefix={s.prefix}
-                  data-suffix={s.suffix}
-                  className="font-display block text-4xl text-white sm:text-5xl"
-                >
-                  {s.prefix}0{s.suffix}
-                </span>
-                <span className="mt-2 block text-sm text-slate-400">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ExperienceBand />
 
       <CtaBand title="¿Trabajamos juntos?" />
     </GsapScope>

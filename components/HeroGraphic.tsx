@@ -145,7 +145,7 @@ export function HeroGraphic() {
         </div>
       </Float>
 
-      {/* Badge: 100% en regla (abajo-derecha) */}
+      {/* Badge de gestión contable (abajo-derecha) */}
       <Float
         delay={1.15}
         duration={5.5}
@@ -153,11 +153,13 @@ export function HeroGraphic() {
         className="absolute -bottom-8 right-4 z-20"
       >
         <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white px-4 py-3 shadow-2xl">
-          <span className="font-display text-2xl text-navy-900">100%</span>
+          <span className="inline-flex size-10 items-center justify-center rounded-xl bg-navy-900 text-white">
+            <ShieldCheck className="size-5" />
+          </span>
           <span className="text-xs font-medium leading-tight text-slate-500">
-            obligaciones
+            gestión
             <br />
-            en regla
+            responsable
           </span>
         </div>
       </Float>

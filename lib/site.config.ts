@@ -27,12 +27,12 @@ export const site = {
   heroVideo:
     "https://videos.pexels.com/video-files/3254066/3254066-uhd_2560_1440_25fps.mp4",
 
-  /* ---- CONTACTO (PLACEHOLDER — reemplazá con tus datos reales) ---- */
+  /* ---- CONTACTO ---- */
   contact: {
     /** Teléfono visible */
-    phone: "+595 21 000 000", // PLACEHOLDER
+    phone: "+595 976 960 533",
     /** Número de WhatsApp en formato internacional sin "+" ni espacios (para wa.me) */
-    whatsapp: "595981234567", // PLACEHOLDER
+    whatsapp: "595976960533",
     email: "contacto@mrbconsulting.com.py", // PLACEHOLDER
     /** Mensaje pre-cargado al abrir WhatsApp */
     whatsappMessage:
