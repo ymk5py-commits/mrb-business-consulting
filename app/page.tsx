@@ -214,7 +214,7 @@ export default function HomePage() {
                 subtitle="Somos un equipo de contadores y asesores que entiende los desafíos de emprender y hacer crecer una empresa en Paraguay. Trabajamos para que vos te ocupes de tu negocio y nosotros del resto."
               />
               <Button href="/nosotros" variant="ghost" className="mt-8">
-                Conocé al equipo
+                Conocé a Manuel
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>

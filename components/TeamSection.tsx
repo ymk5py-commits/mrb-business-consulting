@@ -1,5 +1,5 @@
 /* ============================================================
- * components/TeamSection.tsx — sección "Nuestro equipo" de /nosotros.
+ * components/TeamSection.tsx — ficha profesional de /nosotros.
  * Server Component (el "use client" lo aporta <Tilt>). Sin deps nuevas.
  * Los datos viven en lib/team.ts (editá ahí el equipo y las fotos).
  * ============================================================ */
@@ -85,7 +85,7 @@ function Avatar({
   );
 }
 
-/* ---- Redes (LinkedIn de marca + email); SIEMPRE visibles (táctil) ---- */
+/* ---- Contacto profesional, si existe un enlace verificado ---- */
 function Socials({ member, size = "md" }: { member: TeamMember; size?: "md" | "sm" }) {
   if (!member.linkedin && !member.email) return null;
   const base =
@@ -127,7 +127,7 @@ function teamSchema() {
     name: m.name,
     jobTitle: m.role,
     worksFor: { "@id": ORG_ID },
-    ...(m.director ? { founder: { "@id": ORG_ID } } : { memberOf: { "@id": ORG_ID } }),
+    memberOf: { "@id": ORG_ID },
     ...(m.photo ? { image: absoluteUrl(m.photo) } : {}),
     ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
     ...(m.email ? { email: m.email } : {}),
@@ -146,9 +146,9 @@ export function TeamSection() {
         <div data-gsap="reveal">
           <SectionHeading
             align="left"
-            kicker="Nuestro equipo"
-            title="Conocé a quienes están detrás de MRB"
-            subtitle="Contadores y asesores que dominan el marco normativo paraguayo —la DNIT, el IPS, los Registros Públicos— y se ocupan de tu empresa como si fuera propia."
+            kicker="Quién está detrás de MRB"
+            title="Conocé a Manuel Rolón"
+            subtitle="Licenciado en Ciencias Contables y Administrativas, con más de 15 años de experiencia en gestión financiera, contabilidad y dirección de equipos."
           />
         </div>
 
@@ -183,36 +183,40 @@ export function TeamSection() {
               <p className="font-serif mt-4 max-w-xl text-base italic leading-relaxed text-slate-600 sm:text-lg">
                 {director.bio}
               </p>
-              <div className="mt-6">
-                <Socials member={director} size="md" />
-              </div>
+              {(director.linkedin || director.email) && (
+                <div className="mt-6">
+                  <Socials member={director} size="md" />
+                </div>
+              )}
             </div>
           </article>
         </div>
 
         {/* Grilla de miembros (stagger) */}
-        <div data-gsap="stagger" className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {members.map((m) => (
-            <article
-              key={`${m.name}-${m.role}`}
-              className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] focus-within:-translate-y-1 focus-within:border-slate-300 focus-within:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0"
-            >
-              <Avatar
-                member={m}
-                ratio="square"
-                initialsClass="text-3xl"
-                sizes="(min-width: 1024px) 16rem, (min-width: 640px) 45vw, 100vw"
-                className="rounded-xl"
-              />
-              <h3 className="font-display mt-5 text-lg text-navy-900">{m.name}</h3>
-              <p className="mt-1 text-sm font-semibold text-accent-600">{m.role}</p>
-              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{m.bio}</p>
-              <div className="mt-5 pt-1">
-                <Socials member={m} size="sm" />
-              </div>
-            </article>
-          ))}
-        </div>
+        {members.length > 0 && (
+          <div data-gsap="stagger" className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {members.map((m) => (
+              <article
+                key={`${m.name}-${m.role}`}
+                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] focus-within:-translate-y-1 focus-within:border-slate-300 focus-within:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0"
+              >
+                <Avatar
+                  member={m}
+                  ratio="square"
+                  initialsClass="text-3xl"
+                  sizes="(min-width: 1024px) 16rem, (min-width: 640px) 45vw, 100vw"
+                  className="rounded-xl"
+                />
+                <h3 className="font-display mt-5 text-lg text-navy-900">{m.name}</h3>
+                <p className="mt-1 text-sm font-semibold text-accent-600">{m.role}</p>
+                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{m.bio}</p>
+                <div className="mt-5 pt-1">
+                  <Socials member={m} size="sm" />
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </Container>
     </Section>
   );

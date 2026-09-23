@@ -1,17 +1,9 @@
 /* ============================================================
  * MRB Business Consulting — Equipo
  * ============================================================
- *  👉 EDITÁ AQUÍ los miembros del equipo. La sección "Nuestro equipo"
- *  de /nosotros se construye automáticamente a partir de este archivo.
- *
- *  FOTOS: dejá `photo` sin definir y se renderiza un avatar de marca
- *  con las iniciales. Cuando tengas la foto real:
- *    1. Copiala a /public/team/  (ej. /public/team/director.jpg)
- *    2. Recortala en relación 4:5 (retrato), idealmente ≥ 800×1000 px.
- *    3. Seteá `photo: "/team/director.jpg"`.
- *
- *  El primer miembro con `director: true` se destaca con un badge.
- *  Los nombres son PLACEHOLDER — reemplazalos por los reales.
+ * La sección de /nosotros se construye a partir de este archivo.
+ * La foto actual proviene del CV proporcionado y se puede sustituir
+ * por un retrato de mayor resolución cuando esté disponible.
  * ============================================================ */
 
 export type TeamMember = {
@@ -33,42 +25,11 @@ export type TeamMember = {
 
 export const team: TeamMember[] = [
   {
-    name: "Marcos R. Benítez",
-    role: "Director · Contador Público",
-    bio: "Lidera el estudio con más de una década asesorando empresas en materia contable, tributaria y societaria en Paraguay.",
+    name: "Manuel Rolón",
+    role: "Director · Licenciado en Ciencias Contables y Administrativas",
+    bio: "Más de 15 años de experiencia en gestión administrativa y financiera, contabilidad y outsourcing, liderando equipos en empresas de diversos sectores en Paraguay.",
     director: true,
-    linkedin: "https://www.linkedin.com/company/mrbconsulting",
-    email: "director@mrbconsulting.com.py",
-    // photo: "/team/director.jpg",
-  },
-  {
-    name: "Lucía Fernández",
-    role: "Socia · Gerente",
-    bio: "Coordina los equipos de trabajo y la relación con los clientes para que cada gestión llegue en tiempo y forma.",
-    linkedin: "https://www.linkedin.com/company/mrbconsulting",
-    email: "gerencia@mrbconsulting.com.py",
-    // photo: "/team/socia.jpg",
-  },
-  {
-    name: "Andrea Giménez",
-    role: "Contadora Senior",
-    bio: "Responsable de la liquidación de impuestos y los estados financieros, con foco en el cumplimiento ante la DNIT.",
-    email: "contabilidad@mrbconsulting.com.py",
-    // photo: "/team/contador.jpg",
-  },
-  {
-    name: "Diego Martínez",
-    role: "Asesor Tributario",
-    bio: "Acompaña la planificación fiscal y las consultas técnicas para optimizar la carga impositiva dentro de la norma.",
-    email: "tributario@mrbconsulting.com.py",
-    // photo: "/team/tributario.jpg",
-  },
-  {
-    name: "Carolina Rojas",
-    role: "Asesora Laboral & Societaria",
-    bio: "Gestiona altas de personal, IPS y trámites societarios ante los Registros Públicos de principio a fin.",
-    email: "laboral@mrbconsulting.com.py",
-    // photo: "/team/laboral.jpg",
+    photo: "/team/manuel-rolon.jpg",
   },
 ];
 

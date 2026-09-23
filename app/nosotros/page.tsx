@@ -39,7 +39,7 @@ const values = [
 ];
 
 const stats = [
-  { to: 10, prefix: "+", suffix: "", label: "años de experiencia" },
+  { to: 15, prefix: "+", suffix: "", label: "años de experiencia" },
   { to: 150, prefix: "+", suffix: "", label: "empresas constituidas" },
   { to: 200, prefix: "+", suffix: "", label: "clientes acompañados" },
   { to: 100, prefix: "", suffix: "%", label: "obligaciones en regla" },
