@@ -2,20 +2,20 @@ import { Container } from "@/components/ui";
 
 const highlights = [
   {
-    title: "Más de 15 años",
-    detail: "de experiencia profesional de Manuel Rolón",
+    value: "31",
+    label: "clientes en total",
   },
   {
-    title: "Contabilidad y finanzas",
-    detail: "gestión administrativa y financiera de empresas",
+    value: "7",
+    label: "sociedades",
   },
   {
-    title: "Outsourcing",
-    detail: "supervisión de equipos y servicios tercerizados",
+    value: "24",
+    label: "personas físicas",
   },
   {
-    title: "Sectores diversos",
-    detail: "importación, construcción, automotor y servicios",
+    value: "+15",
+    label: "años de experiencia profesional de Manuel",
   },
 ];
 
@@ -25,16 +25,16 @@ export function ExperienceBand() {
       <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-50" />
       <Container className="relative py-14 sm:py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-bright">
-          Trayectoria profesional
+          Trayectoria y clientes
         </p>
         <h2 className="font-display mt-3 max-w-2xl text-2xl text-white sm:text-3xl">
-          Experiencia al servicio de tu empresa
+          Experiencia al servicio de empresas y personas
         </h2>
         <div data-gsap="stagger" className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {highlights.map((item) => (
-            <div key={item.title} className="rounded-xl border border-white/15 bg-white/5 p-5">
-              <h3 className="font-display text-lg text-white">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">{item.detail}</p>
+            <div key={item.label} className="rounded-xl border border-white/15 bg-white/5 p-5">
+              <p className="font-display text-4xl text-white">{item.value}</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">{item.label}</p>
             </div>
           ))}
         </div>
