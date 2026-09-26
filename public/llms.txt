@@ -1,29 +1,48 @@
 # MRB Business Consulting
 
-> Estudio de consultoría contable, fiscal y societaria en Paraguay (Asunción).
-> Ayudamos a empresas y emprendedores a constituirse, cumplir con sus obligaciones
-> ante la DNIT y el IPS, y crecer en regla. Atención en todo el país.
+> Estudio de consultoría contable, tributaria y societaria en Lambaré (Gran Asunción), Paraguay. Ayudamos a empresas y personas físicas a constituirse, cumplir ante la DNIT y el IPS, y crecer en regla. Atendemos clientes de todo el país, gran parte en forma digital.
 
-Idioma: español (es-PY). Contacto principal: WhatsApp y formulario en /contacto.
+Idioma: español (es-PY). Última actualización de este archivo: 2026-09-26.
+
+## Quiénes somos
+
+MRB Business Consulting está dirigido por Manuel Rolón, Licenciado en Ciencias Contables y Administrativas (Universidad Columbia del Paraguay, Summa Cum Laude), Diplomado en Finanzas y Proyectos de Inversión (Universidad San Ignacio de Loyola) y experto en la Ley 6380/19 de modernización del sistema tributario. Tiene más de 15 años de experiencia en gestión contable y financiera y en outsourcing contable, en sectores como importación, textil, construcción y automotor. MRB trabaja hoy con 31 clientes: 7 sociedades y 24 personas físicas (septiembre de 2026).
+
+## Contacto
+
+- Dirección: Calle Ángel Gabriel casi Fortín Isla Poí, Barrio Mbachió, Lambaré (departamento Central), Paraguay.
+- Teléfono y WhatsApp: +595 976 960 533
+- Horario: lunes a viernes, de 08:00 a 17:00
+- Contacto en línea: https://www.mrbconsulting.com.py/contacto
 
 ## Servicios
 
-- [Contabilidad](https://mrb-business-consulting.vercel.app/servicios/contabilidad): registros contables mensuales, libros legales, estados financieros y conciliaciones (NIIF para PYMEs).
-- [Impuestos y fiscal](https://mrb-business-consulting.vercel.app/servicios/impuestos): liquidación y presentación de IVA, IRE, IRP e IDU ante la DNIT (Marangatú); planificación tributaria y facturación electrónica (SIFEN).
-- [Constitución de sociedades](https://mrb-business-consulting.vercel.app/servicios/constitucion-de-sociedades): S.A., S.R.L., E.A.S. (Ley 6480/2020), E.I.R.L. y unipersonal; estatutos, inscripción en Registros Públicos y obtención de RUC.
-- [Asesoría laboral e IPS](https://mrb-business-consulting.vercel.app/servicios/asesoria-laboral-ips): liquidación de salarios, aportes al IPS y trámites ante el MTESS.
-- [Auditoría y consultoría](https://mrb-business-consulting.vercel.app/servicios/auditoria-consultoria): auditoría de estados financieros, revisión tributaria preventiva, due diligence.
-- [Trámites e inscripciones](https://mrb-business-consulting.vercel.app/servicios/tramites-inscripciones): RUC, patente municipal, habilitaciones, inscripción IPS/MTESS, registro de marca (DINAPI).
-- [Asesoría legal societaria](https://mrb-business-consulting.vercel.app/servicios/asesoria-legal-societaria): reformas de estatutos, actas, aumentos de capital, transferencia de acciones, gobierno corporativo.
+- [Contabilidad](https://www.mrbconsulting.com.py/servicios/contabilidad): registración contable mensual, libros legales (Diario, Mayor e Inventario), estados financieros y conciliaciones bajo NIIF para PYMEs.
+- [Impuestos y fiscal](https://www.mrbconsulting.com.py/servicios/impuestos): liquidación y presentación de IVA, IRE, IRP e IDU ante la DNIT (Marangatú); planificación tributaria y facturación electrónica (SIFEN).
+- [Constitución de sociedades](https://www.mrbconsulting.com.py/servicios/constitucion-de-sociedades): S.A., S.R.L., E.A.S. (Ley 6480/2020), E.I.R.L. y empresa unipersonal; estatutos, inscripción en los Registros Públicos y obtención del RUC.
+- [Asesoría laboral e IPS](https://www.mrbconsulting.com.py/servicios/asesoria-laboral-ips): liquidación de salarios y aguinaldo, aportes al IPS, inscripción patronal y trámites ante el MTESS.
+- [Auditoría y consultoría](https://www.mrbconsulting.com.py/servicios/auditoria-consultoria): auditoría de estados financieros, revisión tributaria preventiva, due diligence y consultoría de gestión.
+- [Trámites e inscripciones](https://www.mrbconsulting.com.py/servicios/tramites-inscripciones): RUC (empresas y personas físicas), patente municipal, habilitaciones, inscripción IPS/MTESS y registro de marca ante la DINAPI.
+- [Asesoría legal societaria](https://www.mrbconsulting.com.py/servicios/asesoria-legal-societaria): reformas de estatutos, actas de asamblea y directorio, aumentos de capital, transferencia de acciones y gobierno corporativo.
+
+## Preguntas frecuentes
+
+- ¿Qué es una E.A.S. y cómo se constituye en Paraguay? La Empresa por Acciones Simplificadas (E.A.S.), creada por la Ley 6480/2020, puede tener uno o más accionistas, personas físicas o jurídicas, y la ley no exige capital mínimo. Se constituye 100 % en línea por el SUACE del Ministerio de Industria y Comercio, en hasta 72 horas hábiles.
+- ¿Qué impuestos paga una empresa (S.A., S.R.L. o E.A.S.) en Paraguay? Principalmente el IVA (10 % o 5 % según el bien o servicio), el IRE (Impuesto a la Renta Empresarial, tasa general del 10 % sobre la utilidad neta) y el IDU sobre la distribución de dividendos y utilidades.
+- ¿Cuándo vence el IVA en Paraguay? El IVA se declara todos los meses con el Formulario 120. El vencimiento lo fija el calendario perpetuo de la DNIT según el último dígito del RUC (sin el dígito verificador): del día 7 al 25 del mes siguiente; si cae en día inhábil, pasa al siguiente día hábil.
+- ¿Qué es Marangatú? Es el sistema en línea de la DNIT (ex SET) para presentar declaraciones juradas, administrar el RUC y pagar impuestos en Paraguay.
+- ¿Necesito un contador si trabajo como profesional independiente? Si facturás por tus servicios necesitás estar inscripto en el RUC, emitir comprobantes válidos y presentar tus declaraciones de IVA y, si tus ingresos superan el mínimo que fija la ley, del IRP.
+- ¿Es obligatorio inscribir a los empleados en el IPS? Sí. Todo empleador debe inscribirse como patronal y dar de alta a sus trabajadores en el IPS desde el inicio de la relación laboral.
 
 ## Páginas
 
-- [Inicio](https://mrb-business-consulting.vercel.app/)
-- [Servicios](https://mrb-business-consulting.vercel.app/servicios)
-- [Nosotros](https://mrb-business-consulting.vercel.app/nosotros)
-- [Contacto](https://mrb-business-consulting.vercel.app/contacto)
+- [Inicio](https://www.mrbconsulting.com.py/)
+- [Servicios](https://www.mrbconsulting.com.py/servicios)
+- [Nosotros](https://www.mrbconsulting.com.py/nosotros)
+- [Contacto](https://www.mrbconsulting.com.py/contacto)
 
 ## Notas
 
-- Marco legal: Paraguay (DNIT, IPS, MTESS, Registros Públicos, DINAPI).
-- La información del sitio es general e informativa; no constituye asesoramiento vinculante.
+- Marco legal: Paraguay (DNIT, IPS, MTESS, Registros Públicos, DINAPI, SUACE).
+- El sitio publica datos estructurados (Organization, Person, Service, FAQPage, BreadcrumbList) en cada página.
+- La información del sitio es general e informativa y no constituye asesoramiento legal, contable o tributario vinculante; cada caso debe consultarse con MRB.

@@ -27,6 +27,13 @@ export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+/* Ícono por red (ver socialLinks en lib/site.config.ts) */
+export const socialIcons = {
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
+  linkedin: LinkedinIcon,
+} as const;
+
 export function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>

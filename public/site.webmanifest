@@ -1,7 +1,7 @@
 {
   "name": "MRB Business Consulting",
   "short_name": "MRB",
-  "description": "Contabilidad, impuestos y constitución de empresas en Paraguay.",
+  "description": "Estudio contable, tributario y societario en Lambaré (Gran Asunción), Paraguay.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,10 +9,16 @@
   "lang": "es-PY",
   "icons": [
     {
-      "src": "/brand/logo-mrb-circle.png",
+      "src": "/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

@@ -50,7 +50,7 @@ export function ContactForm() {
             autoComplete="name"
             value={form.nombre}
             onChange={(e) => update("nombre", e.target.value)}
-            placeholder="Tu nombre y apellido"
+            placeholder="Ej.: Juan Pérez…"
             className={inputClasses}
           />
         </div>
@@ -64,9 +64,10 @@ export function ContactForm() {
             name="email"
             type="email"
             autoComplete="email"
+            spellCheck={false}
             value={form.email}
             onChange={(e) => update("email", e.target.value)}
-            placeholder="tucorreo@ejemplo.com"
+            placeholder="nombre@empresa.com.py…"
             className={inputClasses}
           />
         </div>
@@ -102,7 +103,7 @@ export function ContactForm() {
             rows={4}
             value={form.mensaje}
             onChange={(e) => update("mensaje", e.target.value)}
-            placeholder="Contanos brevemente qué necesitás"
+            placeholder="Contanos brevemente qué necesitás…"
             className={inputClasses}
           />
         </div>

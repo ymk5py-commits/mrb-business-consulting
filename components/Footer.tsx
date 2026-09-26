@@ -2,8 +2,8 @@ import Link from "next/link";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Logo } from "./Logo";
 import { Container } from "./ui";
-import { InstagramIcon, FacebookIcon, LinkedinIcon } from "./icons";
-import { site, navLinks } from "@/lib/site.config";
+import { socialIcons } from "./icons";
+import { site, navLinks, addressLine, mapsHref, socialLinks } from "@/lib/site.config";
 import { services } from "@/lib/services";
 
 export function Footer() {
@@ -18,17 +18,18 @@ export function Footer() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
               {site.description}
             </p>
-            <div className="mt-6 flex items-center gap-3">
-              <SocialLink href={site.social.instagram} label="Instagram">
-                <InstagramIcon className="h-5 w-5" />
-              </SocialLink>
-              <SocialLink href={site.social.facebook} label="Facebook">
-                <FacebookIcon className="h-5 w-5" />
-              </SocialLink>
-              <SocialLink href={site.social.linkedin} label="LinkedIn">
-                <LinkedinIcon className="h-5 w-5" />
-              </SocialLink>
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="mt-6 flex items-center gap-3">
+                {socialLinks.map((s) => {
+                  const Icon = socialIcons[s.network];
+                  return (
+                    <SocialLink key={s.network} href={s.href} label={s.label}>
+                      <Icon className="h-5 w-5" />
+                    </SocialLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Servicios */}
@@ -52,18 +53,22 @@ export function Footer() {
           {/* Contacto */}
           <FooterCol title="Contacto">
             <ContactItem icon={<MapPin className="h-4 w-4" />}>
-              {site.contact.address.street}, {site.contact.address.city}
+              <a href={mapsHref} target="_blank" rel="noopener noreferrer" className={footerLink}>
+                {addressLine}
+              </a>
             </ContactItem>
             <ContactItem icon={<Phone className="h-4 w-4" />}>
-              <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className="hover:text-white">
+              <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className={footerLink}>
                 {site.contact.phone}
               </a>
             </ContactItem>
-            <ContactItem icon={<Mail className="h-4 w-4" />}>
-              <a href={`mailto:${site.contact.email}`} className="hover:text-white">
-                {site.contact.email}
-              </a>
-            </ContactItem>
+            {site.contact.email && (
+              <ContactItem icon={<Mail className="h-4 w-4" />}>
+                <a href={`mailto:${site.contact.email}`} className={`${footerLink} break-all`}>
+                  {site.contact.email}
+                </a>
+              </ContactItem>
+            )}
             <ContactItem icon={<Clock className="h-4 w-4" />}>
               {site.contact.hours}
             </ContactItem>
@@ -86,6 +91,10 @@ export function Footer() {
   );
 }
 
+/** Links del footer: hover + foco visible sobre fondo navy */
+const footerLink =
+  "rounded-sm transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950";
+
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
@@ -100,10 +109,7 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link
-        href={href}
-        className="text-sm text-slate-400 transition-colors hover:text-white"
-      >
+      <Link href={href} className={`text-sm text-slate-400 ${footerLink}`}>
         {children}
       </Link>
     </li>
@@ -114,7 +120,7 @@ function ContactItem({ icon, children }: { icon: React.ReactNode; children: Reac
   return (
     <li className="flex items-start gap-3 text-sm text-slate-400">
       <span className="mt-0.5 text-accent-bright">{icon}</span>
-      <span>{children}</span>
+      <span className="min-w-0">{children}</span>
     </li>
   );
 }
@@ -134,7 +140,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-300 ring-1 ring-white/10 transition-colors hover:bg-accent hover:text-white"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-slate-300 ring-1 ring-white/10 transition-colors hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
     >
       {children}
     </a>

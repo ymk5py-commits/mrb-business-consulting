@@ -54,7 +54,7 @@ export function ProcessHorizontal() {
   return (
     <section
       ref={section}
-      className="relative overflow-hidden bg-surface py-20 sm:py-24"
+      className="relative overflow-hidden bg-surface py-20 sm:py-24 lg:flex lg:min-h-svh lg:flex-col lg:justify-center"
     >
       <Container>
         <SectionHeading
@@ -64,7 +64,14 @@ export function ProcessHorizontal() {
         />
       </Container>
 
-      <div className="mt-14 overflow-x-auto pb-4 lg:overflow-visible lg:pb-0">
+      {/* Pista para mobile: la fila se desliza hacia la derecha */}
+      <p className="mt-8 flex items-center justify-center gap-2 text-xs font-medium text-slate-500 lg:hidden">
+        Deslizá para ver los {steps.length} pasos
+        <span aria-hidden="true">→</span>
+      </p>
+
+      {/* Mobile: fila deslizable con snap. Desktop: GSAP la traslada (pinned). */}
+      <div className="mt-6 snap-x snap-mandatory scroll-px-5 overflow-x-auto overscroll-x-contain pb-4 sm:scroll-px-8 lg:mt-14 lg:snap-none lg:overflow-visible lg:pb-0">
         <div
           ref={track}
           className="flex w-max gap-6 px-5 sm:px-8 lg:px-12"
@@ -72,7 +79,7 @@ export function ProcessHorizontal() {
           {steps.map((step) => (
             <div
               key={step.n}
-              className="relative flex w-[78vw] shrink-0 flex-col rounded-3xl border border-slate-200 bg-white p-8 sm:w-[20rem] lg:w-[24rem]"
+              className="relative flex w-[78vw] shrink-0 snap-start flex-col rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_24px_50px_-40px_rgba(0,17,37,0.45)] sm:w-[20rem] lg:w-[24rem]"
             >
               <span aria-hidden="true" className="font-display text-6xl text-accent/25">
                 {step.n}

@@ -86,7 +86,7 @@ export function SectionHeading({
       )}
       <Heading
         className={cn(
-          "font-display mt-3 text-3xl leading-tight sm:text-4xl lg:text-[2.6rem]",
+          "font-display mt-3 text-balance text-3xl leading-tight sm:text-4xl lg:text-[2.6rem]",
           isLight ? "text-white" : "text-navy-900",
         )}
       >
@@ -95,7 +95,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={cn(
-            "mt-4 text-base leading-relaxed sm:text-lg",
+            "mt-4 text-pretty text-base leading-relaxed sm:text-lg",
             isLight ? "text-slate-300" : "text-slate-600",
           )}
         >
@@ -174,10 +174,7 @@ export function Button({
 
 /* ---------------- JSON-LD ---------------- */
 export function JsonLd({ data }: { data: object | object[] }) {
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  // Escapa "<" para que un "</script" dentro de algún texto no corte el bloque.
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
 }

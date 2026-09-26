@@ -7,14 +7,18 @@ import { TeamSection } from "@/components/TeamSection";
 import { ExperienceBand } from "@/components/ExperienceBand";
 import { GsapScope } from "@/components/GsapScope";
 import { site } from "@/lib/site.config";
-import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
+import { pageMetadata, breadcrumbSchema, webPageSchema, personId } from "@/lib/seo";
+import { director } from "@/lib/team";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Nosotros",
-  description:
-    "Conocé a MRB Business Consulting: un equipo de contadores y asesores comprometidos con el crecimiento de empresas y emprendedores en Paraguay.",
-  path: "/nosotros",
-});
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: "Manuel Rolón y el Equipo de MRB Business Consulting",
+    description:
+      "Conocé a Manuel Rolón, director de MRB: Lic. en Ciencias Contables (Summa Cum Laude) con más de 15 años en gestión contable y financiera en Paraguay.",
+    path: "/nosotros",
+  }),
+  title: { absolute: "Manuel Rolón y el Equipo de MRB Business Consulting" },
+};
 
 const values = [
   {
@@ -48,14 +52,13 @@ export default function NosotrosPage() {
             { name: "Inicio", path: "/" },
             { name: "Nosotros", path: "/nosotros" },
           ]),
-          {
-            "@context": "https://schema.org",
-            "@type": "AboutPage",
-            url: absoluteUrl("/nosotros"),
+          webPageSchema({
+            type: "AboutPage",
+            path: "/nosotros",
             name: "Nosotros — MRB Business Consulting",
-            inLanguage: "es-PY",
-            about: { "@id": `${site.url}/#organization` },
-          },
+            description: `Quiénes somos en ${site.name}: Manuel Rolón y el equipo del estudio.`,
+            mainEntityId: personId(director),
+          }),
         ]}
       />
 
@@ -63,7 +66,7 @@ export default function NosotrosPage() {
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Nosotros" }]} />
           <div data-gsap="reveal">
-            <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
+            <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
               Tu estudio de confianza en Paraguay
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">

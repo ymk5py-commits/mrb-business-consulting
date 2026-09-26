@@ -6,14 +6,19 @@ import { CtaBand } from "@/components/CtaBand";
 import { GsapScope } from "@/components/GsapScope";
 import { Tilt } from "@/components/Tilt";
 import { services } from "@/lib/services";
-import { pageMetadata, breadcrumbSchema, absoluteUrl } from "@/lib/seo";
+import { pageMetadata, breadcrumbSchema, absoluteUrl, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Servicios contables, fiscales y societarios en Paraguay",
-  description:
-    "Conocé los servicios de MRB Business Consulting: contabilidad, impuestos, constitución de sociedades, asesoría laboral e IPS, auditoría, trámites y asesoría legal societaria.",
-  path: "/servicios",
-});
+const SERVICES_LIST_ID = `${absoluteUrl("/servicios")}#lista-servicios`;
+
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: "Servicios Contables y Tributarios en Paraguay | MRB",
+    description:
+      "Contabilidad, impuestos, constitución de sociedades, IPS, auditoría, trámites y asesoría societaria para empresas y personas en Paraguay. Un solo estudio.",
+    path: "/servicios",
+  }),
+  title: { absolute: "Servicios Contables y Tributarios en Paraguay | MRB" },
+};
 
 export default function ServiciosPage() {
   return (
@@ -24,9 +29,16 @@ export default function ServiciosPage() {
             { name: "Inicio", path: "/" },
             { name: "Servicios", path: "/servicios" },
           ]),
+          webPageSchema({
+            type: "CollectionPage",
+            path: "/servicios",
+            name: "Servicios contables, tributarios y societarios en Paraguay",
+            mainEntityId: SERVICES_LIST_ID,
+          }),
           {
             "@context": "https://schema.org",
             "@type": "ItemList",
+            "@id": SERVICES_LIST_ID,
             itemListElement: services.map((s, i) => ({
               "@type": "ListItem",
               position: i + 1,
@@ -44,7 +56,7 @@ export default function ServiciosPage() {
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
           />
           <div data-gsap="reveal">
-            <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
+            <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
               Servicios para tu empresa en Paraguay
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, Check, Phone } from "lucide-react";
 import { Button, Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -9,14 +10,24 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { GsapScope } from "@/components/GsapScope";
-import { getService, serviceSlugs } from "@/lib/services";
-import { site, whatsappHref } from "@/lib/site.config";
+import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
+import { director } from "@/lib/team";
+import { site, whatsappLink, clientStats } from "@/lib/site.config";
 import {
   pageMetadata,
   serviceSchema,
   breadcrumbSchema,
   faqSchema,
+  webPageSchema,
+  serviceId,
 } from "@/lib/seo";
+
+/** "septiembre de 2026" — fecha visible de la última actualización del contenido. */
+const updatedLabel = new Intl.DateTimeFormat("es-PY", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(new Date(SERVICES_UPDATED_AT));
 
 export function generateStaticParams() {
   return serviceSlugs.map((slug) => ({ slug }));
@@ -48,6 +59,10 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const Icon = service.icon;
+  // El mensaje de WhatsApp ya dice qué servicio se consulta (lead mejor calificado).
+  const waHref = whatsappLink(
+    `Hola ${site.name}, quisiera consultar por el servicio de ${service.title.toLowerCase()}.`,
+  );
   const related = service.related
     .map((s) => getService(s))
     .filter(Boolean)
@@ -58,15 +73,22 @@ export default async function ServicePage({
       <JsonLd
         data={[
           serviceSchema({
+            slug: service.slug,
             name: service.title,
             description: service.metaDescription,
-            path: `/servicios/${service.slug}`,
           }),
           breadcrumbSchema([
             { name: "Inicio", path: "/" },
             { name: "Servicios", path: "/servicios" },
             { name: service.title, path: `/servicios/${service.slug}` },
           ]),
+          webPageSchema({
+            path: `/servicios/${service.slug}`,
+            name: service.metaTitle,
+            description: service.metaDescription,
+            mainEntityId: serviceId(service.slug),
+            dateModified: SERVICES_UPDATED_AT,
+          }),
           faqSchema(service.faqs),
         ]}
       />
@@ -90,14 +112,40 @@ export default async function ServicePage({
                 {service.kicker}
               </span>
             </div>
-            <h1 className="font-display mt-6 max-w-3xl text-4xl leading-tight text-white sm:text-5xl">
+            <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
               {service.h1}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
               {service.intro}
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href={whatsappHref} external variant="whatsapp" size="lg">
+            {/* Quién está a cargo (E-E-A-T) + fecha de actualización */}
+            <p className="mt-6 flex max-w-2xl items-center gap-3 text-sm leading-snug text-slate-300">
+              {(director.avatar ?? director.photo) && (
+                <Image
+                  src={(director.avatar ?? director.photo)!}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="size-11 shrink-0 rounded-full object-cover ring-2 ring-white/20"
+                />
+              )}
+              <span>
+                Servicio a cargo de{" "}
+                <Link
+                  href="/nosotros#equipo"
+                  className="rounded-sm font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+                >
+                  {director.name}
+                </Link>
+                {director.headline && `, ${director.headline.replace(/^Licenciado en/, "Lic. en")}`}
+                <span className="text-slate-400">
+                  {" "}
+                  · Actualizado en <time dateTime={SERVICES_UPDATED_AT}>{updatedLabel}</time>
+                </span>
+              </span>
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={waHref} external variant="whatsapp" size="lg">
                 <WhatsappIcon className="h-5 w-5" />
                 Consultá por este servicio
               </Button>
@@ -166,14 +214,30 @@ export default async function ServicePage({
                   Contanos tu caso y te asesoramos sobre {service.title.toLowerCase()} para
                   tu empresa.
                 </p>
+                <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-white/10 py-4">
+                  <div>
+                    <dt className="text-xs text-slate-400">Clientes</dt>
+                    <dd className="font-display text-2xl tabular-nums text-white">
+                      {clientStats.total}
+                    </dd>
+                  </div>
+                  {director.years && (
+                    <div>
+                      <dt className="text-xs text-slate-400">Experiencia</dt>
+                      <dd className="font-display text-2xl tabular-nums text-white">
+                        +{director.years} años
+                      </dd>
+                    </div>
+                  )}
+                </dl>
                 <div className="mt-6 flex flex-col gap-3">
-                  <Button href={whatsappHref} external variant="whatsapp" className="w-full">
+                  <Button href={waHref} external variant="whatsapp" className="w-full">
                     <WhatsappIcon className="h-4 w-4" />
                     Escribir por WhatsApp
                   </Button>
                   <a
                     href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                   >
                     <Phone className="h-4 w-4" />
                     {site.contact.phone}
@@ -212,7 +276,7 @@ export default async function ServicePage({
                 </h2>
                 <Link
                   href="/servicios"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-600"
+                  className="inline-flex items-center gap-1.5 rounded-sm text-sm font-semibold text-accent-600 hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 >
                   Ver todos
                   <ArrowRight className="h-4 w-4" />
@@ -233,7 +297,7 @@ export default async function ServicePage({
         </Section>
       )}
 
-      <CtaBand title={`¿Necesitás ${service.title.toLowerCase()}?`} />
+      <CtaBand title={`¿Necesitás ${service.title.toLowerCase()}?`} whatsapp={waHref} />
     </GsapScope>
   );
 }

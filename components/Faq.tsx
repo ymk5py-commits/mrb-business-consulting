@@ -5,7 +5,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
     <div className="mx-auto max-w-3xl divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white">
       {items.map((item, i) => (
         <details key={i} className="group px-6 open:bg-surface/40">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base font-medium text-navy-900 [&::-webkit-details-marker]:hidden">
+          <summary className="-mx-6 flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-base font-medium text-navy-900 transition-colors hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent [&::-webkit-details-marker]:hidden">
             {item.q}
             <Plus
               className="h-5 w-5 shrink-0 text-accent transition-transform duration-200 group-open:rotate-45"

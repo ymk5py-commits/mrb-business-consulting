@@ -34,6 +34,8 @@ export function ServicesOrbital() {
   const [pulse, setPulse] = useState<Record<number, boolean>>({});
   const [activeId, setActiveId] = useState<number | null>(null);
   const [radius, setRadius] = useState(200);
+  // Pausa la rotación mientras el mouse o el foco están sobre el orbital (apuntar a un blanco móvil molesta).
+  const [hovered, setHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
 
@@ -49,7 +51,7 @@ export function ServicesOrbital() {
   }, []);
 
   useEffect(() => {
-    if (!autoRotate) return;
+    if (!autoRotate || hovered) return;
     // El orbital solo se muestra en desktop (lg+); evitamos el timer en mobile.
     if (typeof window !== "undefined" && !window.matchMedia("(min-width:1024px)").matches)
       return;
@@ -57,7 +59,7 @@ export function ServicesOrbital() {
       setRotationAngle((prev) => Number(((prev + 0.3) % 360).toFixed(3)));
     }, 50);
     return () => clearInterval(t);
-  }, [autoRotate]);
+  }, [autoRotate, hovered]);
 
   const getRelated = (id: number) =>
     NODES.find((n) => n.id === id)?.relatedIds ?? [];
@@ -94,13 +96,16 @@ export function ServicesOrbital() {
     });
   };
 
+  const resetAll = () => {
+    setExpanded({});
+    setActiveId(null);
+    setPulse({});
+    setAutoRotate(true);
+  };
+
+  // Click en el fondo (fuera de los nodos) cierra el detalle
   const reset = (e: React.MouseEvent) => {
-    if (e.target === containerRef.current || e.target === orbitRef.current) {
-      setExpanded({});
-      setActiveId(null);
-      setPulse({});
-      setAutoRotate(true);
-    }
+    if (e.target === containerRef.current || e.target === orbitRef.current) resetAll();
   };
 
   const position = (index: number) => {
@@ -123,13 +128,13 @@ export function ServicesOrbital() {
             <Link
               key={node.id}
               href={`/servicios/${node.slug}`}
-              className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-accent/40 hover:bg-surface"
+              className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-accent/40 hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-white transition-colors group-hover:bg-accent">
                 <Icon size={20} strokeWidth={1.75} />
               </span>
               <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-accent">
+                <p className="text-xs font-semibold uppercase tracking-wider text-accent-600">
                   {node.kicker}
                 </p>
                 <h3 className="font-display mt-0.5 text-base font-semibold text-navy-900">
@@ -148,6 +153,15 @@ export function ServicesOrbital() {
       <div
         ref={containerRef}
         onClick={reset}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") resetAll();
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onFocus={() => setHovered(true)}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
+        }}
         className="relative mx-auto hidden h-[620px] w-full overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-navy-950 via-navy-900 to-navy-800 lg:block"
       >
       <div
@@ -193,19 +207,16 @@ export function ServicesOrbital() {
           return (
             <div
               key={node.id}
-              className="absolute cursor-pointer transition-all duration-700"
+              className="absolute transition-[transform,opacity] duration-700 ease-out"
               style={{
                 transform: `translate(${pos.x}px, ${pos.y}px)`,
                 zIndex: isExpanded ? 200 : pos.zIndex,
-                opacity: isExpanded ? 1 : pos.opacity,
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggle(node.id);
+                opacity: isExpanded || hovered ? 1 : pos.opacity,
               }}
             >
               {isPulsing && (
                 <div
+                  aria-hidden="true"
                   className="absolute -inset-2 animate-pulse rounded-full"
                   style={{
                     background:
@@ -214,30 +225,41 @@ export function ServicesOrbital() {
                 />
               )}
 
-              <div
-                className={[
-                  "relative flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all duration-300",
-                  isExpanded
-                    ? "scale-125 border-white bg-white text-navy-900 shadow-lg shadow-accent/30"
-                    : isRelated
-                      ? "border-accent-bright bg-accent text-white"
-                      : "border-white/40 bg-navy-800 text-white",
-                ].join(" ")}
+              <button
+                type="button"
+                onClick={() => toggle(node.id)}
+                aria-expanded={!!isExpanded}
+                aria-controls={isExpanded ? `orbital-detalle-${node.id}` : undefined}
+                className="group/node relative flex cursor-pointer flex-col items-center rounded-full focus-visible:outline-none"
               >
-                <Icon size={18} strokeWidth={1.75} />
-              </div>
+                <span
+                  className={[
+                    "relative flex h-11 w-11 items-center justify-center rounded-full border-2 transition-[scale,background-color,border-color,color,box-shadow] duration-300 group-hover/node:border-white group-focus-visible/node:ring-2 group-focus-visible/node:ring-accent-bright group-focus-visible/node:ring-offset-2 group-focus-visible/node:ring-offset-navy-900",
+                    isExpanded
+                      ? "scale-125 border-white bg-white text-navy-900 shadow-lg shadow-accent/30"
+                      : isRelated
+                        ? "border-accent-bright bg-accent text-white"
+                        : "border-white/40 bg-navy-800 text-white group-hover/node:bg-navy-700",
+                  ].join(" ")}
+                >
+                  <Icon size={18} strokeWidth={1.75} />
+                </span>
 
-              <div
-                className={[
-                  "absolute left-1/2 top-12 w-max -translate-x-1/2 whitespace-nowrap text-center text-[11px] font-semibold tracking-wide transition-all duration-300",
-                  isExpanded ? "scale-110 text-white" : "text-white/60",
-                ].join(" ")}
-              >
-                {node.title}
-              </div>
+                <span
+                  className={[
+                    "absolute left-1/2 top-12 w-max -translate-x-1/2 whitespace-nowrap text-center text-xs font-semibold tracking-wide transition-[scale,color] duration-300",
+                    isExpanded ? "scale-110 text-white" : "text-white/75 group-hover/node:text-white",
+                  ].join(" ")}
+                >
+                  {node.title}
+                </span>
+              </button>
 
               {isExpanded && (
-                <div className="absolute left-1/2 top-20 z-50 w-64 -translate-x-1/2 rounded-2xl border border-white/15 bg-navy-950/90 p-5 text-left shadow-2xl backdrop-blur-lg">
+                <div
+                  id={`orbital-detalle-${node.id}`}
+                  className="absolute left-1/2 top-20 z-50 w-64 -translate-x-1/2 rounded-2xl border border-white/15 bg-navy-950/90 p-5 text-left shadow-2xl backdrop-blur-lg"
+                >
                   <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-white/40" />
                   <span className="inline-block text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-bright">
                     {node.kicker}
@@ -250,7 +272,7 @@ export function ServicesOrbital() {
                   </p>
                   <Link
                     href={`/servicios/${node.slug}`}
-                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-accent-bright hover:text-white"
+                    className="mt-3 inline-flex items-center gap-1.5 rounded-sm text-xs font-semibold text-accent-bright hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                   >
                     Ver servicio
                     <ArrowRight size={12} />
@@ -270,11 +292,8 @@ export function ServicesOrbital() {
                             <button
                               key={rid}
                               type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                toggle(rid);
-                              }}
-                              className="inline-flex items-center gap-1 rounded-full border border-white/15 px-2.5 py-1 text-[11px] text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                              onClick={() => toggle(rid)}
+                              className="inline-flex cursor-pointer items-center gap-1 rounded-full border border-white/15 px-2.5 py-1 text-[11px] text-white/80 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                             >
                               {rel.title}
                               <ArrowRight size={9} className="text-white/50" />
@@ -291,8 +310,8 @@ export function ServicesOrbital() {
         })}
       </div>
 
-        <p className="pointer-events-none absolute inset-x-0 bottom-5 text-center text-xs text-slate-400/80">
-          Tocá un servicio para ver el detalle
+        <p className="pointer-events-none absolute inset-x-0 bottom-5 text-center text-xs text-slate-300/80">
+          Hacé clic en un servicio para ver el detalle
         </p>
       </div>
     </>

@@ -12,11 +12,16 @@ export function Breadcrumbs({
         {items.map((item, i) => (
           <li key={i} className="flex items-center gap-1.5">
             {item.href ? (
-              <Link href={item.href} className="transition-colors hover:text-white">
+              <Link
+                href={item.href}
+                className="rounded-sm transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+              >
                 {item.name}
               </Link>
             ) : (
-              <span className="text-slate-200">{item.name}</span>
+              <span aria-current="page" className="text-slate-200">
+                {item.name}
+              </span>
             )}
             {i < items.length - 1 && (
               <ChevronRight className="h-4 w-4 text-slate-500" aria-hidden="true" />

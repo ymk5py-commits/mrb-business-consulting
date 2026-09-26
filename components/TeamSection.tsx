@@ -5,14 +5,20 @@
  * ============================================================ */
 import Image from "next/image";
 import { Mail } from "lucide-react";
-import { Container, Section, SectionHeading, JsonLd, cn } from "@/components/ui";
-import { LinkedinIcon } from "@/components/icons";
+import { Button, Container, Section, SectionHeading, JsonLd, cn } from "@/components/ui";
+import { LinkedinIcon, WhatsappIcon } from "@/components/icons";
 import { Tilt } from "@/components/Tilt";
-import { team, getInitials, gradientFor, type TeamMember } from "@/lib/team";
-import { site } from "@/lib/site.config";
-import { absoluteUrl } from "@/lib/seo";
+import {
+  team,
+  director,
+  getInitials,
+  gradientFor,
+  CREDENTIAL_ICONS,
+  type TeamMember,
+} from "@/lib/team";
+import { site, whatsappHref } from "@/lib/site.config";
+import { teamSchema } from "@/lib/seo";
 
-const ORG_ID = `${site.url}/#organization`;
 
 /* ---- Avatar: next/image si hay foto; placeholder branded si no ---- */
 function Avatar({
@@ -37,10 +43,11 @@ function Avatar({
       <div className={cn("relative overflow-hidden bg-surface", aspect, className)}>
         <Image
           src={member.photo}
-          alt={`${member.name}, ${member.role} en ${site.name}`}
+          alt={`${member.name}, ${member.role} de ${site.name}`}
           fill
           sizes={sizes}
           priority={priority}
+          style={{ objectPosition: member.photoPosition }}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       </div>
@@ -90,7 +97,7 @@ function Socials({ member, size = "md" }: { member: TeamMember; size?: "md" | "s
   if (!member.linkedin && !member.email) return null;
   const base =
     "inline-flex items-center justify-center rounded-xl bg-surface text-navy-900 ring-1 ring-slate-200 transition hover:bg-navy-900 hover:text-white hover:ring-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
-  const box = size === "md" ? "size-11" : "size-9";
+  const box = size === "md" ? "size-11" : "size-10";
   const icon = size === "md" ? "size-5" : "size-4";
   return (
     <div className="flex items-center gap-2">
@@ -118,25 +125,9 @@ function Socials({ member, size = "md" }: { member: TeamMember; size?: "md" | "s
   );
 }
 
-/* ---- JSON-LD: un Person por miembro, vinculado al #organization ---- */
-function teamSchema() {
-  return team.map((m, i) => ({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${absoluteUrl("/nosotros")}#person-${i}`,
-    name: m.name,
-    jobTitle: m.role,
-    worksFor: { "@id": ORG_ID },
-    memberOf: { "@id": ORG_ID },
-    ...(m.photo ? { image: absoluteUrl(m.photo) } : {}),
-    ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
-    ...(m.email ? { email: m.email } : {}),
-  }));
-}
-
 export function TeamSection() {
-  const director = team.find((m) => m.director) ?? team[0]!;
   const members = team.filter((m) => m !== director);
+  const firstName = director.name.split(" ")[0];
 
   return (
     <Section tone="surface" id="equipo">
@@ -147,47 +138,114 @@ export function TeamSection() {
           <SectionHeading
             align="left"
             kicker="Quién está detrás de MRB"
-            title="Conocé a Manuel Rolón"
-            subtitle="Licenciado en Ciencias Contables y Administrativas, con más de 15 años de experiencia en gestión financiera, contabilidad y dirección de equipos."
+            title={`Conocé a ${director.name}`}
+            subtitle="Contador, gerente financiero y líder de equipos, con más de 15 años de experiencia en empresas de Paraguay."
           />
         </div>
 
         {/* Director destacado */}
         <div data-gsap="reveal" className="mt-12">
-          <article className="group overflow-hidden rounded-2xl border border-slate-200 bg-white lg:grid lg:grid-cols-[minmax(0,22rem)_1fr]">
+          <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_30px_60px_-45px_rgba(0,17,37,0.5)] lg:grid lg:grid-cols-[minmax(0,24rem)_1fr]">
             <Tilt max={6} className="relative">
               <Avatar
                 member={director}
                 ratio="portrait"
                 initialsClass="text-4xl sm:text-5xl"
-                sizes="(min-width: 1024px) 22rem, 100vw"
+                sizes="(min-width: 1024px) 24rem, 100vw"
                 priority
                 className="size-full"
               />
-              <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-navy-900 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
-                Director
-              </span>
             </Tilt>
 
-            <div className="relative p-6 sm:p-10">
+            <div className="relative flex flex-col p-6 sm:p-10 xl:p-12">
               <span
                 aria-hidden
                 className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-accent to-accent-bright"
               />
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
-                {director.role}
+                {director.role} de {site.shortName}
               </p>
-              <h3 className="font-display mt-2 text-2xl text-navy-900 sm:text-3xl">
+              <h3 className="font-display mt-2 text-3xl text-navy-900 sm:text-4xl">
                 {director.name}
               </h3>
-              <p className="font-serif mt-4 max-w-xl text-base italic leading-relaxed text-slate-600 sm:text-lg">
-                {director.bio}
-              </p>
-              {(director.linkedin || director.email) && (
-                <div className="mt-6">
-                  <Socials member={director} size="md" />
+              {director.headline && (
+                <p className="mt-2 text-base text-slate-600">{director.headline}</p>
+              )}
+
+              {director.quote ? (
+                <blockquote className="mt-7 max-w-2xl border-l-2 border-accent pl-5">
+                  <p className="font-serif text-lg italic leading-relaxed text-navy-900 sm:text-xl">
+                    “{director.quote}”
+                  </p>
+                </blockquote>
+              ) : (
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600">
+                  {director.bio}
+                </p>
+              )}
+
+              {director.credentials && director.credentials.length > 0 && (
+                <ul className="mt-8 grid gap-4">
+                  {director.credentials.map((c) => {
+                    const Icon = CREDENTIAL_ICONS[c.kind];
+                    return (
+                      <li key={c.title} className="flex gap-3">
+                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-slate-200">
+                          <Icon className="size-5" strokeWidth={1.75} />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-sm font-semibold leading-snug text-navy-900">
+                            {c.title}
+                          </p>
+                          {c.detail && (
+                            <p className="mt-0.5 text-sm leading-snug text-slate-600">
+                              {c.detail}
+                            </p>
+                          )}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+
+              {director.sectors && director.sectors.length > 0 && (
+                <div className="mt-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                    Experiencia en
+                  </p>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {director.sectors.map((s) => (
+                      <li
+                        key={s}
+                        className="rounded-full bg-surface px-3 py-1 text-sm text-navy-900 ring-1 ring-slate-200"
+                      >
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
+
+              <div className="mt-auto flex flex-wrap items-center gap-x-8 gap-y-5 pt-9">
+                {director.years && (
+                  <p className="flex items-center gap-3">
+                    <span className="font-display text-4xl leading-none tabular-nums text-navy-900">
+                      +{director.years}
+                    </span>
+                    <span className="text-sm leading-tight text-slate-600">
+                      años de
+                      <br />
+                      experiencia
+                    </span>
+                  </p>
+                )}
+                <Button href={whatsappHref} external variant="whatsapp">
+                  <WhatsappIcon className="h-4 w-4" />
+                  Hablar con {firstName}
+                </Button>
+                <Socials member={director} size="md" />
+              </div>
             </div>
           </article>
         </div>

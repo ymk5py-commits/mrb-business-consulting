@@ -11,11 +11,12 @@ import { CtaBand } from "@/components/CtaBand";
 import { VideoHero } from "@/components/VideoHero";
 import { ServicesOrbital } from "@/components/ServicesOrbital";
 import { ProcessHorizontal } from "@/components/ProcessHorizontal";
-import { DisplayCards } from "@/components/DisplayCards";
+import { DirectorPortrait } from "@/components/DirectorPortrait";
 import { ExperienceBand } from "@/components/ExperienceBand";
 import { GsapScope } from "@/components/GsapScope";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { faqSchema } from "@/lib/seo";
+import { faqSchema, webPageSchema } from "@/lib/seo";
+import { site } from "@/lib/site.config";
 
 const homeFaqs = [
   {
@@ -23,8 +24,8 @@ const homeFaqs = [
     a: "Brindamos contabilidad, asesoría tributaria, constitución de sociedades (S.A., S.R.L., E.A.S.), asesoría laboral e IPS, auditoría, trámites e inscripciones y asesoría legal societaria, todo bajo el marco legal paraguayo.",
   },
   {
-    q: "¿Atienden a empresas de todo Paraguay?",
-    a: "Sí. Trabajamos con clientes en todo el país, con base en Asunción. Gran parte de la gestión se realiza de forma digital, por lo que tu ubicación no es un impedimento.",
+    q: "¿Atienden a empresas y personas de todo Paraguay?",
+    a: "Sí. Atendemos clientes de todo el país desde nuestra oficina en Barrio Mbachió, Lambaré (Gran Asunción). Gran parte de la gestión —Marangatú, IPS, Registros Públicos— se hace en forma digital, así que tu ubicación no es un impedimento.",
   },
   {
     q: "¿Puedo tercerizar toda la contabilidad e impuestos de mi empresa?",
@@ -81,7 +82,17 @@ const rubros = [
 export default function HomePage() {
   return (
     <GsapScope>
-      <JsonLd data={faqSchema(homeFaqs)} />
+      <JsonLd
+        data={[
+          webPageSchema({
+            path: "/",
+            name: `${site.name} — ${site.tagline}`,
+            description: site.description,
+            hasBreadcrumb: false,
+          }),
+          faqSchema(homeFaqs),
+        ]}
+      />
 
       <VideoHero />
 
@@ -92,7 +103,7 @@ export default function HomePage() {
             <SectionHeading
               kicker="Nuestros servicios"
               title="Soluciones integrales para tu empresa"
-              subtitle="Tocá cada servicio para ver el detalle y cómo se conectan entre sí."
+              subtitle="Elegí un servicio para ver el detalle y cómo se conecta con el resto."
             />
           </div>
           <div data-gsap="reveal" className="mt-12">
@@ -185,11 +196,8 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
-            <div
-              data-gsap="reveal"
-              className="flex min-h-[24rem] items-center justify-center overflow-hidden"
-            >
-              <DisplayCards />
+            <div data-gsap="reveal" className="px-4 sm:px-10 lg:px-6">
+              <DirectorPortrait />
             </div>
           </div>
         </Container>

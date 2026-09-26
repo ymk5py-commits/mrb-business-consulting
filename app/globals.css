@@ -37,7 +37,22 @@
 
 html {
   scroll-behavior: smooth;
+  /* El header es fijo: que el foco y los anclajes no queden tapados */
+  scroll-padding-top: 6rem;
   -webkit-text-size-adjust: 100%;
+  /* Tap highlight de marca (sutil) en lugar del gris por defecto */
+  -webkit-tap-highlight-color: rgb(5 108 242 / 0.12);
+}
+
+/* Sin demora de doble-tap en controles táctiles */
+a,
+button,
+summary,
+label,
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 @media (prefers-reduced-motion: reduce) {

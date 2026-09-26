@@ -44,7 +44,7 @@ export const services: Service[] = [
     title: "Contabilidad",
     excerpt:
       "Llevamos tu contabilidad mensual al día: registros, libros, estados financieros y conciliaciones, bajo las normas vigentes en Paraguay.",
-    metaTitle: "Estudio Contable en Asunción | Servicios Contables — MRB",
+    metaTitle: "Estudio Contable en Lambaré y Gran Asunción | MRB",
     metaDescription:
       "Tercerizá la contabilidad de tu empresa con MRB. Registros contables, libros legales, estados financieros y conciliaciones bajo NIIF para PYMEs en Paraguay.",
     kicker: "Servicio contable",
@@ -67,8 +67,8 @@ export const services: Service[] = [
         text: "Cerramos cada mes a tiempo para que tomes decisiones con números reales y actualizados.",
       },
       {
-        title: "Cumplimiento garantizado",
-        text: "Tus libros y registros quedan en regla frente a la DNIT y la normativa comercial.",
+        title: "Libros en regla",
+        text: "Llevamos tus libros y registros según lo que exigen la DNIT y la normativa comercial.",
       },
       {
         title: "Un solo interlocutor",
@@ -93,7 +93,7 @@ export const services: Service[] = [
     title: "Impuestos y fiscal",
     excerpt:
       "Liquidamos y presentamos tus impuestos (IVA, IRE, IRP, IDU) en Marangatú, con planificación tributaria y facturación electrónica.",
-    metaTitle: "Asesoría Tributaria en Paraguay | Liquidación de Impuestos — MRB",
+    metaTitle: "Asesoría Tributaria en Paraguay: IVA, IRE e IRP | MRB",
     metaDescription:
       "Liquidación y presentación de IVA, IRE, IRP e IDU ante la DNIT (Marangatú). Planificación fiscal, retenciones y facturación electrónica (SIFEN) en Paraguay.",
     kicker: "Servicio fiscal",
@@ -113,8 +113,8 @@ export const services: Service[] = [
       "Empresas y profesionales que quieren cumplir con la DNIT sin sobresaltos y optimizar su carga impositiva dentro del marco legal.",
     highlights: [
       {
-        title: "Sin multas ni recargos",
-        text: "Controlamos cada vencimiento del calendario tributario para que nunca presentes fuera de plazo.",
+        title: "Vencimientos bajo control",
+        text: "Seguimos cada vencimiento del calendario tributario para que no presentes fuera de plazo.",
       },
       {
         title: "Planificación fiscal",
@@ -127,16 +127,24 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        q: "¿Qué impuestos paga una empresa en Paraguay?",
+        q: "¿Qué impuestos paga una empresa (S.A., S.R.L. o E.A.S.) en Paraguay?",
         a: "Principalmente el IVA (10% o 5%), el IRE (Impuesto a la Renta Empresarial, 10%) y el IDU sobre la distribución de dividendos y utilidades. Según la actividad pueden aplicar retenciones y otros tributos. En MRB armamos tu mapa tributario completo.",
       },
       {
         q: "¿Qué es Marangatú?",
-        a: "Marangatú es el sistema de gestión tributaria de la DNIT (ex SET) donde se presentan las declaraciones juradas y se administra el RUC. Nosotros operamos por vos: liquidamos, declaramos y conservamos los comprobantes de presentación.",
+        a: "Marangatú es el sistema en línea de la DNIT (ex SET) para presentar declaraciones juradas, administrar el RUC y pagar impuestos en Paraguay. En MRB operamos por vos: liquidamos, declaramos y conservamos los comprobantes de presentación.",
       },
       {
         q: "¿Qué es el IRE?",
         a: "El IRE es el Impuesto a la Renta Empresarial, con una tasa general del 10% sobre la utilidad neta, vigente desde la reforma tributaria (Ley 6380/2019). Determinamos el régimen que más te conviene (general, SIMPLE o RESIMPLE).",
+      },
+      {
+        q: "¿Cuándo vence el IVA en Paraguay?",
+        a: "El IVA se declara todos los meses con el Formulario 120. El vencimiento lo fija el calendario perpetuo de la DNIT según el último dígito del RUC (sin el dígito verificador): va del día 7 al 25 del mes siguiente y, si cae en un día inhábil, pasa al siguiente día hábil. En MRB controlamos ese calendario por vos.",
+      },
+      {
+        q: "¿Necesito un contador si trabajo como profesional independiente?",
+        a: "Si facturás por tus servicios, tenés que estar inscripto en el RUC, emitir comprobantes válidos y presentar tus declaraciones de IVA y, si tus ingresos superan el mínimo que fija la ley, del IRP. En MRB tramitamos tu RUC y llevamos tus liquidaciones aunque no tengas una empresa constituida.",
       },
     ],
     related: ["contabilidad", "constitucion-de-sociedades", "auditoria-consultoria"],
@@ -147,7 +155,7 @@ export const services: Service[] = [
     title: "Constitución de sociedades",
     excerpt:
       "Constituimos tu empresa de principio a fin: S.A., S.R.L., E.A.S. o unipersonal, con estatutos, inscripción y RUC.",
-    metaTitle: "Constituir una Empresa en Paraguay | S.A., S.R.L., E.A.S. — MRB",
+    metaTitle: "Constituir Empresa en Paraguay (S.A., S.R.L., E.A.S.) | MRB",
     metaDescription:
       "Constitución de empresas en Paraguay llave en mano: S.A., S.R.L., E.A.S. (Ley 6480/2020) y unipersonal. Estatutos, inscripción en Registros Públicos y RUC.",
     kicker: "Servicio societario",
@@ -181,8 +189,8 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        q: "¿Qué es una E.A.S. y por qué conviene?",
-        a: "La Empresa por Acciones Simplificadas (E.A.S.), creada por la Ley 6480/2020, es la figura más ágil y moderna: se puede constituir de forma simplificada, con uno o más accionistas y sin capital mínimo elevado. Es ideal para emprendedores y startups.",
+        q: "¿Qué es una E.A.S. y cómo se constituye?",
+        a: "La Empresa por Acciones Simplificadas (E.A.S.), creada por la Ley 6480/2020, puede tener uno o más accionistas —personas físicas o jurídicas— y la ley no exige capital mínimo. Se constituye 100\u00a0% en línea por el SUACE del Ministerio de Industria y Comercio, en hasta 72 horas hábiles. Es ideal para emprendedores y startups.",
       },
       {
         q: "¿Cuál es la diferencia entre S.A. y S.R.L.?",
@@ -190,7 +198,7 @@ export const services: Service[] = [
       },
       {
         q: "¿Cuánto tarda constituir una empresa en Paraguay?",
-        a: "Depende del tipo societario y de los registros. Una E.A.S. puede constituirse en pocos días, mientras que una S.A. tradicional lleva algunas semanas. En MRB gestionamos todo el circuito para acortar los plazos al máximo.",
+        a: "Depende del tipo societario. Una E.A.S. se constituye en línea por el SUACE en hasta 72 horas hábiles; una S.A. o una S.R.L. requiere escritura e inscripción en los Registros Públicos y suele llevar algunas semanas. En MRB gestionamos todo el circuito para acortar los plazos.",
       },
     ],
     related: ["impuestos", "asesoria-legal-societaria", "tramites-inscripciones"],
@@ -201,7 +209,7 @@ export const services: Service[] = [
     title: "Asesoría laboral e IPS",
     excerpt:
       "Liquidación de salarios, aportes al IPS e inscripciones ante el MTESS, con tus planillas y contratos en regla.",
-    metaTitle: "Asesoría Laboral e IPS en Paraguay | Liquidación de Salarios — MRB",
+    metaTitle: "Asesoría Laboral, Sueldos e IPS en Paraguay | MRB",
     metaDescription:
       "Liquidación de nómina, aportes al IPS, inscripción patronal y trámites ante el MTESS en Paraguay. Contratos, aguinaldo y liquidaciones laborales en regla.",
     kicker: "Servicio laboral",
@@ -250,9 +258,9 @@ export const services: Service[] = [
     title: "Auditoría y consultoría",
     excerpt:
       "Auditoría de estados financieros, revisión tributaria preventiva, due diligence y consultoría de gestión.",
-    metaTitle: "Auditoría Financiera y Consultoría en Paraguay — MRB",
+    metaTitle: "Auditoría Financiera y Consultoría en Paraguay | MRB",
     metaDescription:
-      "Auditoría de estados financieros, auditoría tributaria preventiva, due diligence y consultoría de gestión para empresas en Paraguay. Informes confiables para bancos y socios.",
+      "Auditoría de estados financieros, revisión tributaria preventiva, due diligence y consultoría para empresas en Paraguay. Informes para bancos y socios.",
     kicker: "Servicio de auditoría",
     h1: "Auditoría y consultoría en Paraguay",
     intro:
@@ -299,9 +307,9 @@ export const services: Service[] = [
     title: "Trámites e inscripciones",
     excerpt:
       "RUC, patente municipal, habilitaciones, inscripción patronal y registro de marca: gestionamos tus trámites de principio a fin.",
-    metaTitle: "Inscripción de RUC y Trámites Empresariales en Paraguay — MRB",
+    metaTitle: "Inscripción de RUC y Trámites en Paraguay | MRB",
     metaDescription:
-      "Gestión de RUC ante la DNIT, patente municipal de Asunción, habilitaciones, inscripción IPS/MTESS y registro de marca (DINAPI) en Paraguay. Trámites llave en mano.",
+      "RUC, patente municipal, habilitaciones, inscripción IPS/MTESS y registro de marca (DINAPI) en Paraguay. Trámites llave en mano para empresas y personas.",
     kicker: "Servicio de gestoría",
     h1: "Trámites e inscripciones empresariales en Paraguay",
     intro:
@@ -336,6 +344,10 @@ export const services: Service[] = [
         a: "El RUC (Registro Único del Contribuyente) se tramita ante la DNIT y es el primer paso para facturar legalmente. Reunimos la documentación, realizamos la inscripción y te entregamos el RUC activo con su clave de acceso a Marangatú.",
       },
       {
+        q: "¿Puedo sacar el RUC como persona física?",
+        a: "Sí. Los profesionales independientes y quienes venden o prestan servicios a título personal se inscriben en el RUC como persona física ante la DNIT. Te ayudamos con la inscripción, la clave de acceso a Marangatú y las obligaciones que te corresponden según tu actividad.",
+      },
+      {
         q: "¿Qué es la patente municipal?",
         a: "Es la habilitación que otorga la municipalidad para ejercer una actividad comercial en su jurisdicción. Gestionamos la patente y la habilitación del local para que tu negocio opere sin inconvenientes.",
       },
@@ -348,9 +360,9 @@ export const services: Service[] = [
     title: "Asesoría legal societaria",
     excerpt:
       "Reformas de estatutos, actas, aumentos de capital, transferencia de acciones y gobierno corporativo.",
-    metaTitle: "Asesoría Legal Societaria en Paraguay — MRB Business Consulting",
+    metaTitle: "Asesoría Legal Societaria en Paraguay | MRB",
     metaDescription:
-      "Asesoría legal societaria en Paraguay: reformas de estatutos, actas de asamblea y directorio, aumentos de capital, transferencia de acciones y gobierno corporativo.",
+      "Reformas de estatutos, actas de asamblea y directorio, aumentos de capital, transferencia de acciones y gobierno corporativo para sociedades en Paraguay.",
     kicker: "Servicio legal",
     h1: "Asesoría legal societaria en Paraguay",
     intro:
@@ -393,6 +405,9 @@ export const services: Service[] = [
     related: ["constitucion-de-sociedades", "auditoria-consultoria", "impuestos"],
   },
 ];
+
+/** Última actualización del contenido de servicios (se muestra en cada página). */
+export const SERVICES_UPDATED_AT = "2026-09-26";
 
 export function getService(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);
