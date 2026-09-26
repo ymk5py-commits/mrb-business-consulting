@@ -6,7 +6,7 @@ import { site } from "@/lib/site.config";
 import { services } from "@/lib/services";
 
 const inputClasses =
-  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-navy-900 shadow-sm transition-colors placeholder:text-slate-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
+  "mt-1.5 w-full rounded-xl border border-slate-300 bg-paper px-4 text-sm text-navy-900 outline-2 outline-offset-1 outline-transparent transition-colors placeholder:text-slate-500 hover:border-slate-400 focus:border-accent focus:outline-accent disabled:cursor-not-allowed disabled:opacity-55";
 
 export function ContactForm() {
   const [form, setForm] = useState({
@@ -36,7 +36,7 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+    <form onSubmit={onSubmit} className="rounded-2xl border border-rule bg-paper p-7">
       <div className="grid gap-5">
         <div>
           <label htmlFor="nombre" className="text-sm font-medium text-navy-900">
@@ -51,7 +51,7 @@ export function ContactForm() {
             value={form.nombre}
             onChange={(e) => update("nombre", e.target.value)}
             placeholder="Ej.: Juan Pérez…"
-            className={inputClasses}
+            className={`${inputClasses} h-12`}
           />
         </div>
 
@@ -68,7 +68,7 @@ export function ContactForm() {
             value={form.email}
             onChange={(e) => update("email", e.target.value)}
             placeholder="nombre@empresa.com.py…"
-            className={inputClasses}
+            className={`${inputClasses} h-12`}
           />
         </div>
 
@@ -81,7 +81,7 @@ export function ContactForm() {
             name="servicio"
             value={form.servicio}
             onChange={(e) => update("servicio", e.target.value)}
-            className={inputClasses}
+            className={`${inputClasses} h-12`}
           >
             <option value="">Seleccioná un servicio</option>
             {services.map((s) => (
@@ -104,13 +104,13 @@ export function ContactForm() {
             value={form.mensaje}
             onChange={(e) => update("mensaje", e.target.value)}
             placeholder="Contanos brevemente qué necesitás…"
-            className={inputClasses}
+            className={`${inputClasses} py-3`}
           />
         </div>
 
         <button
           type="submit"
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1ebe5b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 cursor-pointer"
+          className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-colors hover:bg-whatsapp-600 active:bg-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-55"
         >
           <WhatsappIcon className="h-5 w-5" />
           Enviar consulta por WhatsApp

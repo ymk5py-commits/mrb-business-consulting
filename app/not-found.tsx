@@ -3,10 +3,10 @@ import { Home, ArrowRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
+    <section className="bg-navy-950">
       <Container className="flex min-h-[70vh] flex-col items-center justify-center py-24 text-center">
         <span className="font-display text-7xl text-accent-bright sm:text-8xl">404</span>
-        <h1 className="font-display mt-4 text-3xl text-white sm:text-4xl">
+        <h1 className="font-display mt-4 text-3xl text-paper sm:text-4xl">
           Página no encontrada
         </h1>
         <p className="mt-4 max-w-md text-slate-300">

@@ -57,7 +57,6 @@ export default async function ServicePage({
   const service = getService(slug);
   if (!service) notFound();
 
-  const Icon = service.icon;
   // El mensaje de WhatsApp ya dice qué servicio se consulta (lead mejor calificado).
   const waHref = whatsappLink(
     `Hola ${site.name}, quisiera consultar por el servicio de ${service.title.toLowerCase()}.`,
@@ -93,7 +92,7 @@ export default async function ServicePage({
       />
 
       {/* HERO */}
-      <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
+      <section className="bg-navy-950">
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs
             items={[
@@ -102,16 +101,8 @@ export default async function ServicePage({
               { name: service.title },
             ]}
           />
-          <div data-reveal>
-            <div className="mt-8 flex items-center gap-4">
-              <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-accent-bright ring-1 ring-white/15">
-                <Icon className="h-7 w-7" strokeWidth={1.75} />
-              </span>
-              <span className="text-sm font-semibold uppercase tracking-[0.16em] text-accent-bright">
-                {service.kicker}
-              </span>
-            </div>
-            <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
+          <div>
+            <h1 className="font-display mt-8 max-w-3xl text-balance text-4xl leading-tight text-paper sm:text-5xl">
               {service.h1}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
@@ -125,14 +116,14 @@ export default async function ServicePage({
                   alt=""
                   width={44}
                   height={44}
-                  className="size-11 shrink-0 rounded-full object-cover ring-2 ring-white/20"
+                  className="size-11 shrink-0 rounded-full object-cover ring-2 ring-paper/20"
                 />
               )}
               <span>
                 Servicio a cargo de{" "}
                 <Link
                   href="/nosotros#equipo"
-                  className="rounded-sm font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+                  className="rounded-sm font-semibold text-paper underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                 >
                   {director.name}
                 </Link>
@@ -163,24 +154,22 @@ export default async function ServicePage({
           <div className="grid gap-12 lg:grid-cols-3 lg:gap-14">
             {/* Main */}
             <div className="lg:col-span-2">
-              <div data-reveal>
+              <div>
                 <h2 className="font-display text-2xl text-navy-900 sm:text-3xl">
                   Qué incluye este servicio
                 </h2>
               </div>
-              <div data-reveal-group className="mt-7 grid gap-4 sm:grid-cols-2">
+              <div className="mt-7 grid gap-4 sm:grid-cols-2">
                 {service.includes.map((item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
-                      <Check className="h-4 w-4" strokeWidth={2.5} />
-                    </span>
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent-600" strokeWidth={2} />
                     <span className="text-sm leading-relaxed text-slate-700">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <div data-reveal>
-                <div className="mt-10 rounded-2xl border border-slate-200 bg-surface p-7">
+              <div>
+                <div className="mt-10 border-l-2 border-rule pl-6">
                   <h3 className="font-display text-lg text-navy-900">¿Para quién es?</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {service.forWho}
@@ -188,26 +177,24 @@ export default async function ServicePage({
                 </div>
               </div>
 
-              <div data-reveal>
+              <div>
                 <h2 className="font-display mt-14 text-2xl text-navy-900 sm:text-3xl">
                   Por qué con MRB
                 </h2>
               </div>
-              <div data-reveal-group className="mt-7 grid gap-6 sm:grid-cols-3">
+              <ul className="mt-7 grid gap-x-8 sm:grid-cols-3">
                 {service.highlights.map((h) => (
-                  <div key={h.title} className="h-full">
-                    <div className="h-full rounded-2xl border border-slate-200 p-6">
-                      <h3 className="font-display text-base text-navy-900">{h.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{h.text}</p>
-                    </div>
-                  </div>
+                  <li key={h.title} className="border-t border-rule py-5">
+                    <h3 className="font-display text-base text-navy-900">{h.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{h.text}</p>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             {/* Aside CTA (sticky) */}
             <aside className="lg:col-span-1">
-              <div className="sticky top-24 rounded-2xl bg-navy-900 p-7 text-white">
+              <div className="sticky top-24 rounded-2xl bg-navy-900 p-7 text-paper">
                 <h3 className="font-display text-xl">Consulta sin compromiso</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300">
                   Contanos tu caso y te asesoramos sobre {service.title.toLowerCase()} para
@@ -216,14 +203,14 @@ export default async function ServicePage({
                 <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-white/10 py-4">
                   <div>
                     <dt className="text-xs text-slate-400">Clientes</dt>
-                    <dd className="font-display text-2xl tabular-nums text-white">
+                    <dd className="font-display text-2xl tabular-nums text-paper">
                       {clientStats.total}
                     </dd>
                   </div>
                   {director.years && (
                     <div>
                       <dt className="text-xs text-slate-400">Experiencia</dt>
-                      <dd className="font-display text-2xl tabular-nums text-white">
+                      <dd className="font-display text-2xl tabular-nums text-paper">
                         +{director.years} años
                       </dd>
                     </div>
@@ -236,7 +223,7 @@ export default async function ServicePage({
                   </Button>
                   <a
                     href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-paper/10 px-5 py-2.5 text-sm font-medium text-paper ring-1 ring-paper/15 transition-colors hover:bg-paper/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                   >
                     <Phone className="h-4 w-4" />
                     {site.contact.phone}
@@ -251,16 +238,16 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-      {/* FAQ */}
-      <Section tone="surface">
-        <Container>
-          <SectionHeading
-            kicker="Preguntas frecuentes"
-            title={`Sobre ${service.title.toLowerCase()}`}
-          />
-          <div className="mt-12">
-            <Faq items={service.faqs} />
+      {/* FAQ: título | preguntas */}
+      <Section tone="surface" className="py-16 sm:py-20">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+          <div className="min-w-0">
+            <SectionHeading
+              title="Preguntas frecuentes"
+              subtitle={`Sobre ${service.title.toLowerCase()}.`}
+            />
           </div>
+          <Faq items={service.faqs} />
         </Container>
       </Section>
 
@@ -268,7 +255,7 @@ export default async function ServicePage({
       {related.length > 0 && (
         <Section tone="light">
           <Container>
-            <div data-reveal>
+            <div>
               <div className="flex items-end justify-between gap-4">
                 <h2 className="font-display text-2xl text-navy-900 sm:text-3xl">
                   Servicios relacionados
@@ -282,7 +269,7 @@ export default async function ServicePage({
                 </Link>
               </div>
             </div>
-            <div data-reveal-group className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
               {related.map(
                 (s) =>
                   s && (

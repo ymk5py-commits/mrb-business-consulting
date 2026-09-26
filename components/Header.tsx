@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button, cn } from "./ui";
 import { WhatsappIcon } from "./icons";
-import { navLinks, whatsappHref } from "@/lib/site.config";
+import { navLinks, whatsappHref, site } from "@/lib/site.config";
 
 export function Header() {
   const pathname = usePathname();
@@ -45,8 +45,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 w-full bg-white/95 backdrop-blur transition-shadow duration-200",
-        scrolled ? "shadow-sm shadow-slate-900/5 ring-1 ring-slate-900/5" : "",
+        "fixed inset-x-0 top-0 z-50 w-full border-b bg-paper transition-colors duration-200",
+        scrolled ? "border-rule" : "border-transparent",
       )}
     >
       <nav
@@ -69,10 +69,10 @@ export function Header() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                "rounded-sm px-3 py-2 text-sm font-medium underline-offset-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                 isActive(link.href)
-                  ? "bg-accent/8 text-accent-600"
-                  : "text-slate-600 hover:bg-surface hover:text-navy-900",
+                  ? "text-navy-900 underline decoration-accent decoration-2"
+                  : "text-slate-600 hover:text-navy-900",
               )}
             >
               {link.label}
@@ -80,12 +80,16 @@ export function Header() {
           ))}
         </div>
 
-        <div className="hidden lg:block">
-          <Button href={whatsappHref} external variant="primary" aria-label="Consultá ahora por WhatsApp">
-            <WhatsappIcon className="h-4 w-4" />
-            Consultá ahora
-          </Button>
-        </div>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden items-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold text-navy-900 transition-colors hover:text-whatsapp focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:inline-flex"
+        >
+          <WhatsappIcon className="h-4 w-4 text-whatsapp" />
+          {site.contact.phone}
+          <span className="sr-only"> (WhatsApp)</span>
+        </a>
 
         {/* Mobile toggle */}
         <button
@@ -104,7 +108,7 @@ export function Header() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-slate-200 bg-white px-5 pb-6 pt-2 lg:hidden"
+          className="border-t border-rule bg-paper px-5 pb-6 pt-2 lg:hidden"
         >
           <div className="flex flex-col">
             {navLinks.map((link) => (
@@ -126,7 +130,7 @@ export function Header() {
           <Button
             href={whatsappHref}
             external
-            variant="primary"
+            variant="secondary"
             size="lg"
             className="mt-4 w-full"
             aria-label="Consultá ahora por WhatsApp"

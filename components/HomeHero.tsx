@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "./ui";
 import { WhatsappIcon } from "./icons";
-import { whatsappHref, site } from "@/lib/site.config";
+import { whatsappHref, clientStats } from "@/lib/site.config";
+import { director } from "@/lib/team";
 
 const ENTITIES = [
   "DNIT",
@@ -15,75 +15,78 @@ const ENTITIES = [
   "SIFEN",
 ];
 
-/** Hero del home: estático y sobrio (imagen de fondo bajo un overlay navy). */
+/**
+ * Hero del home (Split Studio): a la izquierda la propuesta, a la derecha el
+ * respaldo con datos reales del estudio. Navy sólido, sin imagen ni adornos.
+ */
 export function HomeHero() {
+  const facts = [
+    {
+      value: `+${director.years ?? 15} años`,
+      label: "de experiencia en gestión contable y financiera",
+    },
+    {
+      value: `${clientStats.total} clientes`,
+      label: `${clientStats.companies} sociedades y ${clientStats.individuals} personas físicas`,
+    },
+    { value: "Lambaré", label: "Gran Asunción · atendemos en todo el país" },
+  ];
+
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950">
-      <Image
-        src={site.heroImage}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="-z-20 object-cover"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-linear-to-br from-navy-950/92 via-navy-900/85 to-navy-800/88"
-      />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-grid opacity-25" />
-
-      <Container className="flex min-h-[88svh] flex-col items-center justify-center pb-20 pt-32 text-center sm:pt-36">
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright ring-1 ring-white/15">
-          <span aria-hidden="true" className="size-1.5 rounded-full bg-accent-bright" />
-          Estudio contable en Lambaré
-        </span>
-
-        <h1 className="font-display mt-7 max-w-4xl text-balance text-5xl font-bold leading-[1.04] text-white sm:text-6xl lg:text-7xl">
-          Tu empresa, en <span className="text-accent-bright">regla.</span>
-        </h1>
-
-        <p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-slate-200 sm:text-lg">
-          Contabilidad, impuestos y constitución de sociedades bajo las leyes de Paraguay.
-          Desde Lambaré llevamos tu empresa al día ante la DNIT, el IPS y los Registros
-          Públicos, estés donde estés.
-        </p>
-
-        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1ebe5b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
-          >
-            <WhatsappIcon className="h-5 w-5" />
-            Consultá por WhatsApp
-          </a>
-          <Link
-            href="/servicios"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white/10 px-7 text-sm font-semibold text-white ring-1 ring-white/25 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            Ver servicios
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+    <section className="bg-navy-950 text-paper">
+      <Container className="grid gap-12 pb-20 pt-32 sm:pb-24 sm:pt-36 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-20 lg:pb-32 lg:pt-40">
+        <div className="min-w-0">
+          <h1 className="font-display text-balance text-5xl leading-[1.04] sm:text-6xl lg:text-7xl">
+            Tu empresa, en <span className="text-accent-bright">regla.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
+            Estudio contable, tributario y societario en Lambaré. Llevamos tu empresa al
+            día ante la DNIT, el IPS y los Registros Públicos, estés donde estés.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-colors hover:bg-whatsapp-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
+            >
+              <WhatsappIcon className="h-5 w-5" />
+              Consultá por WhatsApp
+            </a>
+            <Link
+              href="/servicios"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-sm text-sm font-semibold text-paper underline decoration-slate-500 underline-offset-8 transition-colors hover:decoration-accent-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+            >
+              Ver servicios
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
 
-        <div className="mt-14 w-full max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-300/80">
-            Gestionamos tus trámites ante
-          </p>
-          <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        {/* Respaldo: datos reales del estudio */}
+        <ul className="min-w-0 border-t border-slate-700">
+          {facts.map((f) => (
+            <li key={f.value} className="border-b border-slate-700 py-5">
+              <p className="font-display text-3xl tabular-nums text-paper sm:text-4xl">
+                {f.value}
+              </p>
+              <p className="mt-1 text-sm leading-snug text-slate-400">{f.label}</p>
+            </li>
+          ))}
+        </ul>
+      </Container>
+
+      {/* Entidades ante las que gestionamos: una línea fija */}
+      <div className="border-t border-slate-800">
+        <Container className="flex flex-wrap items-baseline gap-x-6 gap-y-2 py-5 text-sm">
+          <span className="text-slate-400">Trámites ante</span>
+          <ul className="flex flex-wrap gap-x-5 gap-y-1 font-semibold text-slate-200">
             {ENTITIES.map((name) => (
-              <li
-                key={name}
-                className="text-sm font-semibold uppercase tracking-wider text-white/60"
-              >
-                {name}
-              </li>
+              <li key={name}>{name}</li>
             ))}
           </ul>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   );
 }

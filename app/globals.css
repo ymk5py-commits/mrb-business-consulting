@@ -1,38 +1,19 @@
+/* Hallmark · genre: editorial · macrostructure: Split Studio · theme: custom (marca MRB)
+ * tone: austero · anchor hue: 258 (navy) · paper oklch(98.8% 0.004 258) · accent oklch(56.5% 0.218 259)
+ * display: Schibsted Grotesk · body: Hanken Grotesk · enrichment: none · nav: N1b (CTA = teléfono, sin botón) · footer: Ft1
+ */
 @import "tailwindcss";
+@import "../tokens.css";
 
 /* ============================================================
    MRB Business Consulting — Design System (Tailwind v4)
-   Brand: monochromatic blue · Trust & Authority
+   Marca: navy + un azul de acento. Todo color pasa por un token.
    ============================================================ */
 
-@theme {
-  /* Brand — Navy scale */
-  --color-navy-950: #00112b;
-  --color-navy-900: #001b43; /* primary brand navy */
-  --color-navy-800: #022873;
-  --color-navy-700: #03258c;
-
-  /* Brand — Accent blues */
-  --color-accent: #056cf2; /* primary CTA / links */
-  --color-accent-600: #0560d8;
-  --color-accent-bright: #0597f2; /* highlights / gradients */
-
-  /* Neutrals (surface) */
-  --color-surface: #f6f8fb;
-  --color-surface-2: #eef2f8;
-
-  /* Typography */
-  --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-display-face), var(--font-body), system-ui, sans-serif;
-  --font-serif: var(--font-serif-accent), Georgia, "Times New Roman", serif;
-
-  /* Motion */
-  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f1b2d;
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
 }
 
 html {
@@ -41,7 +22,13 @@ html {
   scroll-padding-top: 6rem;
   -webkit-text-size-adjust: 100%;
   /* Tap highlight de marca (sutil) en lugar del gris por defecto */
-  -webkit-tap-highlight-color: rgb(5 108 242 / 0.12);
+  -webkit-tap-highlight-color: color-mix(in oklch, var(--color-accent) 12%, transparent);
+}
+
+/* Nada puede generar scroll horizontal (clip, no hidden: conserva sticky/fixed) */
+html,
+body {
+  overflow-x: clip;
 }
 
 /* Sin demora de doble-tap en controles táctiles */
@@ -81,7 +68,15 @@ body {
 /* Selection on-brand */
 ::selection {
   background: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-paper);
+}
+
+/* Palabras largas nunca desbordan un título en pantallas chicas */
+h1,
+h2,
+h3 {
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 /* Display font helper */
@@ -89,36 +84,4 @@ body {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.025em;
-}
-
-/* Aparición sutil al entrar en pantalla (ver components/RevealOnScroll.tsx).
-   Solo se oculta lo que JS marca como pendiente; sin JS o con "reducir
-   movimiento" todo se ve de entrada. */
-.reveal-pending {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
-/* Solo mientras aparece: así no pisa las transiciones propias (hover) del bloque. */
-.reveal-in {
-  transition:
-    opacity 0.5s var(--ease-out-soft),
-    transform 0.5s var(--ease-out-soft);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-pending {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Subtle grid pattern for dark sections */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 60%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 60%, transparent 100%);
 }

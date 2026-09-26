@@ -23,9 +23,6 @@ export const site = {
   country: "Paraguay",
   city: "Lambaré",
 
-  /** Imagen de fondo del hero (va bajo un overlay navy). Stock: reemplazable por una
-   *  foto propia de la oficina. */
-  heroImage: "/hero.jpg",
 
   /* ---- CONTACTO ---- */
   contact: {

@@ -1,10 +1,4 @@
-import {
-  ArrowRight,
-  ShieldCheck,
-  Layers,
-  MapPin,
-  MessageSquareText,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button, Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
@@ -12,9 +6,8 @@ import { HomeHero } from "@/components/HomeHero";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { DirectorPortrait } from "@/components/DirectorPortrait";
-import { ExperienceBand } from "@/components/ExperienceBand";
 import { faqSchema, webPageSchema } from "@/lib/seo";
-import { site } from "@/lib/site.config";
+import { site, whatsappHref } from "@/lib/site.config";
 
 const homeFaqs = [
   {
@@ -41,40 +34,36 @@ const homeFaqs = [
 
 const whyUs = [
   {
-    icon: ShieldCheck,
     title: "Seguimiento de obligaciones",
     text: "Te ayudamos a organizar vencimientos y gestiones ante la DNIT, el IPS y los Registros Públicos.",
   },
   {
-    icon: Layers,
     title: "Todo en un solo estudio",
     text: "Contabilidad, impuestos, laboral y legal coordinados por un mismo equipo. Sin vueltas.",
   },
   {
-    icon: MapPin,
     title: "Experiencia local",
     text: "Conocemos a fondo el marco legal y tributario paraguayo y los circuitos de cada trámite.",
   },
   {
-    icon: MessageSquareText,
     title: "Atención cercana",
     text: "Un asesor asignado que entiende tu negocio y te responde rápido cuando lo necesitás.",
   },
 ];
 
+/** Rubros con los que trabajamos (se leen como una oración, no como etiquetas). */
 const rubros = [
-  "Comercio",
-  "Servicios",
-  "Importadoras",
-  "Construcción",
-  "Gastronomía",
-  "Tecnología",
-  "Salud",
-  "Inmobiliario",
-  "Transporte y logística",
-  "Agropecuario",
-  "E-commerce",
-  "Profesionales independientes",
+  "comercio",
+  "servicios",
+  "importadoras",
+  "construcción",
+  "gastronomía",
+  "tecnología",
+  "salud",
+  "inmobiliario",
+  "transporte y logística",
+  "agropecuario",
+  "e-commerce",
 ];
 
 export default function HomePage() {
@@ -94,84 +83,63 @@ export default function HomePage() {
 
       <HomeHero />
 
-      {/* ============ SERVICIOS ============ */}
-      <Section id="servicios" tone="surface">
-        <Container>
-          <div data-reveal>
+      {/* ============ SERVICIOS: texto | índice ============ */}
+      <Section id="servicios" tone="light" className="lg:py-28">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+          <div className="min-w-0">
             <SectionHeading
-              kicker="Nuestros servicios"
-              title="Soluciones integrales para tu empresa"
-              subtitle="Contabilidad, impuestos, sociedades, IPS y trámites en un solo estudio."
+              title="Servicios"
+              subtitle="Contabilidad, impuestos, sociedades, IPS y trámites, coordinados desde un solo estudio."
             />
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-slate-600">
+              ¿No sabés por dónde empezar?{" "}
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm font-semibold text-accent-600 underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Contanos tu caso
+              </a>{" "}
+              y te decimos qué servicio necesitás.
+            </p>
           </div>
-          <div className="mt-12">
-            <ServicesGrid />
-          </div>
+          <ServicesGrid />
         </Container>
       </Section>
 
-      {/* ============ RUBROS ============ */}
-      <section className="border-y border-slate-200 bg-white py-12">
-        <Container>
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-            Acompañamos a empresas de todos los rubros
-          </p>
-          <ul className="mx-auto mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-3">
-            {rubros.map((r) => (
-              <li
-                key={r}
-                className="rounded-full bg-surface px-4 py-1.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200"
-              >
-                {r}
+      {/* ============ POR QUÉ MRB: puntos | texto (alterna el lado) ============ */}
+      <Section tone="surface" className="py-16 sm:py-20">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="min-w-0 lg:order-2">
+            <SectionHeading
+              title="Un solo estudio para toda tu gestión"
+              subtitle="Dejá de coordinar entre contador, gestor y abogado. En MRB integramos todo con estándares profesionales y trato cercano."
+            />
+            <p className="mt-6 text-sm leading-relaxed text-slate-600">
+              Acompañamos a empresas de {rubros.join(", ")}, y a profesionales
+              independientes.
+            </p>
+          </div>
+          <ul className="grid min-w-0 gap-x-10 sm:grid-cols-2 lg:order-1">
+            {whyUs.map((item) => (
+              <li key={item.title} className="border-t border-rule py-6">
+                <h3 className="font-display text-lg text-navy-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
               </li>
             ))}
           </ul>
         </Container>
-      </section>
-
-      {/* ============ POR QUÉ MRB ============ */}
-      <Section tone="light">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <div data-reveal>
-              <SectionHeading
-                align="left"
-                kicker="Por qué elegirnos"
-                title="Un solo estudio para toda tu gestión empresarial"
-                subtitle="Dejá de coordinar entre contador, gestor y abogado. En MRB integramos todo con estándares profesionales y trato cercano."
-              />
-            </div>
-            <div data-reveal-group className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
-              {whyUs.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.title}>
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-slate-200">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
-                    </span>
-                    <h3 className="font-display mt-4 text-lg text-navy-900">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
       </Section>
 
-      {/* ============ PROCESO ============ */}
       <ProcessSteps />
 
-      <ExperienceBand />
-
-      {/* ============ NOSOTROS TEASER ============ */}
-      <Section tone="light">
+      {/* ============ SOBRE MRB: texto | retrato ============ */}
+      <Section tone="light" className="lg:py-32">
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div data-reveal>
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="min-w-0">
               <SectionHeading
-                align="left"
-                kicker="Sobre MRB"
                 title="Profesionales comprometidos con tu tranquilidad"
                 subtitle="Somos un equipo de contadores y asesores que entiende los desafíos de emprender y hacer crecer una empresa en Paraguay. Trabajamos para que vos te ocupes de tu negocio y nosotros del resto."
               />
@@ -180,25 +148,20 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
-            <div data-reveal className="px-4 sm:px-10 lg:px-6">
+            <div className="min-w-0 px-4 sm:px-10 lg:px-6">
               <DirectorPortrait />
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* ============ FAQ ============ */}
-      <Section id="faq" tone="surface">
-        <Container>
-          <div data-reveal>
-            <SectionHeading
-              kicker="Preguntas frecuentes"
-              title="Respuestas claras antes de empezar"
-            />
+      {/* ============ FAQ: título | preguntas ============ */}
+      <Section id="faq" tone="surface" className="py-16 sm:py-20">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+          <div className="min-w-0">
+            <SectionHeading title="Preguntas frecuentes" />
           </div>
-          <div data-reveal className="mt-12">
-            <Faq items={homeFaqs} />
-          </div>
+          <Faq items={homeFaqs} />
         </Container>
       </Section>
 

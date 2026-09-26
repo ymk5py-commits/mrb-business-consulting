@@ -48,13 +48,13 @@ export default function ServiciosPage() {
       />
 
       {/* Header band */}
-      <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
+      <section className="bg-navy-950">
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
           />
-          <div data-reveal>
-            <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
+          <div>
+            <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-paper sm:text-5xl">
               Servicios para tu empresa en Paraguay
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
@@ -68,7 +68,7 @@ export default function ServiciosPage() {
 
       <Section tone="surface">
         <Container>
-          <div data-reveal-group className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <div key={service.slug} className="h-full">
                 <ServiceCard service={service} />

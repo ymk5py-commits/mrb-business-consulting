@@ -1,0 +1,13 @@
+{
+  "scanned": "2026-09-26",
+  "framework": "Next.js 16.2.9 (app router) + Tailwind CSS v4 (@theme en app/globals.css)",
+  "fonts": {
+    "display": "Schibsted Grotesk (next/font, app/layout.tsx L20)",
+    "body": "Hanken Grotesk (next/font, app/layout.tsx L13)",
+    "accent": "Spectral italic 500 (next/font, app/layout.tsx L27)"
+  },
+  "palette": "hex en @theme (app/globals.css L10-22): navy 950/900/800/700, accent #056cf2 / #0560d8 / #0597f2, surface #f6f8fb / #eef2f8",
+  "motion": "motion-cut (sin gsap/motion desde 2026-09-26; solo RevealOnScroll fade 0,5 s)",
+  "spacing": "escala por defecto de Tailwind v4 (4 pt)",
+  "observed_tells": ["9 SectionHeading con kicker + 8 eyebrows en mayúsculas espaciadas", "grillas de íconos en cuadrados redondeados", "glows difuminados + textura bg-grid", "pill con punto en el hero"]
+}

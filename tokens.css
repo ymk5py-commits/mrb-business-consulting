@@ -1,0 +1,35 @@
+/* MRB Business Consulting — tokens del sistema (Tailwind v4 @theme).
+ * Importado desde app/globals.css. Todo color y familia tipográfica del sitio
+ * sale de acá: si hace falta un valor nuevo, se agrega primero como token.
+ */
+@theme {
+  /* Marca — escala navy */
+  --color-navy-950: oklch(18% 0.06 255);
+  --color-navy-900: oklch(23.1% 0.083 257.4); /* navy de marca */
+  --color-navy-800: oklch(31% 0.135 261.7);
+  --color-navy-700: oklch(33.2% 0.172 263.9);
+
+  /* Marca — acento (≤ 5 % de la pantalla: links, foco, detalles) */
+  --color-accent: oklch(56.5% 0.218 259.1);
+  --color-accent-600: oklch(51.9% 0.199 259.1);
+  --color-accent-bright: oklch(65.7% 0.17 246.6);
+
+  /* Papel, tinta y filetes (neutros teñidos hacia el navy, nunca blanco/negro puro) */
+  --color-paper: oklch(98.8% 0.004 258);
+  --color-surface: oklch(97.8% 0.005 258.3);
+  --color-surface-2: oklch(96% 0.009 258.3);
+  --color-rule: oklch(89% 0.012 258);
+  --color-ink: oklch(22.1% 0.039 258.3);
+
+  /* WhatsApp (canal principal): verde profundo, 5:1 con texto claro (AA) */
+  --color-whatsapp: oklch(52% 0.14 150);
+  --color-whatsapp-600: oklch(48% 0.13 150);
+
+  /* Tipografía */
+  --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-display-face), var(--font-body), system-ui, sans-serif;
+  --font-serif: var(--font-serif-accent), Georgia, "Times New Roman", serif;
+
+  /* Movimiento */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}

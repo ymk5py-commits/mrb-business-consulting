@@ -41,11 +41,11 @@ export default function ContactoPage() {
         ]}
       />
 
-      <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
+      <section className="bg-navy-950">
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Contacto" }]} />
-          <div data-reveal>
-            <h1 className="font-display mt-6 text-balance text-4xl leading-tight text-white sm:text-5xl">
+          <div>
+            <h1 className="font-display mt-6 text-balance text-4xl leading-tight text-paper sm:text-5xl">
               Hablemos de tu empresa
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
@@ -61,7 +61,7 @@ export default function ContactoPage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
             {/* Form */}
             <div>
-              <div data-reveal>
+              <div>
                 <h2 className="font-display text-2xl text-navy-900">Envianos tu consulta</h2>
                 <p className="mt-2 text-sm text-slate-600">
                   Completá tus datos y te contactamos. Los campos con{" "}
@@ -75,14 +75,14 @@ export default function ContactoPage() {
 
             {/* Info */}
             <div>
-              <div data-reveal>
+              <div>
                 <h2 className="font-display text-2xl text-navy-900">Datos de contacto</h2>
                 <p className="mt-2 text-sm text-slate-600">
                   Elegí el canal que prefieras.
                 </p>
               </div>
 
-              <div data-reveal-group className="mt-6 space-y-4">
+              <div className="mt-6 divide-y divide-rule border-y border-rule">
                 <ContactRow icon={<WhatsappIcon className="h-5 w-5" />} label="WhatsApp">
                   <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={rowLink}>
                     Escribir por WhatsApp
@@ -130,7 +130,7 @@ export default function ContactoPage() {
                 </div>
               )}
 
-              <div data-reveal className="mt-8 overflow-hidden rounded-2xl border border-slate-200">
+              <div className="mt-8 overflow-hidden rounded-2xl border border-rule">
                 <iframe
                   title="Ubicación de MRB Business Consulting"
                   src={mapSrc}
@@ -159,14 +159,10 @@ function ContactRow({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4">
-      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-white">
-        {icon}
-      </span>
+    <div className="flex items-start gap-4 py-4">
+      <span className="mt-0.5 shrink-0 text-accent-600">{icon}</span>
       <div className="min-w-0">
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-          {label}
-        </p>
+        <p className="text-sm font-semibold text-slate-500">{label}</p>
         <div className="mt-0.5 text-sm text-navy-900">{children}</div>
       </div>
     </div>
@@ -188,7 +184,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy-900 ring-1 ring-slate-200 transition-colors hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-paper text-navy-900 ring-1 ring-rule transition-colors hover:bg-accent hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
     >
       {children}
     </a>

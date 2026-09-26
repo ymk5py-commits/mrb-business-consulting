@@ -12,13 +12,7 @@ export function DirectorPortrait() {
 
   return (
     <figure className="relative mx-auto w-full max-w-[25rem]">
-      {/* Halo de marca detrás de la foto */}
-      <div
-        aria-hidden="true"
-        className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-linear-to-br from-accent/25 via-accent-bright/10 to-transparent blur-2xl"
-      />
-
-      <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface shadow-[0_40px_70px_-40px_rgba(0,17,37,0.6)] ring-1 ring-slate-900/10">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface ring-1 ring-rule">
         <Image
           src={director.photo}
           alt={`${director.name}, ${director.role} de ${site.name}`}
@@ -29,10 +23,10 @@ export function DirectorPortrait() {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-navy-950/95 via-navy-950/60 to-transparent"
+          className="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-navy-950/95 to-transparent"
         />
-        <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-bright">
+        <figcaption className="absolute inset-x-0 bottom-0 p-6 text-paper">
+          <p className="text-sm font-semibold text-accent-bright">
             {director.role} de {site.shortName}
           </p>
           <p className="font-display mt-1 text-2xl">{director.name}</p>
@@ -50,15 +44,15 @@ export function DirectorPortrait() {
             key={h.title}
             className={
               i === 0
-                ? "absolute -right-2 top-6 flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-3 shadow-[0_18px_40px_-20px_rgba(0,17,37,0.45)] ring-1 ring-slate-200 sm:-right-10 sm:top-8 sm:gap-3 sm:py-2.5 sm:pl-2.5 sm:pr-4"
-                : "absolute -left-2 top-[46%] flex items-center gap-2.5 rounded-2xl bg-white py-2 pl-2 pr-3 shadow-[0_18px_40px_-20px_rgba(0,17,37,0.45)] ring-1 ring-slate-200 sm:-left-10 sm:gap-3 sm:py-2.5 sm:pl-2.5 sm:pr-4"
+                ? "absolute -right-2 top-6 flex items-center gap-2.5 rounded-2xl bg-paper py-2 pl-2 pr-3 ring-1 ring-rule sm:-right-10 sm:top-8 sm:gap-3 sm:py-2.5 sm:pl-2.5 sm:pr-4"
+                : "absolute -left-2 top-[46%] flex items-center gap-2.5 rounded-2xl bg-paper py-2 pl-2 pr-3 ring-1 ring-rule sm:-left-10 sm:gap-3 sm:py-2.5 sm:pl-2.5 sm:pr-4"
             }
           >
             <span
               className={
                 i === 0
-                  ? "inline-flex size-8 shrink-0 items-center justify-center rounded-xl bg-accent text-white sm:size-9"
-                  : "inline-flex size-8 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-white sm:size-9"
+                  ? "inline-flex size-8 shrink-0 items-center justify-center rounded-xl bg-accent text-paper sm:size-9"
+                  : "inline-flex size-8 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-paper sm:size-9"
               }
             >
               <Icon className="size-4 sm:size-5" strokeWidth={1.75} />

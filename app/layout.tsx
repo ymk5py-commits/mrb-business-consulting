@@ -4,7 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
@@ -102,10 +101,10 @@ export default function RootLayout({
       lang="es-PY"
       className={`${bodyFont.variable} ${displayFont.variable} ${serifFont.variable}`}
     >
-      <body className="bg-white antialiased">
+      <body className="antialiased">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-bright"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-paper focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-bright"
         >
           Saltar al contenido
         </a>
@@ -116,7 +115,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <WhatsAppFab />
-        <RevealOnScroll />
       </body>
     </html>
   );

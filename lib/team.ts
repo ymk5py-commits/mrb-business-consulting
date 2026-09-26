@@ -109,17 +109,3 @@ export function getInitials(name: string): string {
   if (p.length === 1) return p[0]!.slice(0, 2).toUpperCase();
   return (p[0]![0]! + p[p.length - 1]![0]!).toUpperCase();
 }
-
-const TEAM_GRADIENTS = [
-  "from-navy-900 to-accent",
-  "from-navy-950 to-accent-600",
-  "from-navy-800 to-accent-bright",
-  "from-accent-600 to-navy-900",
-] as const;
-
-/** Degradé determinista por nombre (mismo nombre → mismo degradé). */
-export function gradientFor(name: string): string {
-  let h = 0;
-  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
-  return TEAM_GRADIENTS[h % TEAM_GRADIENTS.length]!;
-}

@@ -9,7 +9,7 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir por WhatsApp"
-      className="group fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-40 inline-flex items-center gap-3 rounded-full bg-[#25D366] p-3 text-white shadow-lg shadow-[#25D366]/30 transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 sm:bottom-7 sm:right-7 sm:p-4"
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-40 inline-flex items-center rounded-full bg-whatsapp p-3 text-paper shadow-md transition-colors duration-200 hover:bg-whatsapp-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2 sm:bottom-7 sm:right-7 sm:p-4"
     >
       <WhatsappIcon className="h-6 w-6 sm:h-7 sm:w-7" />
     </a>

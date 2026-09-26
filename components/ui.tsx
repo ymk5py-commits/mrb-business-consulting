@@ -35,7 +35,7 @@ export function Section({
   className?: string;
 }) {
   const tones: Record<SectionTone, string> = {
-    light: "bg-white text-slate-700",
+    light: "bg-paper text-slate-700",
     surface: "bg-surface text-slate-700",
     navy: "bg-navy-900 text-slate-100",
   };
@@ -49,16 +49,16 @@ export function Section({
   );
 }
 
-/* ---------------- Section heading ---------------- */
+/* ---------------- Section heading ----------------
+   Sin "eyebrow" arriba del título (etiqueta en mayúsculas = tic de plantilla).
+   Alineado a la izquierda por defecto: el cuerpo de cada sección también lo está. */
 export function SectionHeading({
-  kicker,
   title,
   subtitle,
-  align = "center",
+  align = "left",
   tone = "dark",
   as = "h2",
 }: {
-  kicker?: string;
   title: ReactNode;
   subtitle?: ReactNode;
   align?: "center" | "left";
@@ -74,20 +74,10 @@ export function SectionHeading({
         align === "center" ? "mx-auto text-center" : "text-left",
       )}
     >
-      {kicker && (
-        <span
-          className={cn(
-            "inline-block text-sm font-semibold uppercase tracking-[0.18em]",
-            isLight ? "text-accent-bright" : "text-accent-600",
-          )}
-        >
-          {kicker}
-        </span>
-      )}
       <Heading
         className={cn(
-          "font-display mt-3 text-balance text-3xl leading-tight sm:text-4xl lg:text-[2.6rem]",
-          isLight ? "text-white" : "text-navy-900",
+          "font-display text-balance text-3xl leading-tight sm:text-4xl lg:text-[2.6rem]",
+          isLight ? "text-paper" : "text-navy-900",
         )}
       >
         {title}
@@ -111,15 +101,12 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "white" | "whatsapp";
 type ButtonSize = "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    "bg-accent text-white hover:bg-accent-600 shadow-sm shadow-accent/30",
-  secondary:
-    "bg-navy-900 text-white hover:bg-navy-800 shadow-sm",
+  primary: "bg-accent text-paper hover:bg-accent-600 active:bg-navy-800",
+  secondary: "bg-navy-900 text-paper hover:bg-navy-800 active:bg-navy-950",
   ghost:
-    "bg-transparent text-navy-900 ring-1 ring-inset ring-slate-300 hover:bg-surface hover:ring-slate-400",
-  white:
-    "bg-white text-navy-900 hover:bg-slate-100 shadow-sm",
-  whatsapp: "bg-[#25D366] text-white hover:bg-[#1ebe5b] shadow-sm",
+    "bg-transparent text-navy-900 ring-1 ring-inset ring-rule hover:bg-surface hover:ring-slate-400 active:bg-surface-2",
+  white: "bg-paper text-navy-900 hover:bg-surface-2 active:bg-surface",
+  whatsapp: "bg-whatsapp text-paper hover:bg-whatsapp-600 active:bg-navy-900",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

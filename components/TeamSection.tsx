@@ -11,7 +11,6 @@ import {
   team,
   director,
   getInitials,
-  gradientFor,
   CREDENTIAL_ICONS,
   type TeamMember,
 } from "@/lib/team";
@@ -58,30 +57,24 @@ function Avatar({
       role="img"
       aria-label={`${member.name}, ${member.role}`}
       className={cn(
-        "relative flex items-center justify-center overflow-hidden bg-linear-to-br",
-        gradientFor(member.name),
+        "relative flex items-center justify-center overflow-hidden bg-navy-900",
         aspect,
         className,
       )}
     >
-      {/* Brillo radial: evita el degradé plano */}
-      <span
-        aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(115%_85%_at_80%_12%,rgba(5,151,242,0.40),transparent_55%)]"
-      />
       {/* Silueta de hombros: da volumen */}
       <svg
         aria-hidden
         viewBox="0 0 100 125"
         preserveAspectRatio="xMidYMax meet"
-        className="absolute inset-0 size-full text-white/10"
+        className="absolute inset-0 size-full text-paper/10"
       >
         <circle cx="50" cy="46" r="20" fill="currentColor" />
         <path d="M14 125c0-22 16-38 36-38s36 16 36 38z" fill="currentColor" />
       </svg>
       <span
         className={cn(
-          "font-display relative font-medium tracking-tight text-white/90",
+          "font-display relative font-medium tracking-tight text-paper/90",
           initialsClass,
         )}
       >
@@ -95,7 +88,7 @@ function Avatar({
 function Socials({ member, size = "md" }: { member: TeamMember; size?: "md" | "sm" }) {
   if (!member.linkedin && !member.email) return null;
   const base =
-    "inline-flex items-center justify-center rounded-xl bg-surface text-navy-900 ring-1 ring-slate-200 transition hover:bg-navy-900 hover:text-white hover:ring-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center rounded-xl bg-surface text-navy-900 ring-1 ring-rule transition hover:bg-navy-900 hover:text-paper hover:ring-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
   const box = size === "md" ? "size-11" : "size-10";
   const icon = size === "md" ? "size-5" : "size-4";
   return (
@@ -133,18 +126,16 @@ export function TeamSection() {
       <JsonLd data={teamSchema()} />
       <Container>
         {/* Cabecera */}
-        <div data-reveal>
+        <div>
           <SectionHeading
-            align="left"
-            kicker="Quién está detrás de MRB"
             title={`Conocé a ${director.name}`}
             subtitle="Contador, gerente financiero y líder de equipos, con más de 15 años de experiencia en empresas de Paraguay."
           />
         </div>
 
         {/* Director destacado */}
-        <div data-reveal className="mt-12">
-          <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_30px_60px_-45px_rgba(0,17,37,0.5)] lg:grid lg:grid-cols-[minmax(0,24rem)_1fr]">
+        <div className="mt-12">
+          <article className="overflow-hidden rounded-3xl border border-rule bg-paper lg:grid lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
             <div className="relative">
               <Avatar
                 member={director}
@@ -156,12 +147,8 @@ export function TeamSection() {
               />
             </div>
 
-            <div className="relative flex flex-col p-6 sm:p-10 xl:p-12">
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-accent to-accent-bright"
-              />
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-600">
+            <div className="flex min-w-0 flex-col p-6 sm:p-10 xl:p-12">
+              <p className="text-sm font-semibold text-accent-600">
                 {director.role} de {site.shortName}
               </p>
               <h3 className="font-display mt-2 text-3xl text-navy-900 sm:text-4xl">
@@ -172,7 +159,7 @@ export function TeamSection() {
               )}
 
               {director.quote ? (
-                <blockquote className="mt-7 max-w-2xl border-l-2 border-accent pl-5">
+                <blockquote className="mt-7 max-w-2xl border-l-2 border-rule pl-5">
                   <p className="font-serif text-lg italic leading-relaxed text-navy-900 sm:text-xl">
                     “{director.quote}”
                   </p>
@@ -189,7 +176,7 @@ export function TeamSection() {
                     const Icon = CREDENTIAL_ICONS[c.kind];
                     return (
                       <li key={c.title} className="flex gap-3">
-                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-slate-200">
+                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-surface text-accent ring-1 ring-rule">
                           <Icon className="size-5" strokeWidth={1.75} />
                         </span>
                         <div className="min-w-0">
@@ -210,14 +197,12 @@ export function TeamSection() {
 
               {director.sectors && director.sectors.length > 0 && (
                 <div className="mt-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-                    Experiencia en
-                  </p>
+                  <p className="text-sm font-semibold text-slate-500">Experiencia en</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {director.sectors.map((s) => (
                       <li
                         key={s}
-                        className="rounded-full bg-surface px-3 py-1 text-sm text-navy-900 ring-1 ring-slate-200"
+                        className="rounded-full bg-surface px-3 py-1 text-sm text-navy-900 ring-1 ring-rule"
                       >
                         {s}
                       </li>
@@ -251,11 +236,11 @@ export function TeamSection() {
 
         {/* Grilla de miembros (stagger) */}
         {members.length > 0 && (
-          <div data-reveal-group className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {members.map((m) => (
               <article
                 key={`${m.name}-${m.role}`}
-                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-[border-color,box-shadow] duration-200 hover:border-slate-300 hover:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] focus-within:border-slate-300 focus-within:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)]"
+                className="flex h-full flex-col border-t border-rule pt-6"
               >
                 <Avatar
                   member={m}
