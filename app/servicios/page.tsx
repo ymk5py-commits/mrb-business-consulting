@@ -3,8 +3,6 @@ import { Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
-import { GsapScope } from "@/components/GsapScope";
-import { Tilt } from "@/components/Tilt";
 import { services } from "@/lib/services";
 import { pageMetadata, breadcrumbSchema, absoluteUrl, webPageSchema } from "@/lib/seo";
 
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function ServiciosPage() {
   return (
-    <GsapScope>
+    <>
       <JsonLd
         data={[
           breadcrumbSchema([
@@ -55,7 +53,7 @@ export default function ServiciosPage() {
           <Breadcrumbs
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
           />
-          <div data-gsap="reveal">
+          <div data-reveal>
             <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
               Servicios para tu empresa en Paraguay
             </h1>
@@ -70,17 +68,17 @@ export default function ServiciosPage() {
 
       <Section tone="surface">
         <Container>
-          <div data-gsap="stagger" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div data-reveal-group className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <Tilt key={service.slug} className="h-full">
+              <div key={service.slug} className="h-full">
                 <ServiceCard service={service} />
-              </Tilt>
+              </div>
             ))}
           </div>
         </Container>
       </Section>
 
       <CtaBand />
-    </GsapScope>
+    </>
   );
 }

@@ -4,9 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
-import { ScrollProgress } from "@/components/motion";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { MotionProvider } from "@/components/MotionProvider";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
@@ -112,17 +110,13 @@ export default function RootLayout({
           Saltar al contenido
         </a>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
-        <MotionProvider>
-          <ScrollProgress />
-          <Header />
-          <SmoothScroll>
-            <main id="contenido" tabIndex={-1} className="outline-none">
-              {children}
-            </main>
-            <Footer />
-          </SmoothScroll>
-          <WhatsAppFab />
-        </MotionProvider>
+        <Header />
+        <main id="contenido" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppFab />
+        <RevealOnScroll />
       </body>
     </html>
   );

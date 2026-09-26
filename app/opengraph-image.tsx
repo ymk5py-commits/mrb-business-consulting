@@ -28,7 +28,6 @@ export default async function OpengraphImage() {
             "linear-gradient(135deg, #00112b 0%, #001b43 55%, #022873 100%)",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} width={430} alt="" />
         <div
           style={{

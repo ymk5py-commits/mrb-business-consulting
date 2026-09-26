@@ -9,7 +9,6 @@ import { Faq } from "@/components/Faq";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
-import { GsapScope } from "@/components/GsapScope";
 import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
 import { director } from "@/lib/team";
 import { site, whatsappLink, clientStats } from "@/lib/site.config";
@@ -69,7 +68,7 @@ export default async function ServicePage({
     .slice(0, 3);
 
   return (
-    <GsapScope>
+    <>
       <JsonLd
         data={[
           serviceSchema({
@@ -103,7 +102,7 @@ export default async function ServicePage({
               { name: service.title },
             ]}
           />
-          <div data-gsap="reveal">
+          <div data-reveal>
             <div className="mt-8 flex items-center gap-4">
               <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-accent-bright ring-1 ring-white/15">
                 <Icon className="h-7 w-7" strokeWidth={1.75} />
@@ -164,12 +163,12 @@ export default async function ServicePage({
           <div className="grid gap-12 lg:grid-cols-3 lg:gap-14">
             {/* Main */}
             <div className="lg:col-span-2">
-              <div data-gsap="reveal">
+              <div data-reveal>
                 <h2 className="font-display text-2xl text-navy-900 sm:text-3xl">
                   Qué incluye este servicio
                 </h2>
               </div>
-              <div data-gsap="stagger" className="mt-7 grid gap-4 sm:grid-cols-2">
+              <div data-reveal-group className="mt-7 grid gap-4 sm:grid-cols-2">
                 {service.includes.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
@@ -180,7 +179,7 @@ export default async function ServicePage({
                 ))}
               </div>
 
-              <div data-gsap="reveal">
+              <div data-reveal>
                 <div className="mt-10 rounded-2xl border border-slate-200 bg-surface p-7">
                   <h3 className="font-display text-lg text-navy-900">¿Para quién es?</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -189,12 +188,12 @@ export default async function ServicePage({
                 </div>
               </div>
 
-              <div data-gsap="reveal">
+              <div data-reveal>
                 <h2 className="font-display mt-14 text-2xl text-navy-900 sm:text-3xl">
                   Por qué con MRB
                 </h2>
               </div>
-              <div data-gsap="stagger" className="mt-7 grid gap-6 sm:grid-cols-3">
+              <div data-reveal-group className="mt-7 grid gap-6 sm:grid-cols-3">
                 {service.highlights.map((h) => (
                   <div key={h.title} className="h-full">
                     <div className="h-full rounded-2xl border border-slate-200 p-6">
@@ -269,7 +268,7 @@ export default async function ServicePage({
       {related.length > 0 && (
         <Section tone="light">
           <Container>
-            <div data-gsap="reveal">
+            <div data-reveal>
               <div className="flex items-end justify-between gap-4">
                 <h2 className="font-display text-2xl text-navy-900 sm:text-3xl">
                   Servicios relacionados
@@ -283,7 +282,7 @@ export default async function ServicePage({
                 </Link>
               </div>
             </div>
-            <div data-gsap="stagger" className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div data-reveal-group className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map(
                 (s) =>
                   s && (
@@ -298,6 +297,6 @@ export default async function ServicePage({
       )}
 
       <CtaBand title={`¿Necesitás ${service.title.toLowerCase()}?`} whatsapp={waHref} />
-    </GsapScope>
+    </>
   );
 }

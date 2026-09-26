@@ -28,13 +28,11 @@ export function ExperienceBand() {
             </p>
           </div>
 
-          <div data-gsap="stagger" className="grid gap-4 sm:grid-cols-2">
+          <div data-reveal-group className="grid gap-4 sm:grid-cols-2">
             {/* Clientes + composición */}
             <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
               <p className="font-display text-5xl leading-none tabular-nums text-white">
-                <span data-gsap="count" data-to={totalClients}>
-                  {totalClients}
-                </span>
+                {totalClients}
               </p>
               <p className="mt-2 text-sm text-slate-300">clientes confían en MRB</p>
               <div
@@ -64,9 +62,7 @@ export function ExperienceBand() {
             {director.years && (
               <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
                 <p className="font-display text-5xl leading-none tabular-nums text-white">
-                  <span data-gsap="count" data-to={director.years} data-prefix="+">
-                    +{director.years}
-                  </span>
+                  +{director.years}
                 </p>
                 <p className="mt-2 text-sm text-slate-300">
                   años de experiencia en gestión contable y financiera

@@ -6,7 +6,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { WhatsappIcon, socialIcons } from "@/components/icons";
 import { site, whatsappHref, addressLine, mapsHref, socialLinks } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, webPageSchema } from "@/lib/seo";
-import { GsapScope } from "@/components/GsapScope";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -26,7 +25,7 @@ const rowLink =
 
 export default function ContactoPage() {
   return (
-    <GsapScope>
+    <>
       <JsonLd
         data={[
           breadcrumbSchema([
@@ -45,7 +44,7 @@ export default function ContactoPage() {
       <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Contacto" }]} />
-          <div data-gsap="reveal">
+          <div data-reveal>
             <h1 className="font-display mt-6 text-balance text-4xl leading-tight text-white sm:text-5xl">
               Hablemos de tu empresa
             </h1>
@@ -62,7 +61,7 @@ export default function ContactoPage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
             {/* Form */}
             <div>
-              <div data-gsap="reveal">
+              <div data-reveal>
                 <h2 className="font-display text-2xl text-navy-900">Envianos tu consulta</h2>
                 <p className="mt-2 text-sm text-slate-600">
                   Completá tus datos y te contactamos. Los campos con{" "}
@@ -76,14 +75,14 @@ export default function ContactoPage() {
 
             {/* Info */}
             <div>
-              <div data-gsap="reveal">
+              <div data-reveal>
                 <h2 className="font-display text-2xl text-navy-900">Datos de contacto</h2>
                 <p className="mt-2 text-sm text-slate-600">
                   Elegí el canal que prefieras.
                 </p>
               </div>
 
-              <div data-gsap="stagger" className="mt-6 space-y-4">
+              <div data-reveal-group className="mt-6 space-y-4">
                 <ContactRow icon={<WhatsappIcon className="h-5 w-5" />} label="WhatsApp">
                   <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={rowLink}>
                     Escribir por WhatsApp
@@ -131,7 +130,7 @@ export default function ContactoPage() {
                 </div>
               )}
 
-              <div data-gsap="reveal" className="mt-8 overflow-hidden rounded-2xl border border-slate-200">
+              <div data-reveal className="mt-8 overflow-hidden rounded-2xl border border-slate-200">
                 <iframe
                   title="Ubicación de MRB Business Consulting"
                   src={mapSrc}
@@ -146,7 +145,7 @@ export default function ContactoPage() {
           </div>
         </Container>
       </Section>
-    </GsapScope>
+    </>
   );
 }
 

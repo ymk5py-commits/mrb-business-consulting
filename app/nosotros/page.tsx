@@ -5,7 +5,6 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBand } from "@/components/CtaBand";
 import { TeamSection } from "@/components/TeamSection";
 import { ExperienceBand } from "@/components/ExperienceBand";
-import { GsapScope } from "@/components/GsapScope";
 import { site } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, webPageSchema, personId } from "@/lib/seo";
 import { director } from "@/lib/team";
@@ -45,7 +44,7 @@ const values = [
 
 export default function NosotrosPage() {
   return (
-    <GsapScope>
+    <>
       <JsonLd
         data={[
           breadcrumbSchema([
@@ -65,7 +64,7 @@ export default function NosotrosPage() {
       <section className="bg-linear-to-br from-navy-950 via-navy-900 to-navy-800">
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Nosotros" }]} />
-          <div data-gsap="reveal">
+          <div data-reveal>
             <h1 className="font-display mt-6 max-w-3xl text-balance text-4xl leading-tight text-white sm:text-5xl">
               Tu estudio de confianza en Paraguay
             </h1>
@@ -81,14 +80,14 @@ export default function NosotrosPage() {
       <Section tone="light">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div data-gsap="reveal">
+            <div data-reveal>
               <SectionHeading
                 align="left"
                 kicker="Quiénes somos"
                 title="Un equipo que entiende tu negocio"
               />
             </div>
-            <div data-gsap="reveal" className="space-y-5 text-base leading-relaxed text-slate-600">
+            <div data-reveal className="space-y-5 text-base leading-relaxed text-slate-600">
               <p>
                 MRB Business Consulting nace para resolver un problema concreto: la gestión
                 contable, tributaria y legal de una empresa en Paraguay suele estar
@@ -115,7 +114,7 @@ export default function NosotrosPage() {
       {/* Misión / Visión */}
       <Section tone="light">
         <Container>
-          <div data-gsap="stagger" className="grid gap-6 md:grid-cols-2">
+          <div data-reveal-group className="grid gap-6 md:grid-cols-2">
             <div className="h-full">
               <div className="h-full rounded-2xl border border-slate-200 bg-white p-8">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-white">
@@ -149,13 +148,13 @@ export default function NosotrosPage() {
       {/* Valores */}
       <Section tone="surface">
         <Container>
-          <div data-gsap="reveal">
+          <div data-reveal>
             <SectionHeading
               kicker="Nuestros valores"
               title="Lo que nos guía cada día"
             />
           </div>
-          <div data-gsap="stagger" className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div data-reveal-group className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => {
               const Icon = v.icon;
               return (
@@ -177,6 +176,6 @@ export default function NosotrosPage() {
       <ExperienceBand />
 
       <CtaBand title="¿Trabajamos juntos?" />
-    </GsapScope>
+    </>
   );
 }

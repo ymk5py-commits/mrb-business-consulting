@@ -91,31 +91,26 @@ body {
   letter-spacing: -0.025em;
 }
 
-/* Subtle reveal-on-scroll (progressive enhancement, respects reduced-motion) */
-@keyframes mrb-rise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Aparición sutil al entrar en pantalla (ver components/RevealOnScroll.tsx).
+   Solo se oculta lo que JS marca como pendiente; sin JS o con "reducir
+   movimiento" todo se ve de entrada. */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-.reveal {
-  animation: mrb-rise 0.7s var(--ease-out-soft) both;
+/* Solo mientras aparece: así no pisa las transiciones propias (hover) del bloque. */
+.reveal-in {
+  transition:
+    opacity 0.5s var(--ease-out-soft),
+    transform 0.5s var(--ease-out-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    animation: none;
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
   }
-}
-
-/* Thin brand gradient rule */
-.gradient-rule {
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-bright));
 }
 
 /* Subtle grid pattern for dark sections */
@@ -126,82 +121,4 @@ body {
   background-size: 56px 56px;
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 60%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 60%, transparent 100%);
-}
-
-/* Slow drifting aurora glow (decorative). Disabled for reduced motion. */
-@keyframes mrb-aurora {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.55;
-  }
-  50% {
-    transform: translate3d(4%, 3%, 0) scale(1.12);
-    opacity: 0.8;
-  }
-}
-
-.aurora {
-  animation: mrb-aurora 14s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .aurora {
-    animation: none;
-  }
-}
-
-/* Animated sheen sweep for primary buttons */
-@keyframes mrb-sheen {
-  0% {
-    transform: translateX(-150%) skewX(-20deg);
-  }
-  60%,
-  100% {
-    transform: translateX(250%) skewX(-20deg);
-  }
-}
-
-/* ============================================================
-   Hero: glass shimmer headline + entities marquee
-   ============================================================ */
-.glass-text {
-  color: transparent;
-  background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.55) 24%,
-    rgba(160, 205, 255, 0.75) 45%,
-    rgba(255, 255, 255, 0.95) 56%,
-    rgba(255, 255, 255, 0.5) 76%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter: drop-shadow(0 14px 32px rgba(0, 6, 20, 0.45));
-  animation: mrb-shimmer 9s linear infinite;
-}
-
-@keyframes mrb-shimmer {
-  0% {
-    background-position: 200% center;
-  }
-  100% {
-    background-position: 0% center;
-  }
-}
-
-@keyframes mrb-marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: mrb-marquee 30s linear infinite;
 }

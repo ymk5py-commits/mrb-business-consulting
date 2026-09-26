@@ -23,15 +23,9 @@ export const site = {
   country: "Paraguay",
   city: "Lambaré",
 
-  /** Video de fondo del hero. PLACEHOLDER (stock) — reemplazá por tu propio video .mp4.
-   *  720p: va bajo un overlay oscuro, así que no se nota frente al 4K y pesa 2 MB (vs 6 MB). */
-  heroVideo:
-    "https://videos.pexels.com/video-files/3254066/3254066-hd_1280_720_25fps.mp4",
-  /** Versión liviana (360p, ~0,7 MB) para pantallas chicas: bajo el overlay no se nota. */
-  heroVideoMobile:
-    "https://videos.pexels.com/video-files/3254066/3254066-sd_640_360_25fps.mp4",
-  /** Primer cuadro del video: se ve mientras carga (y fija un LCP rápido). */
-  heroPoster: "/hero-poster.jpg",
+  /** Imagen de fondo del hero (va bajo un overlay navy). Stock: reemplazable por una
+   *  foto propia de la oficina. */
+  heroImage: "/hero.jpg",
 
   /* ---- CONTACTO ---- */
   contact: {

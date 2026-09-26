@@ -8,13 +8,11 @@ import {
 import { Button, Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Faq } from "@/components/Faq";
 import { CtaBand } from "@/components/CtaBand";
-import { VideoHero } from "@/components/VideoHero";
-import { ServicesOrbital } from "@/components/ServicesOrbital";
-import { ProcessHorizontal } from "@/components/ProcessHorizontal";
+import { HomeHero } from "@/components/HomeHero";
+import { ServicesGrid } from "@/components/ServicesGrid";
+import { ProcessSteps } from "@/components/ProcessSteps";
 import { DirectorPortrait } from "@/components/DirectorPortrait";
 import { ExperienceBand } from "@/components/ExperienceBand";
-import { GsapScope } from "@/components/GsapScope";
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { faqSchema, webPageSchema } from "@/lib/seo";
 import { site } from "@/lib/site.config";
 
@@ -81,7 +79,7 @@ const rubros = [
 
 export default function HomePage() {
   return (
-    <GsapScope>
+    <>
       <JsonLd
         data={[
           webPageSchema({
@@ -94,54 +92,40 @@ export default function HomePage() {
         ]}
       />
 
-      <VideoHero />
+      <HomeHero />
 
-      {/* ============ SERVICIOS (orbital) ============ */}
+      {/* ============ SERVICIOS ============ */}
       <Section id="servicios" tone="surface">
         <Container>
-          <div data-gsap="reveal">
+          <div data-reveal>
             <SectionHeading
               kicker="Nuestros servicios"
               title="Soluciones integrales para tu empresa"
-              subtitle="Elegí un servicio para ver el detalle y cómo se conecta con el resto."
+              subtitle="Contabilidad, impuestos, sociedades, IPS y trámites en un solo estudio."
             />
           </div>
-          <div data-gsap="reveal" className="mt-12">
-            <ServicesOrbital />
-          </div>
-          <div className="mt-10 flex justify-center">
-            <Button href="/servicios" variant="secondary">
-              Ver todos los servicios
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+          <div className="mt-12">
+            <ServicesGrid />
           </div>
         </Container>
       </Section>
 
-      {/* ============ RUBROS (banda slider) ============ */}
+      {/* ============ RUBROS ============ */}
       <section className="border-y border-slate-200 bg-white py-12">
         <Container>
-          <p
-            data-gsap="reveal"
-            className="mb-7 text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-400"
-          >
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
             Acompañamos a empresas de todos los rubros
           </p>
-          <InfiniteSlider
-            gap={48}
-            speed={45}
-            speedOnHover={15}
-            className="[mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
-          >
+          <ul className="mx-auto mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-3">
             {rubros.map((r) => (
-              <span
+              <li
                 key={r}
-                className="whitespace-nowrap text-base font-semibold uppercase tracking-wider text-slate-600 transition-colors duration-300 hover:text-navy-900"
+                className="rounded-full bg-surface px-4 py-1.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200"
               >
                 {r}
-              </span>
+              </li>
             ))}
-          </InfiniteSlider>
+          </ul>
         </Container>
       </section>
 
@@ -149,7 +133,7 @@ export default function HomePage() {
       <Section tone="light">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <div data-gsap="reveal">
+            <div data-reveal>
               <SectionHeading
                 align="left"
                 kicker="Por qué elegirnos"
@@ -157,7 +141,7 @@ export default function HomePage() {
                 subtitle="Dejá de coordinar entre contador, gestor y abogado. En MRB integramos todo con estándares profesionales y trato cercano."
               />
             </div>
-            <div data-gsap="stagger" className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+            <div data-reveal-group className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
               {whyUs.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -175,8 +159,8 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* ============ PROCESO (scroll horizontal anclado) ============ */}
-      <ProcessHorizontal />
+      {/* ============ PROCESO ============ */}
+      <ProcessSteps />
 
       <ExperienceBand />
 
@@ -184,7 +168,7 @@ export default function HomePage() {
       <Section tone="light">
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div data-gsap="reveal">
+            <div data-reveal>
               <SectionHeading
                 align="left"
                 kicker="Sobre MRB"
@@ -196,7 +180,7 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
-            <div data-gsap="reveal" className="px-4 sm:px-10 lg:px-6">
+            <div data-reveal className="px-4 sm:px-10 lg:px-6">
               <DirectorPortrait />
             </div>
           </div>
@@ -206,19 +190,19 @@ export default function HomePage() {
       {/* ============ FAQ ============ */}
       <Section id="faq" tone="surface">
         <Container>
-          <div data-gsap="reveal">
+          <div data-reveal>
             <SectionHeading
               kicker="Preguntas frecuentes"
               title="Respuestas claras antes de empezar"
             />
           </div>
-          <div data-gsap="reveal" className="mt-12">
+          <div data-reveal className="mt-12">
             <Faq items={homeFaqs} />
           </div>
         </Container>
       </Section>
 
       <CtaBand />
-    </GsapScope>
+    </>
   );
 }

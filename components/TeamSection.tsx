@@ -1,13 +1,12 @@
 /* ============================================================
  * components/TeamSection.tsx — ficha profesional de /nosotros.
- * Server Component (el "use client" lo aporta <Tilt>). Sin deps nuevas.
+ * Server Component, sin animaciones.
  * Los datos viven en lib/team.ts (editá ahí el equipo y las fotos).
  * ============================================================ */
 import Image from "next/image";
 import { Mail } from "lucide-react";
 import { Button, Container, Section, SectionHeading, JsonLd, cn } from "@/components/ui";
 import { LinkedinIcon, WhatsappIcon } from "@/components/icons";
-import { Tilt } from "@/components/Tilt";
 import {
   team,
   director,
@@ -48,7 +47,7 @@ function Avatar({
           sizes={sizes}
           priority={priority}
           style={{ objectPosition: member.photoPosition }}
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className="object-cover"
         />
       </div>
     );
@@ -134,7 +133,7 @@ export function TeamSection() {
       <JsonLd data={teamSchema()} />
       <Container>
         {/* Cabecera */}
-        <div data-gsap="reveal">
+        <div data-reveal>
           <SectionHeading
             align="left"
             kicker="Quién está detrás de MRB"
@@ -144,9 +143,9 @@ export function TeamSection() {
         </div>
 
         {/* Director destacado */}
-        <div data-gsap="reveal" className="mt-12">
+        <div data-reveal className="mt-12">
           <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_30px_60px_-45px_rgba(0,17,37,0.5)] lg:grid lg:grid-cols-[minmax(0,24rem)_1fr]">
-            <Tilt max={6} className="relative">
+            <div className="relative">
               <Avatar
                 member={director}
                 ratio="portrait"
@@ -155,7 +154,7 @@ export function TeamSection() {
                 priority
                 className="size-full"
               />
-            </Tilt>
+            </div>
 
             <div className="relative flex flex-col p-6 sm:p-10 xl:p-12">
               <span
@@ -252,11 +251,11 @@ export function TeamSection() {
 
         {/* Grilla de miembros (stagger) */}
         {members.length > 0 && (
-          <div data-gsap="stagger" className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div data-reveal-group className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {members.map((m) => (
               <article
                 key={`${m.name}-${m.role}`}
-                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] focus-within:-translate-y-1 focus-within:border-slate-300 focus-within:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0"
+                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-[border-color,box-shadow] duration-200 hover:border-slate-300 hover:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)] focus-within:border-slate-300 focus-within:shadow-[0_18px_40px_-24px_rgba(0,17,37,0.45)]"
               >
                 <Avatar
                   member={m}

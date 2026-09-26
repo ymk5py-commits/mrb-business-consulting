@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button, cn } from "./ui";
@@ -13,17 +13,10 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
 
+  // Sombra sutil una vez que se scrollea (el header queda siempre visible).
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 8);
-      // Ocultar al bajar (pasado el hero), mostrar al subir o cerca del tope.
-      setHidden(y > 160 && y > lastY.current + 4);
-      lastY.current = y;
-    };
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -52,9 +45,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 w-full bg-white/90 backdrop-blur transition-[transform,box-shadow] duration-300 ease-out",
+        "fixed inset-x-0 top-0 z-50 w-full bg-white/95 backdrop-blur transition-shadow duration-200",
         scrolled ? "shadow-sm shadow-slate-900/5 ring-1 ring-slate-900/5" : "",
-        hidden && !open ? "-translate-y-full" : "translate-y-0",
       )}
     >
       <nav
