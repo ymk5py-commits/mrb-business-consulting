@@ -1,3 +1,5 @@
+import { HeroSection } from "@/components/HeroSection";
+import { heroImages } from "@/lib/hero-images";
 import type { Metadata } from "next";
 import { Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -48,7 +50,7 @@ export default function ServiciosPage() {
       />
 
       {/* Header band */}
-      <section className="bg-navy-950">
+      <HeroSection image={heroImages.office}>
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs
             items={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
@@ -64,7 +66,7 @@ export default function ServiciosPage() {
             </p>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="surface">
         <Container>

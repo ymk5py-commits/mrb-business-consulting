@@ -1,3 +1,5 @@
+import { HeroSection } from "@/components/HeroSection";
+import { heroImages } from "@/lib/hero-images";
 import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 import { Container, Section, JsonLd } from "@/components/ui";
@@ -41,7 +43,7 @@ export default function ContactoPage() {
         ]}
       />
 
-      <section className="bg-navy-950">
+      <HeroSection image={heroImages.contact}>
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Contacto" }]} />
           <div>
@@ -54,7 +56,7 @@ export default function ContactoPage() {
             </p>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       <Section tone="surface">
         <Container>

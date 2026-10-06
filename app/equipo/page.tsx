@@ -1,3 +1,5 @@
+import { HeroSection } from "@/components/HeroSection";
+import { heroImages } from "@/lib/hero-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Section, JsonLd } from "@/components/ui";
@@ -21,13 +23,13 @@ export default function EquipoPage() {
         "@type": "ListItem", position: index + 1, url: absoluteUrl(professionalPath(member)), name: member.name, item: { "@id": personId(member) },
       })) },
     ]} />
-    <section className="bg-navy-950 text-paper">
+    <HeroSection image={heroImages.office}>
       <Container className="pb-16 pt-28 sm:pt-32">
         <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Equipo" }]} />
         <h1 className="font-display mt-6 text-4xl sm:text-5xl">Conocé al equipo de MRB</h1>
         <p className="mt-5 max-w-2xl text-lg text-slate-300">Experiencia en contabilidad, auditoría y gestión de personas para acompañar a tu empresa en Paraguay.</p>
       </Container>
-    </section>
+    </HeroSection>
     <Section tone="light"><Container className="grid gap-8 md:grid-cols-3">
       {professionals.map((member) => <article key={member.slug}>
         <Link href={professionalPath(member)} className="group block rounded-2xl focus-visible:outline-2 focus-visible:outline-accent">

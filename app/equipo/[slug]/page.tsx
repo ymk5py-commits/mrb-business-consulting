@@ -1,3 +1,5 @@
+import { HeroSection } from "@/components/HeroSection";
+import { heroImages } from "@/lib/hero-images";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,7 +34,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ slug: 
       webPageSchema({ type: "ProfilePage", path, name: member.name, description: member.bio, mainEntityId: personId(member) }),
       breadcrumbSchema([{ name: "Inicio", path: "/" }, { name: "Equipo", path: "/equipo" }, { name: member.name, path }]),
     ]} />
-    <section className="bg-navy-950"><Container className="pb-8 pt-28 sm:pt-32"><Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Equipo", href: "/equipo" }, { name: member.name }]} /></Container></section>
+    <HeroSection image={member === gabriela ? heroImages.audit : member === payrollProfessional ? heroImages.payroll : heroImages.accounting}><Container className="pb-8 pt-28 sm:pt-32"><Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Equipo", href: "/equipo" }, { name: member.name }]} /></Container></HeroSection>
     <Section tone="surface"><Container>
       <article className="overflow-hidden rounded-3xl border border-rule bg-paper lg:grid lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
         <div className="relative aspect-[3/4] lg:aspect-auto">

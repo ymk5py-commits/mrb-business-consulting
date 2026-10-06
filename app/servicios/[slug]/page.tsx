@@ -1,3 +1,5 @@
+import { HeroSection } from "@/components/HeroSection";
+import { heroImages, serviceHeroImages } from "@/lib/hero-images";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -97,7 +99,7 @@ export default async function ServicePage({
       />
 
       {/* HERO */}
-      <section className="bg-navy-950">
+      <HeroSection image={serviceHeroImages[service.slug] ?? heroImages.office}>
         <Container className="pb-16 pt-28 sm:pb-20 sm:pt-32">
           <Breadcrumbs
             items={[
@@ -152,7 +154,7 @@ export default async function ServicePage({
             </div>
           </div>
         </Container>
-      </section>
+      </HeroSection>
 
       {/* CONTENIDO */}
       <Section tone="light">
