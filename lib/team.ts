@@ -101,6 +101,23 @@ export const CREDENTIAL_ICONS: Record<Credential["kind"], LucideIcon> = {
 /** Director/a del estudio (o el primer miembro si no hay ninguno marcado). */
 export const director = team.find((m) => m.director) ?? team[0]!;
 
+/** Perfil facilitado por MRB para el servicio de auditoría y consultoría. */
+export const gabriela: TeamMember = {
+  name: "Gabriela Duarte Toñanez",
+  role: "Auditoría y consultoría",
+  headline: "Contadora Pública",
+  bio: "Contadora pública con más de 15 años de experiencia en auditoría financiera e impositiva y contabilidad integral. Ofrece un análisis objetivo y soluciones técnicas precisas para fortalecer el control financiero y acompañar el cumplimiento tributario de cada cliente.",
+  photo: "/team/gabriela-duarte-tonanez.png",
+  photoPosition: "50% 30%",
+  years: 15,
+  credentials: [
+    { kind: "degree", title: "Contador Público", detail: "Universidad de Integración de las Américas (UNIDA)" },
+    { kind: "diploma", title: "Diplomado en Tributación y Asesoría Impositiva", detail: "Universidad del Pacífico" },
+    { kind: "specialty", title: "Formación en Auditoría", detail: "Escuela de Administración de Negocios (EDAN)" },
+  ],
+  sectors: ["Servicios", "Industria", "Automotor", "Importación"],
+};
+
 /* ---- Helpers para el avatar de marca (cuando no hay foto) ---- */
 
 /** Iniciales a partir del nombre (1ª y última palabra). Fallback "MRB". */
