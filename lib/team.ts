@@ -118,6 +118,23 @@ export const gabriela: TeamMember = {
   sectors: ["Servicios", "Industria", "Automotor", "Importación"],
 };
 
+/** Perfil facilitado por MRB para Payroll y asesoría laboral. */
+export const payrollProfessional: TeamMember = {
+  name: "María Ernestina Argüello Aguilera",
+  role: "Payroll y gestión de talento humano",
+  headline: "Economista · MBA · Especialista en Derecho y Práctica Laboral",
+  bio: "Economista y MBA con más de 17 años de experiencia liderando Recursos Humanos en empresas de salud, alimentos e industria de hasta 450 colaboradores. Especialista en la estructuración de áreas de RR.HH., la transformación organizacional y la implementación de sistemas ISO.",
+  photo: "/team/maria-ernestina-arguello.png",
+  photoPosition: "52% 40%",
+  years: 17,
+  credentials: [
+    { kind: "degree", title: "Economista", detail: "Universidad Nacional de Asunción · 2009" },
+    { kind: "degree", title: "Magíster en Administración de Empresas (MBA)", detail: "Universidad Americana · 2017" },
+    { kind: "specialty", title: "Especialización en Derecho y Práctica Laboral", detail: "FOTRIEM · 2020–2021" },
+  ],
+  sectors: ["Salud y laboratorios", "Alimentos y consumo masivo", "Forestal e industrial", "Automotriz", "Comercial"],
+};
+
 /* ---- Helpers para el avatar de marca (cuando no hay foto) ---- */
 
 /** Iniciales a partir del nombre (1ª y última palabra). Fallback "MRB". */
