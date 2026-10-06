@@ -38,7 +38,6 @@ export function AuditProfessional() {
               {specialties.map((specialty) => <li key={specialty}>{specialty}</li>)}
             </ul>
             <p className="mt-5 text-sm leading-relaxed text-slate-600">Experiencia en empresas nacionales e internacionales de servicios, industria, automotor e importación.</p>
-            <p className="mt-6 border-t border-rule pt-5 text-lg font-semibold text-navy-900">Más de 15 años de experiencia</p>
           </div>
         </article>
       </Container>

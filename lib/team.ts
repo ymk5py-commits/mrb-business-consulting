@@ -106,7 +106,7 @@ export const gabriela: TeamMember = {
   name: "Gabriela Duarte Toñanez",
   role: "Auditoría y consultoría",
   headline: "Contadora Pública",
-  bio: "Contadora pública con más de 15 años de experiencia en auditoría financiera e impositiva y contabilidad integral. Ofrece un análisis objetivo y soluciones técnicas precisas para fortalecer el control financiero y acompañar el cumplimiento tributario de cada cliente.",
+  bio: "Contadora pública con más de 15 años de experiencia en auditoría financiera e impositiva y contabilidad integral.",
   photo: "/team/gabriela-duarte-tonanez.png",
   photoPosition: "50% 30%",
   years: 15,
