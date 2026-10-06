@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container, Section } from "@/components/ui";
-import { payrollProfessional as member } from "@/lib/team";
+import { payrollProfessional as member, professionalPath } from "@/lib/team";
 
 const specialties = [
   "Estructuración de áreas de Recursos Humanos",
@@ -44,6 +45,7 @@ export function PayrollProfessional() {
             </ul>
             <h3 className="mt-7 text-sm font-semibold text-navy-900">Sectores</h3>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">{member.sectors?.join(" · ")}</p>
+            <Link href={professionalPath(member)} className="mt-6 inline-block text-sm font-semibold text-accent-600 underline underline-offset-4">Ver perfil profesional</Link>
           </div>
         </article>
       </Container>

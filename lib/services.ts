@@ -44,7 +44,7 @@ export const services: Service[] = [
     title: "Contabilidad",
     excerpt:
       "Llevamos tu contabilidad mensual al día: registros, libros, estados financieros y conciliaciones, bajo las normas vigentes en Paraguay.",
-    metaTitle: "Estudio Contable en Lambaré y Gran Asunción | MRB",
+    metaTitle: "Contabilidad y Outsourcing Contable en Paraguay | MRB",
     metaDescription:
       "Tercerizá la contabilidad de tu empresa con MRB. Registros contables, libros legales, estados financieros y conciliaciones bajo NIIF para PYMEs en Paraguay.",
     kicker: "Servicio contable",
@@ -209,9 +209,9 @@ export const services: Service[] = [
     title: "Asesoría laboral e IPS",
     excerpt:
       "Liquidación de salarios, aportes al IPS e inscripciones ante el MTESS, con tus planillas y contratos en regla.",
-    metaTitle: "Asesoría Laboral, Sueldos e IPS en Paraguay | MRB",
+    metaTitle: "Payroll, Sueldos y Asesoría Laboral en Paraguay | MRB",
     metaDescription:
-      "Liquidación de nómina, aportes al IPS, inscripción patronal y trámites ante el MTESS en Paraguay. Contratos, aguinaldo y liquidaciones laborales en regla.",
+      "Payroll y liquidación de sueldos, aguinaldo y aportes al IPS en Paraguay. Asesoría laboral de MRB con María Ernestina Argüello y trámites ante el MTESS.",
     kicker: "Servicio laboral",
     h1: "Asesoría laboral e IPS en Paraguay",
     intro:
@@ -407,7 +407,7 @@ export const services: Service[] = [
 ];
 
 /** Última actualización del contenido de servicios (se muestra en cada página). */
-export const SERVICES_UPDATED_AT = "2026-09-26";
+export const SERVICES_UPDATED_AT = "2026-10-06";
 
 export function getService(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);

@@ -17,6 +17,8 @@ export type Credential = {
 };
 
 export type TeamMember = {
+  /** Dirección pública estable del perfil profesional. */
+  slug?: string;
   /** Nombre y apellido completo. */
   name: string;
   /** Cargo/rol dentro del estudio. */
@@ -54,6 +56,7 @@ export type TeamMember = {
 export const team: TeamMember[] = [
   {
     name: "Manuel Rolón",
+    slug: "manuel-rolon",
     role: "Director",
     headline: "Licenciado en Ciencias Contables y Administrativas",
     bio: "Más de 15 años en gestión contable y financiera, outsourcing y liderazgo de equipos en sectores como importación, construcción y automotor.",
@@ -104,6 +107,7 @@ export const director = team.find((m) => m.director) ?? team[0]!;
 /** Perfil facilitado por MRB para el servicio de auditoría y consultoría. */
 export const gabriela: TeamMember = {
   name: "Gabriela Duarte Toñanez",
+  slug: "gabriela-duarte-tonanez",
   role: "Auditoría y consultoría",
   headline: "Contadora Pública",
   bio: "Contadora pública con más de 15 años de experiencia en auditoría financiera e impositiva y contabilidad integral.",
@@ -121,6 +125,7 @@ export const gabriela: TeamMember = {
 /** Perfil facilitado por MRB para Payroll y asesoría laboral. */
 export const payrollProfessional: TeamMember = {
   name: "María Ernestina Argüello Aguilera",
+  slug: "maria-ernestina-arguello",
   role: "Payroll y gestión de talento humano",
   headline: "Economista · MBA · Especialista en Derecho y Práctica Laboral",
   bio: "Economista y MBA con más de 17 años de experiencia liderando Recursos Humanos en empresas de salud, alimentos e industria de hasta 450 colaboradores. Especialista en la estructuración de áreas de RR.HH., la transformación organizacional y la implementación de sistemas ISO.",
@@ -136,6 +141,12 @@ export const payrollProfessional: TeamMember = {
 };
 
 /* ---- Helpers para el avatar de marca (cuando no hay foto) ---- */
+
+export const professionals = [director, gabriela, payrollProfessional];
+
+export function professionalPath(member: TeamMember) {
+  return `/equipo/${member.slug}`;
+}
 
 /** Iniciales a partir del nombre (1ª y última palabra). Fallback "MRB". */
 export function getInitials(name: string): string {

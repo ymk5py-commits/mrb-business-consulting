@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { site, socialLinks, whatsappHref, mapsHref } from "./site.config";
 import { services } from "./services";
-import { team, director, type TeamMember } from "./team";
+import { professionals, professionalPath, type TeamMember } from "./team";
 
 /** Convierte una ruta relativa en URL absoluta canónica. */
 export function absoluteUrl(path = "/"): string {
@@ -59,8 +59,7 @@ export function serviceId(slug: string): string {
 
 /** @id de cada Person del equipo. */
 export function personId(member: TeamMember): string {
-  const i = team.indexOf(member);
-  return `${absoluteUrl("/nosotros")}#person-${i < 0 ? 0 : i}`;
+  return `${absoluteUrl(professionalPath(member))}#person`;
 }
 
 /** @id del BreadcrumbList de una página. */
@@ -142,7 +141,7 @@ export function organizationSchema() {
       })),
     },
     // Si Manuel es el fundador legal del estudio, puede pasar a `founder`.
-    employee: [{ "@id": personId(director) }],
+    member: professionals.map((member) => ({ "@id": personId(member) })),
     // Solo redes reales cargadas en site.config (las vacías no se publican).
     ...(socialLinks.length > 0 ? { sameAs: socialLinks.map((s) => s.href) } : {}),
   };
@@ -161,7 +160,7 @@ export function websiteSchema() {
   };
 }
 
-type WebPageType = "WebPage" | "ContactPage" | "AboutPage" | "CollectionPage";
+type WebPageType = "WebPage" | "ContactPage" | "AboutPage" | "CollectionPage" | "ProfilePage";
 
 /** WebPage (o subtipo) por página: la vincula con el WebSite, la Organization,
  *  su entidad principal y su breadcrumb. */
@@ -251,20 +250,32 @@ export function faqSchema(faqs: { q: string; a: string }[]) {
 
 /** Person por miembro del equipo (/nosotros), vinculado a la Organization. */
 export function teamSchema() {
-  return team.map((m) => ({
+  return professionals.map(personSchema);
+}
+
+export function personSchema(m: TeamMember) {
+  return {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": personId(m),
     name: m.name,
+    url: absoluteUrl(professionalPath(m)),
     jobTitle: m.role,
     description: m.bio,
-    worksFor: { "@id": ORG_ID },
+    affiliation: { "@id": ORG_ID },
     ...(m.alumniOf?.length
       ? { alumniOf: m.alumniOf.map((name) => ({ "@type": "CollegeOrUniversity", name })) }
       : {}),
-    ...(m.credentials?.length ? { knowsAbout: m.credentials.map((c) => c.title) } : {}),
+    ...(m.credentials?.length ? {
+      hasCredential: m.credentials.map((credential) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: credential.title,
+        ...(credential.detail ? { description: credential.detail } : {}),
+      })),
+    } : {}),
+    ...(m.sectors?.length ? { knowsAbout: m.sectors } : {}),
     ...(m.photo ? { image: absoluteUrl(m.photo) } : {}),
     ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
     ...(m.email ? { email: m.email } : {}),
-  }));
+  };
 }

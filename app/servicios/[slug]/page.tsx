@@ -10,7 +10,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
-import { director, gabriela, payrollProfessional } from "@/lib/team";
+import { director, gabriela, payrollProfessional, professionalPath } from "@/lib/team";
 import { AuditProfessional } from "@/components/AuditProfessional";
 import { PayrollProfessional } from "@/components/PayrollProfessional";
 import { site, whatsappLink, clientStats } from "@/lib/site.config";
@@ -128,7 +128,7 @@ export default async function ServicePage({
               <span>
                 Servicio a cargo de{" "}
                 <Link
-                  href={professional !== director ? "#profesional" : "/nosotros#equipo"}
+                  href={professionalPath(professional)}
                   className="rounded-sm font-semibold text-paper underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                 >
                   {professional.name}

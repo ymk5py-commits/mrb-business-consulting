@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { WhatsappIcon } from "./icons";
 import { site } from "@/lib/site.config";
+import { trackContact } from "@/lib/analytics";
 import { services } from "@/lib/services";
 
 const inputClasses =
@@ -21,6 +22,7 @@ export function ContactForm() {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    trackContact("form");
     const lines = [
       `Hola MRB Business Consulting, soy ${form.nombre || "(sin nombre)"}.`,
       form.servicio && `Servicio de interés: ${form.servicio}.`,

@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   // propio (contenido duplicado): se redirige de forma permanente.
   async redirects() {
     return [
+      { source: "/servicios/payroll", destination: "/servicios/asesoria-laboral-ips", permanent: true },
+      { source: "/servicios/auditoria", destination: "/servicios/auditoria-consultoria", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "mrb-business-consulting.vercel.app" }],

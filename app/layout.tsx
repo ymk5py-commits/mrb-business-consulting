@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Hanken_Grotesk, Schibsted_Grotesk, Spectral } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@/components/Analytics";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
   manifest: "/site.webmanifest",
   category: "business",
@@ -115,6 +116,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <WhatsAppFab />
+        <Analytics />
       </body>
     </html>
   );

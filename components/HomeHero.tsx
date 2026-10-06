@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Container } from "./ui";
 import { WhatsappIcon } from "./icons";
@@ -15,7 +16,7 @@ const ENTITIES = [
 
 /**
  * Hero del home (Split Studio): a la izquierda la propuesta, a la derecha el
- * respaldo con datos reales del estudio. Navy sólido, sin imagen ni adornos.
+ * respaldo con datos reales del estudio y un fondo de oficina suave.
  */
 export function HomeHero() {
   const facts = [
@@ -31,8 +32,12 @@ export function HomeHero() {
   ];
 
   return (
-    <section className="bg-navy-950 text-paper">
-      <Container className="grid gap-12 pb-20 pt-32 sm:pb-24 sm:pt-36 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-20 lg:pb-32 lg:pt-40">
+    <section className="relative isolate overflow-hidden bg-navy-950 text-paper">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <Image src="/brand/hero-office.webp" alt="" fill priority sizes="100vw" className="scale-105 object-cover object-center blur-[3px]" quality={80} />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,16,38,0.92)_0%,rgba(0,16,38,0.80)_48%,rgba(0,16,38,0.70)_100%)]" />
+      </div>
+      <Container className="relative grid gap-12 pb-20 pt-32 sm:pb-24 sm:pt-36 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-20 lg:pb-32 lg:pt-40">
         <div className="min-w-0">
           <h1 className="font-display text-balance text-5xl leading-[1.04] sm:text-6xl lg:text-7xl">
             Tu empresa, en <span className="text-accent-bright">regla.</span>
@@ -68,14 +73,14 @@ export function HomeHero() {
               <p className="font-display text-3xl tabular-nums text-paper sm:text-4xl">
                 {f.value}
               </p>
-              <p className="mt-1 text-sm leading-snug text-slate-400">{f.label}</p>
+              <p className="mt-1 text-sm leading-snug text-slate-300">{f.label}</p>
             </li>
           ))}
         </ul>
       </Container>
 
       {/* Entidades ante las que gestionamos: una línea fija */}
-      <div className="border-t border-slate-800">
+      <div className="relative border-t border-white/10 bg-navy-950/65">
         <Container className="flex flex-wrap items-baseline gap-x-6 gap-y-2 py-5 text-sm">
           <span className="text-slate-400">Trámites ante</span>
           <ul className="flex flex-wrap gap-x-5 gap-y-1 font-semibold text-slate-200">

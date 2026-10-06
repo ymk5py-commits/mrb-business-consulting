@@ -4,6 +4,7 @@
  * Los datos viven en lib/team.ts (editá ahí el equipo y las fotos).
  * ============================================================ */
 import Image from "next/image";
+import Link from "next/link";
 import { Mail } from "lucide-react";
 import { Button, Container, Section, SectionHeading, JsonLd, cn } from "@/components/ui";
 import { LinkedinIcon, WhatsappIcon } from "@/components/icons";
@@ -13,6 +14,7 @@ import {
   getInitials,
   CREDENTIAL_ICONS,
   type TeamMember,
+  professionalPath,
 } from "@/lib/team";
 import { site, whatsappHref } from "@/lib/site.config";
 import { teamSchema } from "@/lib/seo";
@@ -229,9 +231,14 @@ export function TeamSection() {
                   Hablar con {firstName}
                 </Button>
                 <Socials member={director} size="md" />
+                <Link href={professionalPath(director)} className="text-sm font-semibold text-accent-600 underline underline-offset-4">Ver perfil profesional</Link>
               </div>
             </div>
           </article>
+        </div>
+
+        <div className="mt-8">
+          <Link href="/equipo" className="text-base font-semibold text-accent-600 underline underline-offset-4">Conocé a nuestros profesionales de auditoría y Payroll</Link>
         </div>
 
         {/* Grilla de miembros (stagger) */}

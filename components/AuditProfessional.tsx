@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Container, Section } from "@/components/ui";
-import { gabriela } from "@/lib/team";
+import { gabriela, professionalPath } from "@/lib/team";
 
 const specialties = [
   "Auditoría de estados contables",
@@ -38,6 +39,7 @@ export function AuditProfessional() {
               {specialties.map((specialty) => <li key={specialty}>{specialty}</li>)}
             </ul>
             <p className="mt-5 text-sm leading-relaxed text-slate-600">Experiencia en empresas nacionales e internacionales de servicios, industria, automotor e importación.</p>
+            <Link href={professionalPath(gabriela)} className="mt-6 inline-block text-sm font-semibold text-accent-600 underline underline-offset-4">Ver perfil profesional</Link>
           </div>
         </article>
       </Container>
