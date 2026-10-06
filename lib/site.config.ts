@@ -57,7 +57,7 @@ export const site = {
   social: {
     instagram: "" as string,
     facebook: "" as string,
-    linkedin: "" as string,
+    linkedin: "https://www.linkedin.com/company/mrb-business-consulting-py/",
   },
 } as const;
 

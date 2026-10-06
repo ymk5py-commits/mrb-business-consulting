@@ -7,12 +7,10 @@ import { director } from "@/lib/team";
 
 const ENTITIES = [
   "DNIT",
-  "Marangatú",
   "IPS",
   "MTESS",
   "Registros Públicos",
   "DINAPI",
-  "SIFEN",
 ];
 
 /**

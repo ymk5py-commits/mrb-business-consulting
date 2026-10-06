@@ -87,6 +87,7 @@ export const team: TeamMember[] = [
     photo: "/team/manuel-rolon-retrato.jpg",
     photoPosition: "62% 30%",
     avatar: "/team/manuel-rolon-avatar.jpg",
+    linkedin: "https://www.linkedin.com/in/manuel-rol%C3%B3n-b%C3%A1ez-1a140367/",
   },
 ];
 
