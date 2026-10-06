@@ -9,7 +9,7 @@ import { Mail } from "lucide-react";
 import { Button, Container, Section, SectionHeading, JsonLd, cn } from "@/components/ui";
 import { LinkedinIcon, WhatsappIcon } from "@/components/icons";
 import {
-  team,
+  professionals,
   director,
   getInitials,
   CREDENTIAL_ICONS,
@@ -120,7 +120,7 @@ function Socials({ member, size = "md" }: { member: TeamMember; size?: "md" | "s
 }
 
 export function TeamSection() {
-  const members = team.filter((m) => m !== director);
+  const members = professionals.filter((m) => m !== director);
   const firstName = director.name.split(" ")[0];
 
   return (
@@ -130,8 +130,8 @@ export function TeamSection() {
         {/* Cabecera */}
         <div>
           <SectionHeading
-            title={`Conocé a ${director.name}`}
-            subtitle="Contador, gerente financiero y líder de equipos, con más de 15 años de experiencia en empresas de Paraguay."
+            title="Conocé a quienes están detrás de MRB"
+            subtitle="Contabilidad, auditoría y Payroll: profesionales que acompañan la gestión de tu empresa en Paraguay."
           />
         </div>
 
@@ -237,30 +237,29 @@ export function TeamSection() {
           </article>
         </div>
 
-        <div className="mt-8">
-          <Link href="/equipo" className="text-base font-semibold text-accent-600 underline underline-offset-4">Conocé a nuestros profesionales de auditoría y Payroll</Link>
-        </div>
-
         {/* Grilla de miembros (stagger) */}
         {members.length > 0 && (
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
             {members.map((m) => (
               <article
                 key={`${m.name}-${m.role}`}
-                className="flex h-full flex-col border-t border-rule pt-6"
+                className="flex h-full flex-col overflow-hidden rounded-3xl border border-rule bg-paper"
               >
                 <Avatar
                   member={m}
-                  ratio="square"
+                  ratio="portrait"
                   initialsClass="text-3xl"
-                  sizes="(min-width: 1024px) 16rem, (min-width: 640px) 45vw, 100vw"
-                  className="rounded-xl"
+                  sizes="(min-width: 768px) 50vw, 100vw"
                 />
-                <h3 className="font-display mt-5 text-lg text-navy-900">{m.name}</h3>
+                <div className="flex flex-1 flex-col p-6 sm:p-8">
+                <h3 className="font-display text-2xl text-navy-900">{m.name}</h3>
                 <p className="mt-1 text-sm font-semibold text-accent-600">{m.role}</p>
-                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{m.bio}</p>
-                <div className="mt-5 pt-1">
+                <p className="mt-3 text-base leading-relaxed text-slate-600">{m.bio}</p>
+                {m.headline && <p className="mt-4 text-sm leading-relaxed text-slate-600">{m.headline}</p>}
+                <div className="mt-auto flex flex-wrap items-center gap-4 pt-6">
+                  <Link href={professionalPath(m)} className="rounded-sm text-sm font-semibold text-accent-600 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-accent">Ver perfil profesional</Link>
                   <Socials member={m} size="sm" />
+                </div>
                 </div>
               </article>
             ))}

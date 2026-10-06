@@ -5,17 +5,16 @@ import { CtaBand } from "@/components/CtaBand";
 import { TeamSection } from "@/components/TeamSection";
 import { ExperienceBand } from "@/components/ExperienceBand";
 import { site } from "@/lib/site.config";
-import { pageMetadata, breadcrumbSchema, webPageSchema, personId } from "@/lib/seo";
-import { director } from "@/lib/team";
+import { pageMetadata, breadcrumbSchema, webPageSchema, ORG_ID } from "@/lib/seo";
 
 export const metadata: Metadata = {
   ...pageMetadata({
-    title: "Manuel Rolón y el Equipo de MRB Business Consulting",
+    title: "Nuestro equipo | MRB Business Consulting",
     description:
-      "Conocé a Manuel Rolón, director de MRB: Lic. en Ciencias Contables (Summa Cum Laude) con más de 15 años en gestión contable y financiera en Paraguay.",
+      "Conocé a Manuel Rolón, Gabriela Duarte Toñanez y María Ernestina Argüello: el equipo de contabilidad, auditoría y Payroll de MRB en Paraguay.",
     path: "/nosotros",
   }),
-  title: { absolute: "Manuel Rolón y el Equipo de MRB Business Consulting" },
+  title: { absolute: "Nuestro equipo | MRB Business Consulting" },
 };
 
 const values = [
@@ -50,8 +49,8 @@ export default function NosotrosPage() {
             type: "AboutPage",
             path: "/nosotros",
             name: "Nosotros — MRB Business Consulting",
-            description: `Quiénes somos en ${site.name}: Manuel Rolón y el equipo del estudio.`,
-            mainEntityId: personId(director),
+            description: `Quiénes somos en ${site.name}: nuestro equipo de contabilidad, auditoría y Payroll.`,
+            mainEntityId: ORG_ID,
           }),
         ]}
       />
