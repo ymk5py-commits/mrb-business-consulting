@@ -33,9 +33,9 @@ const serifFont = Spectral({
 });
 
 // Home: ≤ 60 / ≤ 158 caracteres (Google trunca más allá).
-const HOME_TITLE = "Estudio Contable en Lambaré y Gran Asunción | MRB";
+const HOME_TITLE = "Estudio Contable en Asunción, Paraguay | MRB";
 const HOME_DESCRIPTION =
-  "Estudio contable, tributario y societario en Lambaré (Gran Asunción). Contabilidad, impuestos, sociedades e IPS para empresas y personas de todo Paraguay.";
+  "Estudio contable, tributario y societario en Asunción. Contabilidad, impuestos, sociedades e IPS para empresas y personas de todo Paraguay.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   applicationName: site.name,
   keywords: [
     "consultoría empresarial Paraguay",
-    "estudio contable Lambaré",
+    "estudio contable Asunción",
     "estudio contable Asunción",
     "asesoría tributaria Paraguay",
     "constituir empresa Paraguay",

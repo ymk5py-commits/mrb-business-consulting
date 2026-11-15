@@ -92,15 +92,14 @@ export function organizationSchema() {
     ...(site.contact.email ? { email: site.contact.email } : {}),
     telephone: site.contact.phone,
     priceRange: "$$",
-    // Oficina en Lambaré (Gran Asunción); atención remota a todo el país.
+    // Oficina en el centro de Asunción; atención remota a todo el país.
     areaServed: [
-      { "@type": "City", name: "Lambaré" },
       { "@type": "City", name: "Asunción" },
       { "@type": "Country", name: "Paraguay" },
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${site.contact.address.street}, ${site.contact.address.neighborhood}`,
+      streetAddress: `${site.contact.address.street}, ${site.contact.address.building}`,
       addressLocality: site.contact.address.city,
       addressRegion: site.contact.address.region,
       addressCountry: "PY",
@@ -111,12 +110,12 @@ export function organizationSchema() {
       longitude: site.contact.geo.lng,
     },
     hasMap: mapsHref,
-    openingHoursSpecification: {
+    openingHoursSpecification: site.contact.openingHours.map((h) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "17:00",
-    },
+      dayOfWeek: h.days,
+      opens: h.opens,
+      closes: h.closes,
+    })),
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",

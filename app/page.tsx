@@ -16,7 +16,7 @@ const homeFaqs = [
   },
   {
     q: "¿Atienden a empresas y personas de todo Paraguay?",
-    a: "Sí. Atendemos clientes de todo el país desde nuestra oficina en Barrio Mbachió, Lambaré (Gran Asunción). Gran parte de la gestión —Marangatú, IPS, Registros Públicos— se hace en forma digital, así que tu ubicación no es un impedimento.",
+    a: "Sí. Atendemos clientes de todo el país desde nuestra oficina en el centro de Asunción (Edificio Alfar 1, Cerro Corá 247). Gran parte de la gestión —Marangatú, IPS, Registros Públicos— se hace en forma digital, así que tu ubicación no es un impedimento.",
   },
   {
     q: "¿Puedo tercerizar toda la contabilidad e impuestos de mi empresa?",

@@ -11,12 +11,12 @@ import { pageMetadata, breadcrumbSchema, webPageSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   ...pageMetadata({
-    title: "Contacto: WhatsApp, Teléfono y Dirección en Lambaré | MRB",
+    title: "Contacto: WhatsApp, Teléfono y Dirección en Asunción | MRB",
     description:
-      "Contactá a MRB Business Consulting en Lambaré (Gran Asunción). Escribinos por WhatsApp, llamanos o enviá tu consulta. Lunes a viernes, de 08:00 a 17:00.",
+      "Contactá a MRB Business Consulting en Asunción. Escribinos por WhatsApp, llamanos o vení a la oficina. Lunes a viernes de 9 a 18 y sábados de 9 a 12.",
     path: "/contacto",
   }),
-  title: { absolute: "Contacto: WhatsApp, Teléfono y Dirección en Lambaré | MRB" },
+  title: { absolute: "Contacto: WhatsApp, Teléfono y Dirección en Asunción | MRB" },
 };
 
 const mapSrc = `https://www.google.com/maps?q=${site.contact.geo.lat},${site.contact.geo.lng}&z=16&output=embed`;
@@ -38,7 +38,7 @@ export default function ContactoPage() {
             type: "ContactPage",
             path: "/contacto",
             name: "Contacto — MRB Business Consulting",
-            description: `Contactá a ${site.name} en Lambaré (Gran Asunción), Paraguay: WhatsApp, teléfono y dirección.`,
+            description: `Contactá a ${site.name} en Asunción, Paraguay: WhatsApp, teléfono y dirección.`,
           }),
         ]}
       />

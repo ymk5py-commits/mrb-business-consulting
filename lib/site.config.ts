@@ -21,7 +21,7 @@ export const site = {
 
   locale: "es_PY",
   country: "Paraguay",
-  city: "Lambaré",
+  city: "Asunción",
 
 
   /* ---- CONTACTO ---- */
@@ -36,19 +36,24 @@ export const site = {
     /** Mensaje pre-cargado al abrir WhatsApp */
     whatsappMessage:
       "Hola MRB Business Consulting, quisiera una consulta sobre sus servicios.",
+    /** Oficina desde noviembre de 2026 (antes: Barrio Mbachió, Lambaré). */
     address: {
-      street: "Calle Ángel Gabriel casi Fortín Isla Poí",
-      neighborhood: "Barrio Mbachió",
-      city: "Lambaré",
-      region: "Central",
+      building: "Edificio Alfar 1, piso 11",
+      street: "Cerro Corá 247 entre Yegros e Iturbe",
+      neighborhood: "La Catedral",
+      city: "Asunción",
+      region: "Asunción",
       country: "Paraguay",
     },
     /** Horario de atención */
-    hours: "Lunes a Viernes, 08:00 – 17:00",
-    /** Para schema.org openingHours */
-    openingHours: "Mo-Fr 08:00-17:00",
-    /** Ángel Gabriel casi Fortín Isla Poí (Mbachió, Lambaré), según OpenStreetMap */
-    geo: { lat: -25.35834, lng: -57.6249 },
+    hours: "Lunes a viernes de 09:00 a 18:00 · Sábados de 09:00 a 12:00",
+    /** Para schema.org (openingHoursSpecification) */
+    openingHours: [
+      { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
+      { days: ["Saturday"], opens: "09:00", closes: "12:00" },
+    ],
+    /** Edificio Alfar 1, Cerro Corá 247 (La Catedral, Asunción), según OpenStreetMap */
+    geo: { lat: -25.28448, lng: -57.63338 },
   },
 
   /* ---- REDES SOCIALES ----
@@ -87,10 +92,10 @@ export const socialLinks = (
   ] as const
 ).filter((s) => s.href !== "");
 
-/** Dirección en una línea: "Calle …, Barrio …, Lambaré" */
+/** Dirección en una línea: "Edificio …, piso …, Calle …, Asunción" */
 export const addressLine = [
+  site.contact.address.building,
   site.contact.address.street,
-  site.contact.address.neighborhood,
   site.contact.address.city,
 ].join(", ");
 

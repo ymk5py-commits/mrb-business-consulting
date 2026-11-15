@@ -28,7 +28,7 @@ export function HomeHero() {
       value: `${clientStats.total} clientes`,
       label: `${clientStats.companies} sociedades y ${clientStats.individuals} personas físicas`,
     },
-    { value: "Lambaré", label: "Gran Asunción · atendemos en todo el país" },
+    { value: "Asunción", label: "Oficina en el centro · atendemos en todo el país" },
   ];
 
   return (
@@ -43,7 +43,7 @@ export function HomeHero() {
             Tu empresa, en <span className="text-accent-bright">regla.</span>
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
-            Estudio contable, tributario y societario en Lambaré. Llevamos tu empresa al
+            Estudio contable, tributario y societario en Asunción. Llevamos tu empresa al
             día ante la DNIT, el IPS y los Registros Públicos, estés donde estés.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">

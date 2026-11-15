@@ -17,7 +17,7 @@ Contenido actualizado: ${SERVICES_UPDATED_AT}.
 - Dirección: ${addressLine}, Paraguay.
 - Teléfono y WhatsApp: ${site.contact.phone}.
 - Horario: ${site.contact.hours}.
-- Atención presencial en Lambaré y remota para todo Paraguay.
+- Atención presencial en Asunción y remota para todo Paraguay.
 - [Contacto](${site.url}/contacto)
 - [LinkedIn oficial](${site.social.linkedin})
 
