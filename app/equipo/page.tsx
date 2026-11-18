@@ -8,8 +8,9 @@ import { professionals, professionalPath } from "@/lib/team";
 import { pageMetadata, breadcrumbSchema, webPageSchema, absoluteUrl, personId, teamSchema } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Equipo de contabilidad, auditoría y Payroll",
-  description: "Conocé a Manuel Rolón, Gabriela Duarte Toñanez y María Ernestina Argüello: profesionales de contabilidad, auditoría y Payroll de MRB en Paraguay.",
+  title: "Equipo de MRB: Contadores y Auditores en Asunción",
+  absoluteTitle: true,
+  description: "Conocé a Manuel Rolón, director, y a Gabriela Duarte Toñanez, auditora externa habilitada por la DNIT: el equipo profesional de MRB en Asunción, Paraguay.",
   path: "/equipo",
 });
 
@@ -27,14 +28,14 @@ export default function EquipoPage() {
       <Container className="pb-16 pt-28 sm:pt-32">
         <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Equipo" }]} />
         <h1 className="font-display mt-6 text-4xl sm:text-5xl">Conocé al equipo de MRB</h1>
-        <p className="mt-5 max-w-2xl text-lg text-slate-300">Experiencia en contabilidad, auditoría y gestión de personas para acompañar a tu empresa en Paraguay.</p>
+        <p className="mt-5 max-w-2xl text-lg text-slate-300">Experiencia en contabilidad, impuestos y auditoría para acompañar a tu empresa en Paraguay.</p>
       </Container>
     </HeroSection>
-    <Section tone="light"><Container className="grid gap-8 md:grid-cols-3">
+    <Section tone="light"><Container><div className="grid max-w-5xl gap-8 md:grid-cols-2">
       {professionals.map((member) => <article key={member.slug}>
         <Link href={professionalPath(member)} className="group block rounded-2xl focus-visible:outline-2 focus-visible:outline-accent">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-surface">
-            <Image src={member.photo!} alt={member.name} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" style={{ objectPosition: member.photoPosition }} />
+            <Image src={member.photo!} alt={member.name} fill sizes="(min-width: 768px) 30rem, 100vw" className="object-cover" style={{ objectPosition: member.photoPosition }} />
           </div>
           <h2 className="font-display mt-5 text-2xl text-navy-900 group-hover:text-accent-600">{member.name}</h2>
           <p className="mt-2 text-sm font-semibold text-accent-600">{member.role}</p>
@@ -42,6 +43,6 @@ export default function EquipoPage() {
           <p className="mt-4 text-sm font-semibold text-navy-900 underline underline-offset-4">Ver perfil profesional</p>
         </Link>
       </article>)}
-    </Container></Section>
+    </div></Container></Section>
   </>;
 }

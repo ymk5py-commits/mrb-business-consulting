@@ -45,10 +45,11 @@ Estado: ✅ hecho en el código (se publica con el deploy) · 👤 lo tiene que 
 ## Checklist: ficha de Google Business Profile
 - **Nombre:** "MRB Business Consulting" (sin palabras clave agregadas).
 - **Categoría principal:** Contador. **Secundarias:** Asesor fiscal, Consultor de negocios, Servicio de preparación de impuestos.
-- **Tipo:** si Manuel recibe clientes en la oficina (aunque sea con cita), dirección visible. Si no, negocio de área de servicio con la dirección oculta: Lambaré, Asunción, San Lorenzo, Fernando de la Mora, Luque, Ñemby, Villa Elisa, Capiatá.
-- **Teléfono:** +595 976 960 533 · **Horario:** lunes a viernes de 08:00 a 17:00 · **Web:** https://www.mrbconsulting.com.py
+- **Dirección (visible, la oficina recibe clientes):** Edificio Alfar 1, piso 11, Cerro Corá 247 entre Yegros e Iturbe, barrio La Catedral, Asunción, código postal 001101. Área de servicio adicional: todo Paraguay.
+- **Teléfono:** +595 976 960 533 · **Horario:** lunes a viernes de 09:00 a 18:00 y sábados de 09:00 a 12:00 · **Web:** https://www.mrbconsulting.com.py
+- **Redes:** Instagram https://www.instagram.com/mrb.consulting/ · Facebook https://www.facebook.com/profile.php?id=61596385053356 · LinkedIn https://www.linkedin.com/company/mrb-business-consulting-py/
 - **Servicios:** los 7 del sitio. **Fotos:** fachada o interior, Manuel y el logo.
-- **Descripción (editar antes de publicar):** "MRB Business Consulting es un estudio contable, tributario y societario con base en Lambaré (Gran Asunción), Paraguay. Ayudamos a PyMEs y personas físicas con contabilidad, impuestos ante la DNIT, constitución de sociedades (S.A., S.R.L., E.A.S.), asesoría laboral e IPS, auditoría y trámites. Atendemos clientes de todo el país. Dirigido por Manuel Rolón, Lic. en Ciencias Contables con más de 15 años de experiencia."
+- **Descripción (editar antes de publicar):** "MRB Business Consulting es un estudio contable, tributario y societario en el centro de Asunción (Edificio Alfar 1), Paraguay. Ayudamos a PyMEs y personas físicas con contabilidad, impuestos ante la DNIT, constitución de sociedades (S.A., S.R.L., E.A.S.), asesoría laboral e IPS, auditoría y trámites. Atendemos clientes de todo el país. Dirigido por Manuel Rolón, Lic. en Ciencias Contables con más de 15 años de experiencia."
 - Una vez creada, tomar el pin exacto de Google y actualizar `site.contact.geo`.
 
 ## Mensaje para pedir reseñas (WhatsApp)

@@ -131,7 +131,7 @@ export function TeamSection() {
         <div>
           <SectionHeading
             title="Conocé a quienes están detrás de MRB"
-            subtitle="Contabilidad, auditoría y Payroll: profesionales que acompañan la gestión de tu empresa en Paraguay."
+            subtitle="Contabilidad, impuestos y auditoría: profesionales que acompañan la gestión de tu empresa en Paraguay."
           />
         </div>
 
@@ -162,7 +162,7 @@ export function TeamSection() {
 
               {director.quote ? (
                 <blockquote className="mt-7 max-w-2xl border-l-2 border-rule pl-5">
-                  <p className="font-serif text-lg italic leading-relaxed text-navy-900 sm:text-xl">
+                  <p className="text-pretty text-lg font-medium leading-relaxed tracking-[-0.014em] text-navy-900 sm:text-xl">
                     “{director.quote}”
                   </p>
                 </blockquote>
@@ -239,17 +239,21 @@ export function TeamSection() {
 
         {/* Grilla de miembros (stagger) */}
         {members.length > 0 && (
-          <div className="mt-8 grid gap-8 md:grid-cols-2">
+          <div className={cn("mt-8 grid gap-8", members.length > 1 && "md:grid-cols-2")}>
             {members.map((m) => (
               <article
                 key={`${m.name}-${m.role}`}
-                className="flex h-full flex-col overflow-hidden rounded-3xl border border-rule bg-paper"
+                className={cn(
+                  "flex h-full flex-col overflow-hidden rounded-3xl border border-rule bg-paper",
+                  // Una sola persona: ficha horizontal, como la del director pero más chica
+                  members.length === 1 && "md:grid md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)]",
+                )}
               >
                 <Avatar
                   member={m}
                   ratio="portrait"
                   initialsClass="text-3xl"
-                  sizes="(min-width: 768px) 50vw, 100vw"
+                  sizes={members.length === 1 ? "(min-width: 768px) 17rem, 100vw" : "(min-width: 768px) 50vw, 100vw"}
                 />
                 <div className="flex flex-1 flex-col p-6 sm:p-8">
                 <h3 className="font-display text-2xl text-navy-900">{m.name}</h3>

@@ -1,6 +1,6 @@
 /* Hallmark · genre: editorial · macrostructure: Split Studio · theme: custom (marca MRB)
  * tone: austero · anchor hue: 258 (navy) · paper oklch(98.8% 0.004 258) · accent oklch(56.5% 0.218 259)
- * display: Schibsted Grotesk · body: Hanken Grotesk · enrichment: none · nav: N1b (CTA = teléfono, sin botón) · footer: Ft1
+ * display + body: Inter (variable, eje óptico) · enrichment: filete contable (GSAP) · nav: N1b (CTA = teléfono, sin botón) · footer: Ft1
  */
 @import "tailwindcss";
 @import "../tokens.css";
@@ -54,7 +54,9 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.65;
-  letter-spacing: -0.006em;
+  letter-spacing: -0.011em;
+  font-optical-sizing: auto;
+  caret-color: var(--color-accent);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -79,9 +81,55 @@ h3 {
   min-width: 0;
 }
 
-/* Display font helper */
+/* Titulares: Inter en peso intermedio; el eje óptico ajusta el dibujo al tamaño */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+}
+
+/* Barras de desplazamiento con la paleta (no las del sistema) */
+html {
+  scrollbar-color: color-mix(in oklch, var(--color-navy-900) 35%, transparent) transparent;
+}
+
+/* ============================================================
+   Movimiento: «filete contable» (components/motion/LedgerMotion.tsx)
+   Estado inicial solo con JS (data-motion="on", lo pone un script en <head>)
+   y sin «reducir movimiento». Failsafe: a los 3 s todo queda visible igual.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion="on"] [data-ledger-gate="rule"] {
+    transform: scaleX(0);
+    animation: ledger-failsafe 0s 3s forwards;
+  }
+  [data-motion="on"] [data-ledger-gate="item"] {
+    opacity: 0;
+    animation: ledger-failsafe 0s 3s forwards;
+  }
+}
+
+@keyframes ledger-failsafe {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Preguntas frecuentes: la respuesta se despliega en vez de saltar (Chrome 131+;
+   en otros navegadores abre igual, sin animación). */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 320ms var(--ease-out-soft),
+      content-visibility 320ms allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+  }
 }

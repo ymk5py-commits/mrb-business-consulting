@@ -9,15 +9,13 @@ import { WhatsappIcon, socialIcons } from "@/components/icons";
 import { site, whatsappHref, addressLine, mapsHref, socialLinks } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Contacto: WhatsApp, Teléfono y Dirección en Asunción | MRB",
-    description:
-      "Contactá a MRB Business Consulting en Asunción. Escribinos por WhatsApp, llamanos o vení a la oficina. Lunes a viernes de 9 a 18 y sábados de 9 a 12.",
-    path: "/contacto",
-  }),
-  title: { absolute: "Contacto: WhatsApp, Teléfono y Dirección en Asunción | MRB" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Contacto: WhatsApp, Teléfono y Dirección en Asunción | MRB",
+  absoluteTitle: true,
+  description:
+    "Contactá a MRB Business Consulting en Asunción. Escribinos por WhatsApp, llamanos o vení a la oficina. Lunes a viernes de 9 a 18 y sábados de 9 a 12.",
+  path: "/contacto",
+});
 
 const mapSrc = `https://www.google.com/maps?q=${site.contact.geo.lat},${site.contact.geo.lng}&z=16&output=embed`;
 

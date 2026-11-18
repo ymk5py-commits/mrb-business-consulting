@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
 import { site, socialLinks, whatsappHref, mapsHref } from "./site.config";
 import { services } from "./services";
-import { professionals, professionalPath, type TeamMember } from "./team";
+import { professionals, professionalPath, director, type Credential, type TeamMember } from "./team";
 
 /** Convierte una ruta relativa en URL absoluta canónica. */
 export function absoluteUrl(path = "/"): string {
   return new URL(path, site.url).toString();
 }
 
+/** Imagen social por defecto (app/opengraph-image.tsx, 1200×630). */
+export const DEFAULT_OG_IMAGE = {
+  url: absoluteUrl("/opengraph-image"),
+  width: 1200,
+  height: 630,
+  alt: `${site.name} — ${site.tagline}`,
+};
+
 type PageMetaInput = {
   title?: string;
   description?: string;
   path?: string;
+  /** true = <title> exacto, sin el sufijo de la plantilla del layout
+   *  ("| MRB Business Consulting"). Usarlo cuando el título ya incluye la marca
+   *  o cuando el sufijo lo llevaría a más de 60 caracteres. */
+  absoluteTitle?: boolean;
+  /** Imagen social propia (p. ej. la foto de un perfil). Por defecto, la imagen OG del sitio. */
+  image?: { url: string; width?: number; height?: number; alt: string };
 };
 
 /** Construye metadata consistente para cada página (canonical + OG + Twitter). */
@@ -19,11 +33,15 @@ export function pageMetadata({
   title,
   description,
   path = "/",
+  absoluteTitle = false,
+  image = DEFAULT_OG_IMAGE,
 }: PageMetaInput = {}): Metadata {
   const url = absoluteUrl(path);
   const desc = description ?? site.description;
+  const socialTitle = title ?? `${site.name} — ${site.tagline}`;
+  const images = [{ ...image, url: absoluteUrl(image.url) }];
   return {
-    title,
+    ...(title ? { title: absoluteTitle ? { absolute: title } : title } : {}),
     description: desc,
     alternates: { canonical: url },
     openGraph: {
@@ -31,13 +49,15 @@ export function pageMetadata({
       url,
       siteName: site.name,
       locale: site.locale,
-      title: title ?? `${site.name} — ${site.tagline}`,
+      title: socialTitle,
       description: desc,
+      images,
     },
     twitter: {
       card: "summary_large_image",
-      title: title ?? `${site.name} — ${site.tagline}`,
+      title: socialTitle,
       description: desc,
+      images,
     },
   };
 }
@@ -72,12 +92,31 @@ export function webPageId(path: string): string {
   return `${absoluteUrl(path)}#webpage`;
 }
 
+/** Teléfono en formato E.164 (sin espacios), como lo esperan schema.org y Google. */
+const E164_PHONE = `+${site.contact.whatsapp}`;
+
+/** Temas en los que el estudio es experto (Organization.knowsAbout). */
+const ORG_KNOWS_ABOUT = [
+  "Contabilidad",
+  "IVA",
+  "IRE",
+  "IRP",
+  "IDU",
+  "Facturación electrónica SIFEN",
+  "Marangatú",
+  "Sociedades E.A.S., S.A. y S.R.L.",
+  "IPS",
+  "MTESS",
+  "NIIF para PYMEs",
+];
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService", "AccountingService"],
     "@id": ORG_ID,
     name: site.name,
+    alternateName: ["MRB", "MRB Consulting"],
     legalName: site.legalName,
     url: site.url,
     description: site.description,
@@ -88,9 +127,9 @@ export function organizationSchema() {
       width: 5000,
       height: 2500,
     },
-    image: absoluteUrl("/brand/logo-mrb-circle.png"),
+    image: absoluteUrl("/brand/hero-office.webp"),
     ...(site.contact.email ? { email: site.contact.email } : {}),
-    telephone: site.contact.phone,
+    telephone: E164_PHONE,
     priceRange: "$$",
     // Oficina en el centro de Asunción; atención remota a todo el país.
     areaServed: [
@@ -102,6 +141,7 @@ export function organizationSchema() {
       streetAddress: `${site.contact.address.street}, ${site.contact.address.building}`,
       addressLocality: site.contact.address.city,
       addressRegion: site.contact.address.region,
+      postalCode: site.contact.address.postalCode,
       addressCountry: "PY",
     },
     geo: {
@@ -119,13 +159,13 @@ export function organizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      telephone: site.contact.phone,
+      telephone: E164_PHONE,
       url: whatsappHref,
       areaServed: "PY",
       availableLanguage: { "@type": "Language", name: "Spanish", alternateName: "es" },
     },
     knowsLanguage: "es",
-    knowsAbout: services.map((s) => s.title),
+    knowsAbout: ORG_KNOWS_ABOUT,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `Servicios de ${site.name}`,
@@ -139,7 +179,8 @@ export function organizationSchema() {
         },
       })),
     },
-    // Si Manuel es el fundador legal del estudio, puede pasar a `founder`.
+    // Si se confirma que Manuel fundó el estudio, sumar `founder: { "@id": personId(director) }`.
+    employee: { "@id": personId(director) },
     member: professionals.map((member) => ({ "@id": personId(member) })),
     // Solo redes reales cargadas en site.config (las vacías no se publican).
     ...(socialLinks.length > 0 ? { sameAs: socialLinks.map((s) => s.href) } : {}),
@@ -252,6 +293,14 @@ export function teamSchema() {
   return professionals.map(personSchema);
 }
 
+/** credentialCategory de schema.org para cada tipo de credencial. */
+const CREDENTIAL_CATEGORY: Record<Credential["kind"], string> = {
+  degree: "degree",
+  diploma: "certificate",
+  specialty: "certificate",
+  license: "license",
+};
+
 export function personSchema(m: TeamMember) {
   return {
     "@context": "https://schema.org",
@@ -261,7 +310,7 @@ export function personSchema(m: TeamMember) {
     url: absoluteUrl(professionalPath(m)),
     jobTitle: m.role,
     description: m.bio,
-    affiliation: { "@id": ORG_ID },
+    worksFor: { "@id": ORG_ID },
     ...(m.alumniOf?.length
       ? { alumniOf: m.alumniOf.map((name) => ({ "@type": "CollegeOrUniversity", name })) }
       : {}),
@@ -269,7 +318,11 @@ export function personSchema(m: TeamMember) {
       hasCredential: m.credentials.map((credential) => ({
         "@type": "EducationalOccupationalCredential",
         name: credential.title,
+        credentialCategory: CREDENTIAL_CATEGORY[credential.kind],
         ...(credential.detail ? { description: credential.detail } : {}),
+        ...(credential.recognizedBy
+          ? { recognizedBy: { "@type": "GovernmentOrganization", name: credential.recognizedBy } }
+          : {}),
       })),
     } : {}),
     ...(m.sectors?.length ? { knowsAbout: m.sectors } : {}),

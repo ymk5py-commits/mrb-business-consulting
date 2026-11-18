@@ -1,4 +1,4 @@
-import { GraduationCap, BookOpenCheck, Scale, type LucideIcon } from "lucide-react";
+import { GraduationCap, BookOpenCheck, Scale, BadgeCheck, type LucideIcon } from "lucide-react";
 
 /* ============================================================
  * MRB Business Consulting — Equipo
@@ -8,12 +8,15 @@ import { GraduationCap, BookOpenCheck, Scale, type LucideIcon } from "lucide-rea
  * ============================================================ */
 
 export type Credential = {
-  /** Define el ícono: título de grado, diplomado o especialidad. */
-  kind: "degree" | "diploma" | "specialty";
-  /** Título, diplomado o especialidad. */
+  /** Define el ícono: título de grado, diplomado, especialidad o habilitación
+   *  profesional (registro ante un organismo). */
+  kind: "degree" | "diploma" | "specialty" | "license";
+  /** Título, diplomado, especialidad o habilitación. */
   title: string;
-  /** Institución o aclaración breve. */
+  /** Institución o aclaración breve (p. ej. número de registro). */
   detail?: string;
+  /** Organismo que otorga la habilitación (schema.org recognizedBy). */
+  recognizedBy?: string;
 };
 
 export type TeamMember = {
@@ -27,6 +30,10 @@ export type TeamMember = {
   headline?: string;
   /** Bio de UNA frase (≈ 90-140 caracteres). */
   bio: string;
+  /** <title> del perfil (≤ 60 caracteres, sin sufijo de plantilla). */
+  metaTitle?: string;
+  /** Meta description del perfil (145-160 caracteres). */
+  metaDescription?: string;
   /** Cita corta en primera persona (ficha destacada del director). */
   quote?: string;
   /** Formación y especialidades destacadas. */
@@ -60,6 +67,9 @@ export const team: TeamMember[] = [
     role: "Director",
     headline: "Licenciado en Ciencias Contables y Administrativas",
     bio: "Más de 15 años en gestión contable y financiera, outsourcing y liderazgo de equipos en sectores como importación, construcción y automotor.",
+    metaTitle: "Manuel Rolón, Contador y Director de MRB en Asunción",
+    metaDescription:
+      "Lic. en Ciencias Contables (Summa Cum Laude) y experto en la Ley 6380/19. Manuel Rolón dirige MRB con más de 15 años en contabilidad e impuestos en Paraguay.",
     quote:
       "Firme, directo, dinámico y optimista: así es mi enfoque como profesional. Mi pensamiento es 100\u00a0% numérico y siempre orientado al logro de objetivos.",
     credentials: [
@@ -99,6 +109,7 @@ export const CREDENTIAL_ICONS: Record<Credential["kind"], LucideIcon> = {
   degree: GraduationCap,
   diploma: BookOpenCheck,
   specialty: Scale,
+  license: BadgeCheck,
 };
 
 /** Director/a del estudio (o el primer miembro si no hay ninguno marcado). */
@@ -111,10 +122,19 @@ export const gabriela: TeamMember = {
   role: "Auditoría y consultoría",
   headline: "Contadora Pública",
   bio: "Contadora pública con más de 15 años de experiencia en auditoría financiera e impositiva y contabilidad integral.",
-  photo: "/team/gabriela-duarte-tonanez.png",
+  metaTitle: "Gabriela Duarte Toñanez, Contadora y Auditora | MRB",
+  metaDescription:
+    "Contadora pública y auditora externa impositiva habilitada por la DNIT (Reg. 363/2022), con más de 15 años en auditoría financiera e impositiva en Paraguay.",
+  photo: "/team/gabriela-duarte-tonanez.jpg",
   photoPosition: "50% 30%",
   years: 15,
   credentials: [
+    {
+      kind: "license",
+      title: "Auditor externo impositivo habilitado por la DNIT",
+      detail: "Registro N.º 363/2022 · REPSE N.º 010107",
+      recognizedBy: "Dirección Nacional de Ingresos Tributarios (DNIT)",
+    },
     { kind: "degree", title: "Contador Público", detail: "Universidad de Integración de las Américas (UNIDA)" },
     { kind: "diploma", title: "Diplomado en Tributación y Asesoría Impositiva", detail: "Universidad del Pacífico" },
     { kind: "specialty", title: "Formación en Auditoría", detail: "Escuela de Administración de Negocios (EDAN)" },
@@ -122,27 +142,19 @@ export const gabriela: TeamMember = {
   sectors: ["Servicios", "Industria", "Automotor", "Importación"],
 };
 
-/** Perfil facilitado por MRB para Payroll y asesoría laboral. */
-export const payrollProfessional: TeamMember = {
-  name: "María Ernestina Argüello Aguilera",
-  slug: "maria-ernestina-arguello",
-  role: "Payroll y gestión de talento humano",
-  headline: "Economista · MBA · Especialista en Derecho y Práctica Laboral",
-  bio: "Economista y MBA con más de 17 años de experiencia liderando Recursos Humanos en empresas de salud, alimentos e industria de hasta 450 colaboradores. Especialista en la estructuración de áreas de RR.HH., la transformación organizacional y la implementación de sistemas ISO.",
-  photo: "/team/maria-ernestina-arguello.png",
-  photoPosition: "52% 40%",
-  years: 17,
-  credentials: [
-    { kind: "degree", title: "Economista", detail: "Universidad Nacional de Asunción · 2009" },
-    { kind: "degree", title: "Magíster en Administración de Empresas (MBA)", detail: "Universidad Americana · 2017" },
-    { kind: "specialty", title: "Especialización en Derecho y Práctica Laboral", detail: "FOTRIEM · 2020–2021" },
-  ],
-  sectors: ["Salud y laboratorios", "Alimentos y consumo masivo", "Forestal e industrial", "Automotriz", "Comercial"],
-};
+/** Habilitaciones profesionales (registros ante organismos) de un miembro. */
+export function licensesOf(member: TeamMember): Credential[] {
+  return member.credentials?.filter((c) => c.kind === "license") ?? [];
+}
+
+/** Formación académica (todo lo que no es una habilitación). */
+export function educationOf(member: TeamMember): Credential[] {
+  return member.credentials?.filter((c) => c.kind !== "license") ?? [];
+}
 
 /* ---- Helpers para el avatar de marca (cuando no hay foto) ---- */
 
-export const professionals = [director, gabriela, payrollProfessional];
+export const professionals = [director, gabriela];
 
 export function professionalPath(member: TeamMember) {
   return `/equipo/${member.slug}`;

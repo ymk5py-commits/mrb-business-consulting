@@ -6,18 +6,15 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CtaBand } from "@/components/CtaBand";
 import { TeamSection } from "@/components/TeamSection";
 import { ExperienceBand } from "@/components/ExperienceBand";
-import { site } from "@/lib/site.config";
+import { site, clientStats } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, webPageSchema, ORG_ID } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Nuestro equipo | MRB Business Consulting",
-    description:
-      "Conocé a Manuel Rolón, Gabriela Duarte Toñanez y María Ernestina Argüello: el equipo de contabilidad, auditoría y Payroll de MRB en Paraguay.",
-    path: "/nosotros",
-  }),
-  title: { absolute: "Nuestro equipo | MRB Business Consulting" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Sobre MRB: Estudio Contable en el Centro de Asunción",
+  absoluteTitle: true,
+  description: `Conocé MRB Business Consulting: estudio contable dirigido por Manuel Rolón, en el Edificio Alfar 1 de Asunción. Más de 15 años de experiencia y ${clientStats.total} clientes.`,
+  path: "/nosotros",
+});
 
 const values = [
   {
@@ -51,7 +48,7 @@ export default function NosotrosPage() {
             type: "AboutPage",
             path: "/nosotros",
             name: "Nosotros — MRB Business Consulting",
-            description: `Quiénes somos en ${site.name}: nuestro equipo de contabilidad, auditoría y Payroll.`,
+            description: `Quiénes somos en ${site.name}: estudio contable, tributario y societario en Asunción, dirigido por Manuel Rolón.`,
             mainEntityId: ORG_ID,
           }),
         ]}

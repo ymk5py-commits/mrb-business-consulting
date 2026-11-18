@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui";
 import { director } from "@/lib/team";
 import { clientStats as clients } from "@/lib/site.config";
+import { LedgerMotion } from "@/components/motion/LedgerMotion";
 
 const totalClients = clients.total;
 const companiesPct = (clients.companies / totalClients) * 100;
@@ -20,19 +21,23 @@ export function ExperienceBand() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <LedgerMotion variant="figures">
+          <div data-ledger-trigger className="grid gap-4 sm:grid-cols-2">
             {/* Clientes + composición */}
             <div className="rounded-2xl border border-slate-700 p-6">
               <p className="font-display text-5xl leading-none tabular-nums text-paper">
-                {totalClients}
+                <span className="sr-only">{totalClients}</span>
+                <span aria-hidden="true" data-count={totalClients}>
+                  {totalClients}
+                </span>
               </p>
               <p className="mt-2 text-sm text-slate-300">clientes confían en MRB</p>
               <div
                 aria-hidden="true"
                 className="mt-5 flex h-2 overflow-hidden rounded-full bg-slate-700"
               >
-                <span className="bg-accent-bright" style={{ width: `${companiesPct}%` }} />
-                <span className="flex-1 bg-slate-300" />
+                <span data-bar className="origin-left bg-accent-bright" style={{ width: `${companiesPct}%` }} />
+                <span data-bar-rest className="flex-1 bg-slate-300" />
               </div>
               <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-300">
                 <li className="flex items-center gap-1.5">
@@ -54,7 +59,10 @@ export function ExperienceBand() {
             {director.years && (
               <div className="rounded-2xl border border-slate-700 p-6">
                 <p className="font-display text-5xl leading-none tabular-nums text-paper">
-                  +{director.years}
+                  <span className="sr-only">+{director.years}</span>
+                  <span aria-hidden="true" data-count={director.years} data-count-prefix="+">
+                    +{director.years}
+                  </span>
                 </p>
                 <p className="mt-2 text-sm text-slate-300">
                   años de experiencia en gestión contable y financiera
@@ -67,6 +75,7 @@ export function ExperienceBand() {
               </div>
             )}
           </div>
+          </LedgerMotion>
         </div>
       </Container>
     </section>

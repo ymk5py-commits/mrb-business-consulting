@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generador de marca (Python + HTML), no es parte del sitio
+    "marca/**",
   ]),
 ]);
 

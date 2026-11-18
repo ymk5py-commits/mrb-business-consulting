@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { Container, Button } from "@/components/ui";
 import { Home, ArrowRight } from "lucide-react";
+
+// Reemplaza por completo el `robots` del layout (index: true): un 404 no se indexa,
+// pero sus enlaces a inicio y servicios sí se siguen.
+export const metadata: Metadata = {
+  title: "Página no encontrada",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

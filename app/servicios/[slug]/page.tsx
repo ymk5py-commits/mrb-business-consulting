@@ -12,9 +12,8 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
-import { director, gabriela, payrollProfessional, professionalPath } from "@/lib/team";
+import { director, gabriela, professionalPath } from "@/lib/team";
 import { AuditProfessional } from "@/components/AuditProfessional";
-import { PayrollProfessional } from "@/components/PayrollProfessional";
 import { site, whatsappLink, clientStats } from "@/lib/site.config";
 import {
   pageMetadata,
@@ -44,12 +43,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  const base = pageMetadata({
-    title: service.title,
+  return pageMetadata({
+    title: service.metaTitle,
+    absoluteTitle: true,
     description: service.metaDescription,
     path: `/servicios/${slug}`,
   });
-  return { ...base, title: { absolute: service.metaTitle } };
 }
 
 export default async function ServicePage({
@@ -60,9 +59,8 @@ export default async function ServicePage({
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
-  const professional = slug === "auditoria-consultoria"
-    ? gabriela
-    : slug === "asesoria-laboral-ips" ? payrollProfessional : director;
+  // Auditoría la firma Gabriela; el resto de los servicios, el director.
+  const professional = slug === "auditoria-consultoria" ? gabriela : director;
 
   // El mensaje de WhatsApp ya dice qué servicio se consulta (lead mejor calificado).
   const waHref = whatsappLink(
@@ -247,7 +245,6 @@ export default async function ServicePage({
       </Section>
 
       {slug === "auditoria-consultoria" && <AuditProfessional />}
-      {slug === "asesoria-laboral-ips" && <PayrollProfessional />}
 
       {/* FAQ: título | preguntas */}
       <Section tone="surface" className="py-16 sm:py-20">

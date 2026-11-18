@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/ui";
-import { gabriela, professionalPath } from "@/lib/team";
+import { gabriela, professionalPath, licensesOf, educationOf } from "@/lib/team";
 
 const specialties = [
   "Auditoría de estados contables",
@@ -23,11 +23,16 @@ export function AuditProfessional() {
           <div className="p-6 sm:p-10">
             <p className="text-sm font-semibold text-accent-600">Contabilidad integral y auditoría</p>
             <h2 className="font-display mt-2 text-3xl text-navy-900 sm:text-4xl">C.P. {gabriela.name}</h2>
-            <p className="mt-4 text-sm font-semibold leading-relaxed text-navy-900">Auditor externo impositivo habilitado por la DNIT · Registro N.º 363/2022<br />REPSE N.º 010107</p>
+            {licensesOf(gabriela).map((license) => (
+              <p key={license.title} className="mt-4 text-sm font-semibold leading-relaxed text-navy-900">
+                {license.title}
+                {license.detail && <><br />{license.detail}</>}
+              </p>
+            ))}
             <p className="mt-5 text-base leading-relaxed text-slate-600">{gabriela.bio}</p>
             <h3 className="mt-7 text-sm font-semibold text-navy-900">Formación profesional</h3>
             <ul className="mt-3 grid gap-3">
-              {gabriela.credentials?.map((credential) => (
+              {educationOf(gabriela).map((credential) => (
                 <li key={credential.title}>
                   <p className="text-sm font-medium text-navy-900">{credential.title}</p>
                   <p className="text-sm text-slate-600">{credential.detail}</p>

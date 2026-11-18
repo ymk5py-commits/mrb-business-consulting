@@ -2,7 +2,7 @@ import { Container, Section } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 import { whatsappHref } from "@/lib/site.config";
 import { CookiePreferences } from "@/components/Analytics";
-export const metadata = pageMetadata({ title: "Privacidad y cookies", path: "/privacidad", description: "Información sobre consultas, cookies y medición de visitas en el sitio de MRB Business Consulting." });
+export const metadata = pageMetadata({ title: "Privacidad y cookies", path: "/privacidad", description: "Cómo MRB Business Consulting usa los datos de tus consultas por WhatsApp, qué cookies usa el sitio y cómo aceptar o rechazar la medición de visitas." });
 export default function PrivacyPage() {
   return <Section tone="light"><Container className="max-w-3xl pt-20">
     <h1 className="font-display text-4xl text-navy-900">Privacidad y cookies</h1>

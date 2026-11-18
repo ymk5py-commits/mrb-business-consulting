@@ -5,6 +5,7 @@ import { Container } from "./ui";
 import { WhatsappIcon } from "./icons";
 import { whatsappHref, clientStats } from "@/lib/site.config";
 import { director } from "@/lib/team";
+import { LedgerMotion } from "./motion/LedgerMotion";
 
 const ENTITIES = [
   "DNIT",
@@ -36,10 +37,21 @@ export function HomeHero() {
         <Image src="/brand/hero-office.webp" alt="" fill priority sizes="100vw" className="scale-105 object-cover object-center blur-[3px]" quality={80} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,16,38,0.92)_0%,rgba(0,16,38,0.80)_48%,rgba(0,16,38,0.70)_100%)]" />
       </div>
+      <LedgerMotion variant="hero">
       <Container className="relative grid gap-12 pb-20 pt-32 sm:pb-24 sm:pt-36 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-20 lg:pb-32 lg:pt-40">
         <div className="min-w-0">
-          <h1 className="font-display text-balance text-5xl leading-[1.04] sm:text-6xl lg:text-7xl">
-            Tu empresa, en <span className="text-accent-bright">regla.</span>
+          <h1 className="font-display text-balance text-5xl leading-[1.02] tracking-[-0.038em] sm:text-6xl lg:text-7xl">
+            Tu empresa, en{" "}
+            <span className="relative inline-block text-accent-bright">
+              regla.
+              {/* La regla: el filete del logo, trazado bajo la palabra */}
+              <span
+                aria-hidden="true"
+                data-ledger-accent
+                data-ledger-gate="rule"
+                className="absolute -bottom-[0.16em] left-[0.03em] right-[0.32em] h-[0.06em] origin-left bg-accent-bright"
+              />
+            </span>
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
             Estudio contable, tributario y societario en Asunción. Llevamos tu empresa al
@@ -50,7 +62,7 @@ export function HomeHero() {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-colors hover:bg-whatsapp-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
+              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-[background-color,scale] duration-200 ease-[var(--ease-out-soft)] hover:bg-whatsapp-600 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
             >
               <WhatsappIcon className="h-5 w-5" />
               Consultá por WhatsApp
@@ -66,17 +78,25 @@ export function HomeHero() {
         </div>
 
         {/* Respaldo: datos reales del estudio */}
-        <ul className="min-w-0 border-t border-slate-700">
+        <ul className="relative min-w-0">
           {facts.map((f) => (
-            <li key={f.value} className="border-b border-slate-700 py-5">
-              <p className="font-display text-3xl tabular-nums text-paper sm:text-4xl">
-                {f.value}
-              </p>
-              <p className="mt-1 text-sm leading-snug text-slate-300">{f.label}</p>
+            <li key={f.value} className="relative py-5">
+              {/* Renglones del libro mayor: se trazan al cargar */}
+              <span aria-hidden="true" data-ledger-rule data-ledger-gate="rule" className="absolute inset-x-0 top-0 h-px origin-left bg-slate-600" />
+              <div data-ledger-item data-ledger-gate="item">
+                <p className="font-display text-3xl tabular-nums text-paper sm:text-4xl">
+                  {f.value}
+                </p>
+                <p className="mt-1 text-sm leading-snug text-slate-300">{f.label}</p>
+              </div>
             </li>
           ))}
+          <li aria-hidden="true" className="relative">
+            <span data-ledger-rule data-ledger-gate="rule" className="absolute inset-x-0 top-0 h-px origin-left bg-slate-600" />
+          </li>
         </ul>
       </Container>
+      </LedgerMotion>
 
       {/* Entidades ante las que gestionamos: una línea fija */}
       <div className="relative border-t border-white/10 bg-navy-950/65">

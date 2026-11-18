@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/servicios/payroll", destination: "/servicios/asesoria-laboral-ips", permanent: true },
       { source: "/servicios/auditoria", destination: "/servicios/auditoria-consultoria", permanent: true },
+      // Perfil de una profesional que dejó el estudio (nov. 2026): vuelve al equipo.
+      { source: "/equipo/maria-ernestina-arguello", destination: "/equipo", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "mrb-business-consulting.vercel.app" }],

@@ -44,7 +44,7 @@ export const services: Service[] = [
     title: "Contabilidad",
     excerpt:
       "Llevamos tu contabilidad mensual al día: registros, libros, estados financieros y conciliaciones, bajo las normas vigentes en Paraguay.",
-    metaTitle: "Contabilidad y Outsourcing Contable en Paraguay | MRB",
+    metaTitle: "Contador para Empresas en Asunción: Outsourcing | MRB",
     metaDescription:
       "Tercerizá la contabilidad de tu empresa con MRB. Registros contables, libros legales, estados financieros y conciliaciones bajo NIIF para PYMEs en Paraguay.",
     kicker: "Servicio contable",
@@ -157,7 +157,7 @@ export const services: Service[] = [
       "Constituimos tu empresa de principio a fin: S.A., S.R.L., E.A.S. o unipersonal, con estatutos, inscripción y RUC.",
     metaTitle: "Constituir Empresa en Paraguay (S.A., S.R.L., E.A.S.) | MRB",
     metaDescription:
-      "Constitución de empresas en Paraguay llave en mano: S.A., S.R.L., E.A.S. (Ley 6480/2020) y unipersonal. Estatutos, escritura pública y RUC.",
+      "Constituí tu empresa en Paraguay llave en mano: E.A.S. (Ley 6480/2020), S.A., S.R.L. o unipersonal. Estatutos, escritura, RUC y libros, con plazos claros.",
     kicker: "Servicio societario",
     h1: "Constitución de sociedades en Paraguay",
     intro:
@@ -210,7 +210,7 @@ export const services: Service[] = [
       "Liquidación de salarios, aportes al IPS e inscripciones ante el MTESS, con tus planillas y contratos en regla.",
     metaTitle: "Payroll, Sueldos y Asesoría Laboral en Paraguay | MRB",
     metaDescription:
-      "Payroll y liquidación de sueldos, aguinaldo y aportes al IPS en Paraguay. Asesoría laboral de MRB con María Ernestina Argüello y trámites ante el MTESS.",
+      "Liquidación de sueldos, aguinaldo y aportes al IPS en Paraguay. Contratos, planillas y trámites ante el MTESS para que tu empresa cumpla sin contingencias.",
     kicker: "Servicio laboral",
     h1: "Asesoría laboral e IPS en Paraguay",
     intro:
@@ -242,11 +242,15 @@ export const services: Service[] = [
     faqs: [
       {
         q: "¿Cuánto se aporta al IPS en Paraguay?",
-        a: "El aporte al IPS se compone de una parte a cargo del trabajador y otra a cargo del empleador sobre el salario. En MRB calculamos los porcentajes vigentes, retenemos y presentamos los aportes para mantener a tu empresa al día.",
+        a: "El aporte obrero es del 9\u00a0% y el patronal del 16,5\u00a0% (total 25,5\u00a0%) sobre el salario. El empleador retiene la parte del trabajador y deposita ambos aportes en el IPS cada mes. En MRB los calculamos, retenemos y presentamos para mantener a tu empresa al día.",
       },
       {
         q: "¿Es obligatorio inscribir a los empleados en el IPS?",
         a: "Sí. Todo empleador debe inscribirse como patronal y dar de alta a sus trabajadores en el IPS desde el inicio de la relación laboral. Nos encargamos de la inscripción y de las novedades mensuales.",
+      },
+      {
+        q: "¿Cuándo se paga el aguinaldo?",
+        a: "Hasta el 31 de diciembre. Es la doceava parte (1/12) de todo lo que el trabajador cobró en el año.",
       },
     ],
     related: ["contabilidad", "tramites-inscripciones", "impuestos"],
@@ -359,7 +363,7 @@ export const services: Service[] = [
     title: "Asesoría legal societaria",
     excerpt:
       "Reformas de estatutos, actas, aumentos de capital, transferencia de acciones y gobierno corporativo.",
-    metaTitle: "Asesoría Legal Societaria en Paraguay | MRB",
+    metaTitle: "Asesoría Societaria en Paraguay: Estatutos y Actas | MRB",
     metaDescription:
       "Reformas de estatutos, actas de asamblea y directorio, aumentos de capital, transferencia de acciones y gobierno corporativo para sociedades en Paraguay.",
     kicker: "Servicio legal",
@@ -406,7 +410,7 @@ export const services: Service[] = [
 ];
 
 /** Última actualización del contenido de servicios (se muestra en cada página). */
-export const SERVICES_UPDATED_AT = "2026-10-06";
+export const SERVICES_UPDATED_AT = "2026-11-17";
 
 export function getService(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);

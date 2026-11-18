@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Schibsted_Grotesk, Spectral } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { Header } from "@/components/Header";
@@ -9,33 +9,18 @@ import { JsonLd } from "@/components/ui";
 import { site } from "@/lib/site.config";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 
-// Cuerpo: grotesca humanista, muy legible y sobria.
-const bodyFont = Hanken_Grotesk({
+// Una sola familia: Inter variable (con eje óptico), para texto y titulares.
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-inter",
   display: "swap",
-});
-
-// Titulares: neo-grotesca moderna con carácter, sobria.
-const displayFont = Schibsted_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display-face",
-  display: "swap",
-});
-
-// Acento editorial: serif itálica refinada para el hero.
-const serifFont = Spectral({
-  subsets: ["latin"],
-  weight: ["500"],
-  style: ["italic"],
-  variable: "--font-serif-accent",
-  display: "swap",
+  axes: ["opsz"],
 });
 
 // Home: ≤ 60 / ≤ 158 caracteres (Google trunca más allá).
-const HOME_TITLE = "Estudio Contable en Asunción, Paraguay | MRB";
+const HOME_TITLE = "Estudio Contable en Asunción, Paraguay | MRB Consulting";
 const HOME_DESCRIPTION =
-  "Estudio contable, tributario y societario en Asunción. Contabilidad, impuestos, sociedades e IPS para empresas y personas de todo Paraguay.";
+  "Estudio contable, tributario y societario en el centro de Asunción. Contabilidad, IVA e IRE, sociedades E.A.S. e IPS para empresas y personas. Escribinos.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -48,7 +33,7 @@ export const metadata: Metadata = {
   keywords: [
     "consultoría empresarial Paraguay",
     "estudio contable Asunción",
-    "estudio contable Asunción",
+    "contador Asunción",
     "asesoría tributaria Paraguay",
     "constituir empresa Paraguay",
     "constitución de sociedades",
@@ -98,10 +83,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="es-PY"
-      className={`${bodyFont.variable} ${displayFont.variable} ${serifFont.variable}`}
-    >
+    <html lang="es-PY" className={inter.variable} suppressHydrationWarning>
+      <head>
+        {/* Marca que hay JS antes del primer pintado: habilita los estados iniciales de las animaciones sin parpadeo. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.dataset.motion='on'" }} />
+      </head>
       <body className="antialiased">
         <a
           href="#contenido"

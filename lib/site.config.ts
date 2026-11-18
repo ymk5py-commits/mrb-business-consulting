@@ -41,6 +41,7 @@ export const site = {
       building: "Edificio Alfar 1, piso 11",
       street: "Cerro Corá 247 entre Yegros e Iturbe",
       neighborhood: "La Catedral",
+      postalCode: "001101",
       city: "Asunción",
       region: "Asunción",
       country: "Paraguay",
@@ -57,12 +58,12 @@ export const site = {
   },
 
   /* ---- REDES SOCIALES ----
-   * Vacías hasta tener perfiles propios de MRB: las URLs de ejemplo ("mrbconsulting")
-   * eran de otras empresas. Al cargarlas aparecen solas en contacto, footer y schema. */
+   * Perfiles oficiales de MRB. Una red vacía ("") no se muestra; las cargadas
+   * aparecen solas en contacto, footer, schema (sameAs) y llms.txt. */
   social: {
-    instagram: "" as string,
-    facebook: "" as string,
-    linkedin: "https://www.linkedin.com/company/mrb-business-consulting-py/",
+    instagram: "https://www.instagram.com/mrb.consulting/" as string,
+    facebook: "https://www.facebook.com/profile.php?id=61596385053356" as string,
+    linkedin: "https://www.linkedin.com/company/mrb-business-consulting-py/" as string,
   },
 } as const;
 

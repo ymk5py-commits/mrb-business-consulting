@@ -9,7 +9,7 @@
   tercerizar contabilidad/impuestos, empresas extranjeras que se instalan en Paraguay.
 - **Intención**: alta (comercial/transaccional local) + informacional ("cómo constituir una S.A.").
 - **Diferenciadores E-E-A-T**: experiencia local, dominio del marco legal paraguayo (DNIT, IPS,
-  Registros Públicos), "todo en un solo estudio" (contable + fiscal + legal).
+  MTESS), "todo en un solo estudio" (contable + fiscal + legal).
 
 ## 2. Arquitectura de contenido (URL hierarchy)
 

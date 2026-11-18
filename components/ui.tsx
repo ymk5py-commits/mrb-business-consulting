@@ -132,7 +132,7 @@ export function Button({
   "aria-label"?: string;
 }) {
   const classes = cn(
-    "group inline-flex items-center justify-center gap-2 rounded-full font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 cursor-pointer",
+    "group inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[color,background-color,box-shadow,scale] duration-200 ease-[var(--ease-out-soft)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 cursor-pointer",
     variantClasses[variant],
     sizeClasses[size],
     className,
