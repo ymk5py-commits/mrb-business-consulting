@@ -619,3 +619,9 @@ export const serviceGroups: { title: string; services: Service[] }[] = [
     return service;
   }),
 }));
+
+/**
+ * Los nueve servicios en el orden en que se ven en la home y en /servicios (por grupos).
+ * Úsese donde antes se recorría `services`, para que el orden sea el mismo en todo el sitio.
+ */
+export const orderedServices: Service[] = serviceGroups.flatMap((g) => g.services);

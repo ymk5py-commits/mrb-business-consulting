@@ -11,6 +11,7 @@ import { Faq } from "@/components/Faq";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhoReplies } from "@/components/WhoReplies";
+import { NextSteps } from "@/components/NextSteps";
 import { WhatsappIcon } from "@/components/icons";
 import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
 import { getGuide } from "@/lib/guides";
@@ -137,9 +138,12 @@ export default async function ServicePage({
                   {professional.name}
                 </Link>
                 {professional.headline && `, ${professional.headline.replace(/^Licenciado en/, "Lic. en")}`}
-                <span className="text-slate-400">
-                  {" "}
-                  · Actualizado en <time dateTime={SERVICES_UPDATED_AT}>{updatedLabel}</time>
+                <span className="block text-slate-400 sm:inline">
+                  <span aria-hidden="true" className="hidden sm:inline">
+                    {" "}
+                    ·{" "}
+                  </span>
+                  Actualizado en <time dateTime={SERVICES_UPDATED_AT}>{updatedLabel}</time>
                 </span>
               </span>
             </p>
@@ -176,7 +180,7 @@ export default async function ServicePage({
                 {service.includes.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent-600" strokeWidth={2} />
-                    <span className="text-sm leading-relaxed text-slate-700">{item}</span>
+                    <span className="text-[15px] leading-relaxed text-slate-700 lg:text-base">{item}</span>
                   </div>
                 ))}
               </div>
@@ -184,7 +188,7 @@ export default async function ServicePage({
               <div>
                 <div className="mt-10 border-t border-rule pt-6">
                   <h3 className="font-display text-lg text-navy-900">¿Para quién es?</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 text-[15px] leading-relaxed text-slate-600 lg:text-base">
                     {service.forWho}
                   </p>
                 </div>
@@ -217,10 +221,13 @@ export default async function ServicePage({
                 {service.highlights.map((h) => (
                   <li key={h.title} className="border-t border-rule py-5">
                     <h3 className="font-display text-base text-navy-900">{h.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{h.text}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-slate-600 lg:text-base">{h.text}</p>
                   </li>
                 ))}
               </ul>
+
+              {/* La duda de quien llega desde Google: ¿qué pasa si escribo? Acá, no en otra página */}
+              <NextSteps wide className="mt-14" />
             </div>
 
             {/* Aside CTA (sticky): un bloque bajo un filete grueso, como la cabecera de
@@ -228,7 +235,7 @@ export default async function ServicePage({
             <aside className="lg:col-span-1">
               <div className="sticky top-24 border-t-2 border-navy-900 pt-6">
                 <h3 className="font-display text-xl text-navy-900">Consulta sin compromiso</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-600 lg:text-base">
                   Contanos tu caso y te asesoramos sobre {service.topic}.
                 </p>
                 <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-rule py-4">

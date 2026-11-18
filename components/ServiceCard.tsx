@@ -12,7 +12,7 @@ export function ServiceCard({ service }: { service: Service }) {
       <h3 className="font-display text-xl text-navy-900 transition-colors group-hover:text-accent-600">
         {service.title}
       </h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{service.excerpt}</p>
+      <p className="mt-2 flex-1 text-[15px] leading-relaxed text-slate-600 lg:text-base">{service.excerpt}</p>
       <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600">
         Ver servicio
         <ArrowRight className="h-4 w-4" />

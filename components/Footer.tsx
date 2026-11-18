@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 import { Container } from "./ui";
 import { socialIcons } from "./icons";
 import { site, navLinks, addressLine, mapsHref, socialLinks } from "@/lib/site.config";
-import { services } from "@/lib/services";
+import { orderedServices } from "@/lib/services";
 
 /** Links del footer: hover + foco visible sobre fondo navy */
 const footerLink =
@@ -59,7 +59,7 @@ export function Footer() {
             ))}
           </ul>
           <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-slate-400">
-            {services.map((s) => (
+            {orderedServices.map((s) => (
               <li key={s.slug}>
                 <Link href={`/servicios/${s.slug}`} className={footerLink}>
                   {s.title}

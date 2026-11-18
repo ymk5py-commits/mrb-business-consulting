@@ -13,6 +13,7 @@ import { WhatsappIcon } from "@/components/icons";
 import { LedgerMotion } from "@/components/motion/LedgerMotion";
 import { GuideToc } from "@/components/GuideToc";
 import { WhoReplies } from "@/components/WhoReplies";
+import { NextSteps } from "@/components/NextSteps";
 import { heroImages } from "@/lib/hero-images";
 import { getGuide, guideSlugs, type GuideSection } from "@/lib/guides";
 import { getService } from "@/lib/services";
@@ -302,6 +303,8 @@ export default async function GuidePage({
                 )}
               </section>
             ))}
+            {/* La duda al terminar de leer: ¿qué pasa si escribo? */}
+            <NextSteps wide className="mt-14 max-w-[68ch]" />
             <p className="mt-14 max-w-[60ch] border-t border-rule pt-6 text-sm leading-relaxed text-slate-600">
               Esta guía es informativa y resume la normativa vigente a la fecha de revisión. Requisitos,
               plazos y costos pueden cambiar: antes de constituir, consultá tu caso con un profesional.

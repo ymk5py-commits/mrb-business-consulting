@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ServiceCard } from "@/components/ServiceCard";
+import { ServicesGrid } from "@/components/ServicesGrid";
 import { CtaBand } from "@/components/CtaBand";
-import { services, getService } from "@/lib/services";
+import { orderedServices, getService } from "@/lib/services";
 import { pageMetadata, breadcrumbSchema, absoluteUrl, webPageSchema } from "@/lib/seo";
 
 const SERVICES_LIST_ID = `${absoluteUrl("/servicios")}#lista-servicios`;
@@ -82,7 +82,7 @@ export default function ServiciosPage() {
             "@context": "https://schema.org",
             "@type": "ItemList",
             "@id": SERVICES_LIST_ID,
-            itemListElement: services.map((s, i) => ({
+            itemListElement: orderedServices.map((s, i) => ({
               "@type": "ListItem",
               position: i + 1,
               name: s.title,
@@ -111,24 +111,8 @@ export default function ServiciosPage() {
         </Container>
       </HeroSection>
 
-      <Section tone="surface">
-        <Container>
-          <SectionHeading
-            title="Nuestros servicios"
-            subtitle="Coordinados desde un mismo estudio en Asunción, para empresas y personas de todo Paraguay."
-          />
-          <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <div key={service.slug} className="h-full">
-                <ServiceCard service={service} />
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Guía: título | situaciones */}
-      <Section tone="light" className="py-16 sm:py-20">
+      {/* Primero, la situación: quien no sabe qué servicio necesita lo encuentra antes del catálogo */}
+      <Section tone="light">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
           <div className="min-w-0">
             <SectionHeading
@@ -140,8 +124,8 @@ export default function ServiciosPage() {
             {guide.map((item) => (
               <li key={item.situation} className="border-t border-rule py-6">
                 <h3 className="font-display text-lg text-navy-900">{item.situation}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
-                <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-600 lg:text-base">{item.text}</p>
+                <p className="mt-2 flex flex-wrap gap-x-5">
                   {item.slugs.map((slug) => {
                     const service = getService(slug);
                     return (
@@ -149,7 +133,7 @@ export default function ServiciosPage() {
                         <Link
                           key={slug}
                           href={`/servicios/${slug}`}
-                          className="rounded-sm text-sm font-semibold text-accent-600 underline underline-offset-4 hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                          className="inline-flex min-h-11 items-center rounded-sm text-[15px] font-semibold text-accent-600 underline underline-offset-4 hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                         >
                           {service.title}
                         </Link>
@@ -160,6 +144,19 @@ export default function ServiciosPage() {
               </li>
             ))}
           </ul>
+        </Container>
+      </Section>
+
+      {/* Catálogo: los mismos tres grupos y el mismo orden que la home */}
+      <Section tone="surface">
+        <Container>
+          <SectionHeading
+            title="Nuestros servicios"
+            subtitle="Coordinados desde un mismo estudio en Asunción, para empresas y personas de todo Paraguay."
+          />
+          <div className="mt-12">
+            <ServicesGrid wide />
+          </div>
         </Container>
       </Section>
 

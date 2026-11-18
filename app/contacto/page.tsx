@@ -6,7 +6,7 @@ import { Button, Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactForm } from "@/components/ContactForm";
 import { WhoReplies } from "@/components/WhoReplies";
-import { LedgerMotion } from "@/components/motion/LedgerMotion";
+import { NextSteps } from "@/components/NextSteps";
 import { WhatsappIcon, socialIcons } from "@/components/icons";
 import { site, whatsappHref, addressLine, mapsHref, socialLinks } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, webPageSchema } from "@/lib/seo";
@@ -18,25 +18,6 @@ export const metadata: Metadata = pageMetadata({
     "Contactá a MRB Business Consulting en Asunción. Escribinos por WhatsApp, llamanos o vení a la oficina. Lunes a viernes de 9 a 18 y sábados de 9 a 12.",
   path: "/contacto",
 });
-
-/**
- * Qué pasa después de escribir: solo pasos que el estudio ya hace, sin plazos ni costos
- * hasta que Manuel los confirme.
- */
-const nextSteps = [
-  {
-    title: "Manuel te contesta",
-    text: "Por WhatsApp, dentro del horario de atención. Te puede pedir algún dato para entender tu caso.",
-  },
-  {
-    title: "Coordinamos la consulta",
-    text: "En la oficina o por teléfono, como te quede mejor.",
-  },
-  {
-    title: "Te pasamos una propuesta cerrada",
-    text: "Con el alcance y los honorarios por escrito, antes de empezar a trabajar.",
-  },
-];
 
 const mapSrc = `https://www.google.com/maps?q=${site.contact.geo.lat},${site.contact.geo.lng}&z=16&output=embed`;
 
@@ -97,32 +78,7 @@ export default function ContactoPage() {
         <Container>
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-x-16">
             {/* Qué pasa después: renglones con filete */}
-            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
-              <h2 className="font-display text-2xl text-navy-900">Qué pasa después de escribir</h2>
-              <LedgerMotion variant="steps">
-                <ol data-ledger-trigger className="mt-6">
-                  {nextSteps.map((step, i) => (
-                    <li key={step.title} className="relative grid grid-cols-[2rem_minmax(0,1fr)] gap-x-3 py-4">
-                      <span
-                        aria-hidden="true"
-                        data-ledger-rule
-                        className="absolute inset-x-0 top-0 h-px origin-left bg-rule"
-                      />
-                      <span aria-hidden="true" className="font-display text-lg tabular-nums text-slate-600">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="font-display text-lg text-navy-900">{step.title}</h3>
-                        <p className="mt-1 text-[15px] leading-relaxed text-slate-600 lg:text-base">{step.text}</p>
-                      </div>
-                    </li>
-                  ))}
-                  <li aria-hidden="true" className="relative">
-                    <span data-ledger-rule className="absolute inset-x-0 top-0 h-px origin-left bg-rule" />
-                  </li>
-                </ol>
-              </LedgerMotion>
-            </div>
+            <NextSteps className="min-w-0 lg:col-start-1 lg:row-start-1" />
 
             {/* El formulario: arma el mensaje y abre WhatsApp. En el celular va antes de los datos y el mapa;
                 en escritorio ocupa la columna derecha y acompaña al bajar. */}
