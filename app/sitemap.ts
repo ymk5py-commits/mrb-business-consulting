@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { execFileSync } from "node:child_process";
 import { site } from "@/lib/site.config";
 import { serviceSlugs } from "@/lib/services";
+import { guideSlugs } from "@/lib/guides";
 import { professionals, professionalPath } from "@/lib/team";
 
 /** Fecha del último commit que tocó los archivos de una página. Si no hay historial
@@ -28,7 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/nosotros`, lastModified: lastCommitDate("app/nosotros/page.tsx", "lib/team.ts", ...shared) },
     { url: `${base}/equipo`, lastModified: lastCommitDate("app/equipo", "lib/team.ts") },
     { url: `${base}/privacidad`, lastModified: lastCommitDate("app/privacidad/page.tsx") },
+    { url: `${base}/guias`, lastModified: lastCommitDate("app/guias", "lib/guides.ts") },
   ];
+
+  const guideRoutes: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
+    url: `${base}/guias/${slug}`,
+    lastModified: lastCommitDate("lib/guides.ts", "app/guias/[slug]/page.tsx"),
+  }));
 
   const servicesUpdated = lastCommitDate("lib/services.ts", "lib/team.ts", "app/servicios/[slug]/page.tsx", ...shared);
   const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
@@ -36,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: servicesUpdated,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...professionals.map((member) => ({
+  return [...staticRoutes, ...serviceRoutes, ...guideRoutes, ...professionals.map((member) => ({
     url: `${base}${professionalPath(member)}`,
     lastModified: lastCommitDate("lib/team.ts", "app/equipo/[slug]/page.tsx"),
   }))];

@@ -19,6 +19,16 @@ const guide = [
     slugs: ["constitucion-de-sociedades", "tramites-inscripciones"],
   },
   {
+    situation: "Llegás de otro país a invertir",
+    text: "Coordinamos la Constancia de Inversionista, la empresa y el RUC, en el orden correcto para que nada se trabe.",
+    slugs: ["extranjeros", "constitucion-de-sociedades"],
+  },
+  {
+    situation: "Trabajás por tu cuenta",
+    text: "Si sos profesional independiente, cobrás alquileres o tenés un comercio unipersonal, llevamos tu IVA, tu IRP y tu facturación.",
+    slugs: ["personas-fisicas"],
+  },
+  {
     situation: "Ya facturás y tenés que declarar",
     text: "Liquidamos IVA, IRE, IRP e IDU en Marangatú y seguimos cada vencimiento de la DNIT para que no pagues multas.",
     slugs: ["impuestos"],

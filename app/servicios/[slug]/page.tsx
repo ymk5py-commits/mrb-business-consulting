@@ -12,6 +12,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
+import { getGuide } from "@/lib/guides";
 import { director, gabriela, professionalPath } from "@/lib/team";
 import { AuditProfessional } from "@/components/AuditProfessional";
 import { site, whatsappLink, clientStats } from "@/lib/site.config";
@@ -66,6 +67,7 @@ export default async function ServicePage({
   const waHref = whatsappLink(
     `Hola ${site.name}, quisiera consultar por el servicio de ${service.title.toLowerCase()}.`,
   );
+  const guide = service.guide ? getGuide(service.guide) : undefined;
   const related = service.related
     .map((s) => getService(s))
     .filter(Boolean)
@@ -182,6 +184,24 @@ export default async function ServicePage({
                   </p>
                 </div>
               </div>
+
+              {guide && (
+                <Link
+                  href={`/guias/${guide.slug}`}
+                  className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-rule bg-surface px-6 py-5 transition-colors hover:border-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-sm text-slate-600">Leé la guía paso a paso</span>
+                    <span className="font-display mt-0.5 block text-lg text-navy-900 transition-colors group-hover:text-accent-600">
+                      {guide.title}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className="h-5 w-5 shrink-0 text-accent-600 transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              )}
 
               <div>
                 <h2 className="font-display mt-14 text-2xl text-navy-900 sm:text-3xl">
