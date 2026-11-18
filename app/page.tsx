@@ -9,6 +9,16 @@ import { DirectorPortrait } from "@/components/DirectorPortrait";
 import { faqSchema, webPageSchema } from "@/lib/seo";
 import { site, whatsappHref } from "@/lib/site.config";
 import { homeFaqs } from "@/lib/faqs";
+import { director } from "@/lib/team";
+import { LedgerMotion } from "@/components/motion/LedgerMotion";
+
+/** Renglones de «Quién está al frente»: las credenciales del director y su formación. */
+const aboutRows = [
+  ...(director.highlights ?? []).map((h) => ({ title: h.title, detail: h.detail })),
+  ...(director.alumniOf?.length
+    ? [{ title: "Formación", detail: director.alumniOf.join(" · ") }]
+    : []),
+];
 
 /** Rubros con los que trabajamos (se leen como una oración, no como etiquetas). */
 const rubros = [
@@ -51,10 +61,10 @@ export default function HomePage() {
               title="Servicios"
               subtitle="Dejá de coordinar entre contador, gestor y abogado: contabilidad, impuestos, sociedades, IPS y trámites, desde un solo estudio."
             />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-600">
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-slate-600 sm:text-sm">
               Acompañamos a empresas de {rubros.join(", ")}, y a profesionales independientes.
             </p>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-slate-600">
+            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-slate-600 sm:text-sm">
               ¿No sabés por dónde empezar? Contanos tu caso y te decimos qué servicio necesitás.
             </p>
             {/* Enlace propio (no dentro de la frase) para que tenga 44 px de alto al tocarlo */}
@@ -78,15 +88,33 @@ export default function HomePage() {
 
       <ProcessSteps />
 
-      {/* ============ SOBRE MRB: texto | retrato ============ */}
+      {/* ============ SOBRE MRB: texto y credenciales | retrato ============ */}
       <Section tone="light" className="lg:py-32">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="min-w-0">
-              <SectionHeading
-                title="Profesionales comprometidos con tu tranquilidad"
-                subtitle="Somos un equipo de contadores y asesores que entiende los desafíos de emprender y hacer crecer una empresa en Paraguay. Trabajamos para que vos te ocupes de tu negocio y nosotros del resto."
-              />
+              {/* Solo datos ya publicados en lib/team.ts: la bio, las credenciales y la formación */}
+              <SectionHeading title={`Quién está al frente de ${site.shortName}`} subtitle={director.bio} />
+              <LedgerMotion variant="steps">
+                <ul data-ledger-trigger className="mt-8 max-w-md">
+                  {aboutRows.map((row) => (
+                    <li key={row.title} className="relative py-4">
+                      <span
+                        aria-hidden="true"
+                        data-ledger-rule
+                        className="absolute inset-x-0 top-0 h-px origin-left bg-rule"
+                      />
+                      <span className="block text-[15px] font-semibold text-navy-900 sm:text-sm">
+                        {row.title}
+                      </span>
+                      <span className="block text-[15px] text-slate-600 sm:text-sm">{row.detail}</span>
+                    </li>
+                  ))}
+                  <li aria-hidden="true" className="relative">
+                    <span data-ledger-rule className="absolute inset-x-0 top-0 h-px origin-left bg-rule" />
+                  </li>
+                </ul>
+              </LedgerMotion>
               <Button href="/nosotros" variant="ghost" className="mt-8">
                 Conocé a Manuel
                 <ArrowRight className="h-4 w-4" />

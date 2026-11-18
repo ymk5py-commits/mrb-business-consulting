@@ -143,15 +143,19 @@ export default async function ServicePage({
                 </span>
               </span>
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            {/* Una sola acción con peso (WhatsApp); la salida, como enlace de texto: igual que el hero de la home */}
+            <div className="mt-8 flex flex-col gap-x-7 gap-y-3 sm:flex-row sm:items-center">
               <Button href={waHref} external variant="whatsapp" size="lg">
                 <WhatsappIcon className="h-5 w-5" />
                 Escribinos por WhatsApp
               </Button>
-              <Button href="/servicios" variant="white" size="lg">
-                <ArrowLeft className="h-5 w-5" />
+              <Link
+                href="/servicios"
+                className="inline-flex min-h-11 items-center gap-1.5 self-start whitespace-nowrap rounded-sm text-sm font-semibold text-paper underline decoration-slate-500 underline-offset-8 transition-colors hover:decoration-accent-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper sm:self-auto"
+              >
+                <ArrowLeft aria-hidden="true" className="h-4 w-4" />
                 Todos los servicios
-              </Button>
+              </Link>
             </div>
           </div>
         </Container>

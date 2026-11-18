@@ -95,9 +95,9 @@ export default function ContactoPage() {
 
       <Section tone="surface">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
-            {/* Qué pasa después + datos: renglones con filete, sin íconos */}
-            <div className="min-w-0">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-x-16">
+            {/* Qué pasa después: renglones con filete */}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
               <h2 className="font-display text-2xl text-navy-900">Qué pasa después de escribir</h2>
               <LedgerMotion variant="steps">
                 <ol data-ledger-trigger className="mt-6">
@@ -108,12 +108,12 @@ export default function ContactoPage() {
                         data-ledger-rule
                         className="absolute inset-x-0 top-0 h-px origin-left bg-rule"
                       />
-                      <span aria-hidden="true" className="font-display text-lg tabular-nums text-slate-500">
+                      <span aria-hidden="true" className="font-display text-lg tabular-nums text-slate-600">
                         {i + 1}
                       </span>
                       <div>
                         <h3 className="font-display text-lg text-navy-900">{step.title}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">{step.text}</p>
+                        <p className="mt-1 text-[15px] leading-relaxed text-slate-600 sm:text-sm">{step.text}</p>
                       </div>
                     </li>
                   ))}
@@ -122,8 +122,24 @@ export default function ContactoPage() {
                   </li>
                 </ol>
               </LedgerMotion>
+            </div>
 
-              <h2 className="font-display mt-14 text-2xl text-navy-900">Datos de contacto</h2>
+            {/* El formulario: arma el mensaje y abre WhatsApp. En el celular va antes de los datos y el mapa;
+                en escritorio ocupa la columna derecha y acompaña al bajar. */}
+            <div className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-28 lg:self-start">
+              <h2 className="font-display text-2xl text-navy-900">Armá tu mensaje</h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Completá estos datos y se abre WhatsApp con el mensaje listo para enviar.
+                Solo el nombre es obligatorio.
+              </p>
+              <div className="mt-6">
+                <ContactForm />
+              </div>
+            </div>
+
+            {/* Datos de contacto: renglones con filete, sin íconos */}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-2">
+              <h2 className="font-display text-2xl text-navy-900">Datos de contacto</h2>
               <dl className="mt-6 border-t border-rule">
                 <ContactRow label="Teléfono">
                   <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className={rowLink}>
@@ -178,18 +194,6 @@ export default function ContactoPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="block w-full"
                 />
-              </div>
-            </div>
-
-            {/* El formulario: arma el mensaje y abre WhatsApp. En escritorio acompaña al bajar. */}
-            <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
-              <h2 className="font-display text-2xl text-navy-900">Armá tu mensaje</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Completá estos datos y se abre WhatsApp con el mensaje listo para enviar.
-                Solo el nombre es obligatorio.
-              </p>
-              <div className="mt-6">
-                <ContactForm />
               </div>
             </div>
           </div>

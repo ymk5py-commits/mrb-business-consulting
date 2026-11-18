@@ -593,9 +593,10 @@ export function getService(slug: string): Service | undefined {
 export const serviceSlugs = services.map((s) => s.slug);
 
 /**
- * Los servicios en dos criterios que no se mezclan: lo que te pasa a vos (abrir una empresa,
- * trabajar por tu cuenta, venir de afuera) y lo que necesita una empresa que ya funciona.
- * Así quien entra por primera vez elige primero su situación y no una disciplina contable.
+ * Los servicios en tres grupos de tres, con criterios que no se mezclan: lo que te pasa a vos
+ * (abrir una empresa, trabajar por tu cuenta, venir de afuera), lo que una empresa necesita
+ * todos los meses y lo que necesita cuando llega el momento. Así quien entra por primera vez
+ * elige primero su situación y nunca enfrenta más de tres opciones juntas.
  */
 export const serviceGroups: { title: string; services: Service[] }[] = [
   {
@@ -603,15 +604,12 @@ export const serviceGroups: { title: string; services: Service[] }[] = [
     slugs: ["constitucion-de-sociedades", "personas-fisicas", "extranjeros"],
   },
   {
-    title: "Para tu empresa",
-    slugs: [
-      "contabilidad",
-      "impuestos",
-      "asesoria-laboral-ips",
-      "auditoria-consultoria",
-      "tramites-inscripciones",
-      "asesoria-legal-societaria",
-    ],
+    title: "Mes a mes",
+    slugs: ["contabilidad", "impuestos", "asesoria-laboral-ips"],
+  },
+  {
+    title: "Cuando lo necesitás",
+    slugs: ["auditoria-consultoria", "tramites-inscripciones", "asesoria-legal-societaria"],
   },
 ].map(({ title, slugs }) => ({
   title,

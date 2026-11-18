@@ -74,7 +74,7 @@ export function ProcessSteps() {
                   className="absolute inset-x-0 bottom-0 h-px origin-left bg-rule"
                 />
                 <h3 className="font-display flex items-baseline gap-3 text-xl text-navy-900">
-                  <span className="tabular-nums text-slate-500">{i + 1}</span>
+                  <span className="tabular-nums text-slate-600">{i + 1}</span>
                   {step.title}
                 </h3>
                 <dl className="contents">
@@ -105,12 +105,12 @@ function Cell({
 }) {
   return (
     <div className="grid grid-cols-[minmax(0,7rem)_minmax(0,1fr)] gap-4 lg:block">
-      <dt className="text-sm font-semibold text-navy-900 lg:sr-only">{label}</dt>
+      <dt className="text-[15px] font-semibold text-navy-900 sm:text-sm lg:sr-only">{label}</dt>
       <dd
         className={
           strong
-            ? "text-sm leading-relaxed text-navy-900"
-            : "text-sm leading-relaxed text-slate-600"
+            ? "text-[15px] leading-relaxed text-navy-900 sm:text-sm"
+            : "text-[15px] leading-relaxed text-slate-600 sm:text-sm"
         }
       >
         {children}

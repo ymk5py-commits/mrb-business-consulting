@@ -1,13 +1,13 @@
 /* ============================================================
  * components/DirectorPortrait.tsx — retrato del director para el home
- * (sección "Sobre MRB"): foto y, debajo, sus credenciales como renglones
- * con filete, igual que los datos del hero (el «libro mayor» de la marca).
+ * (sección "Sobre MRB"): la foto sola, con su nombre y cargo debajo.
+ * Las credenciales van en la columna del texto, como renglones con filete
+ * (el «libro mayor» de la marca), no flotando sobre la foto.
  * Server Component. Los datos viven en lib/team.ts.
  * ============================================================ */
 import Image from "next/image";
 import { director } from "@/lib/team";
 import { site } from "@/lib/site.config";
-import { LedgerMotion } from "./motion/LedgerMotion";
 
 export function DirectorPortrait() {
   if (!director.photo) return null;
@@ -25,37 +25,12 @@ export function DirectorPortrait() {
         />
       </div>
 
-      <figcaption className="mt-6">
+      <figcaption className="mt-5">
         <p className="font-display text-2xl text-navy-900">{director.name}</p>
-        <p className="mt-1 text-sm leading-snug text-slate-600">
+        <p className="mt-1 text-[15px] leading-snug text-slate-600 sm:text-sm">
           {director.role} de {site.shortName}
           {director.headline && ` · ${director.headline}`}
         </p>
-
-        {/* Credenciales como renglones: el filete se traza al entrar en pantalla */}
-        {director.highlights && director.highlights.length > 0 && (
-          <LedgerMotion variant="steps">
-            <ul data-ledger-trigger className="mt-5">
-              {director.highlights.map((h) => (
-                <li key={h.title} className="relative py-3">
-                  <span
-                    aria-hidden="true"
-                    data-ledger-rule
-                    className="absolute inset-x-0 top-0 h-px origin-left bg-rule"
-                  />
-                  <span className="block text-sm font-semibold text-navy-900">{h.title}</span>
-                  <span className="block text-sm text-slate-600">{h.detail}</span>
-                </li>
-              ))}
-              <li aria-hidden="true" className="relative">
-                <span
-                  data-ledger-rule
-                  className="absolute inset-x-0 top-0 h-px origin-left bg-rule"
-                />
-              </li>
-            </ul>
-          </LedgerMotion>
-        )}
       </figcaption>
     </figure>
   );
