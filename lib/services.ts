@@ -25,6 +25,13 @@ export type Service = {
   topic: string;
   /** Pregunta de la banda final de la página del servicio, escrita para quien la necesita */
   ctaTitle: string;
+  /** Para quién es, en dos o tres palabras: la columna derecha del índice de servicios */
+  audience: string;
+  /**
+   * Qué cifra de la cartera mostrar en el recuadro del servicio. Por defecto, el total
+   * de clientes; en personas físicas, cuántas personas físicas atiende el estudio.
+   */
+  clientStat?: "individuals";
   /** Descripción breve para la tarjeta del índice */
   excerpt: string;
   metaTitle: string;
@@ -53,6 +60,7 @@ export const services: Service[] = [
     slug: "contabilidad",
     icon: Calculator,
     title: "Contabilidad",
+    audience: "Empresas",
     topic: "la contabilidad de tu empresa",
     ctaTitle: "¿Querés tus números al día todos los meses?",
     excerpt:
@@ -104,6 +112,7 @@ export const services: Service[] = [
     slug: "impuestos",
     icon: ReceiptText,
     title: "Impuestos y fiscal",
+    audience: "Empresas y profesionales",
     topic: "tus impuestos y vencimientos",
     ctaTitle: "¿Querés declarar a tiempo y sin multas?",
     excerpt:
@@ -168,6 +177,8 @@ export const services: Service[] = [
     slug: "personas-fisicas",
     icon: UserRound,
     title: "Personas físicas y profesionales",
+    audience: "Profesionales y unipersonales",
+    clientStat: "individuals",
     topic: "tus impuestos como persona física",
     ctaTitle: "¿Trabajás por tu cuenta?",
     excerpt:
@@ -233,6 +244,7 @@ export const services: Service[] = [
     slug: "constitucion-de-sociedades",
     icon: Building2,
     title: "Constitución de sociedades",
+    audience: "Emprendedores e inversores",
     topic: "la constitución de tu sociedad",
     ctaTitle: "¿Vas a abrir tu empresa?",
     excerpt:
@@ -289,6 +301,7 @@ export const services: Service[] = [
     slug: "extranjeros",
     icon: Globe,
     title: "Extranjeros e inversión",
+    audience: "Inversores de otros países",
     topic: "tu inversión y tus trámites en Paraguay",
     ctaTitle: "¿Venís a invertir en Paraguay?",
     excerpt:
@@ -355,6 +368,7 @@ export const services: Service[] = [
     slug: "asesoria-laboral-ips",
     icon: Users,
     title: "Asesoría laboral e IPS",
+    audience: "Empresas con empleados",
     topic: "sueldos, contratos y aportes al IPS",
     ctaTitle: "¿Tenés o vas a contratar empleados?",
     excerpt:
@@ -410,6 +424,7 @@ export const services: Service[] = [
     slug: "auditoria-consultoria",
     icon: ClipboardCheck,
     title: "Auditoría y consultoría",
+    audience: "Empresas",
     topic: "auditorías y consultoría",
     ctaTitle: "¿Un banco o un inversor pide tus números?",
     excerpt:
@@ -461,6 +476,7 @@ export const services: Service[] = [
     slug: "tramites-inscripciones",
     icon: Stamp,
     title: "Trámites e inscripciones",
+    audience: "Negocios nuevos y en marcha",
     topic: "trámites e inscripciones",
     ctaTitle: "¿Tenés un trámite o una inscripción pendiente?",
     excerpt:
@@ -516,6 +532,7 @@ export const services: Service[] = [
     slug: "asesoria-legal-societaria",
     icon: Scale,
     title: "Asesoría legal societaria",
+    audience: "Sociedades",
     topic: "actas, estatutos y cambios societarios",
     ctaTitle: "¿Cambian los socios o el capital de tu empresa?",
     excerpt:

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { WhatsappIcon } from "./icons";
 import { site } from "@/lib/site.config";
 import { trackContact } from "@/lib/analytics";
@@ -8,6 +8,9 @@ import { serviceGroups } from "@/lib/services";
 
 const inputClasses =
   "mt-1.5 w-full rounded-xl border border-slate-300 bg-paper px-4 text-base text-navy-900 outline-2 outline-offset-1 outline-transparent transition-colors placeholder:text-slate-500 hover:border-slate-400 focus:border-accent focus:outline-accent aria-[invalid=true]:border-red-700 aria-[invalid=true]:focus:outline-red-700 disabled:cursor-not-allowed disabled:opacity-55 sm:text-sm";
+
+/** Tope del mensaje: más largo, el enlace de WhatsApp se vuelve frágil. */
+const MAX_MESSAGE = 1000;
 
 type Status = { kind: "idle" } | { kind: "opened"; href: string } | { kind: "blocked"; href: string };
 
@@ -30,8 +33,15 @@ export function ContactForm() {
   const [form, setForm] = useState({ nombre: "", servicio: "", mensaje: "" });
   const [nameError, setNameError] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  // Cada envío fallido pide foco. El foco se mueve DESPUÉS de que React pinta el error
+  // (aria-invalid + aria-describedby): así el lector de pantalla lo lee al llegar al campo.
+  const [focusRequest, setFocusRequest] = useState(0);
   const nameRef = useRef<HTMLInputElement>(null);
   const errorId = useId();
+
+  useEffect(() => {
+    if (focusRequest) nameRef.current?.focus();
+  }, [focusRequest]);
 
   const update = (key: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -41,8 +51,12 @@ export function ContactForm() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (form.nombre.trim().length < 2) {
-      setNameError("Escribí tu nombre: así sabemos cómo dirigirnos a vos.");
-      nameRef.current?.focus();
+      setNameError(
+        form.nombre.trim()
+          ? "Escribí tu nombre completo: así sabemos cómo dirigirnos a vos."
+          : "Escribí tu nombre: así sabemos cómo dirigirnos a vos.",
+      );
+      setFocusRequest((n) => n + 1);
       return;
     }
     trackContact("form");
@@ -63,7 +77,7 @@ export function ContactForm() {
       method="post"
       noValidate
       onSubmit={onSubmit}
-      className="rounded-2xl border border-rule bg-paper p-6 sm:p-7"
+      className="border-t-2 border-navy-900 pt-6"
     >
       <div className="grid gap-5">
         <div>
@@ -124,6 +138,7 @@ export function ContactForm() {
             id="mensaje"
             name="mensaje"
             rows={4}
+            maxLength={MAX_MESSAGE}
             value={form.mensaje}
             onChange={(e) => update("mensaje", e.target.value)}
             placeholder="Contanos brevemente qué necesitás"
@@ -144,7 +159,7 @@ export function ContactForm() {
         {/* Qué pasó al enviar (lo anuncian los lectores de pantalla) */}
         <div role="status" aria-live="polite" className="empty:-mt-5">
           {status.kind !== "idle" && (
-            <p className="rounded-xl bg-surface px-4 py-3 text-sm leading-relaxed text-navy-900">
+            <p className="rounded-lg bg-paper px-4 py-3 text-sm leading-relaxed text-navy-900 ring-1 ring-rule">
               {status.kind === "opened"
                 ? "Listo: abrimos WhatsApp con tu mensaje. Solo falta tocar Enviar allá. "
                 : "Tu navegador no abrió la ventana. "}

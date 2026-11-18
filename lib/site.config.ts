@@ -107,6 +107,7 @@ export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${site.
 export const navLinks = [
   { label: "Inicio", href: "/" },
   { label: "Servicios", href: "/servicios" },
+  { label: "Guías", href: "/guias" },
   { label: "Nosotros", href: "/nosotros" },
   { label: "Contacto", href: "/contacto" },
 ] as const;

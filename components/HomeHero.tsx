@@ -20,13 +20,20 @@ const ENTITIES = [
  * respaldo con datos reales del estudio y un fondo de oficina suave.
  */
 export function HomeHero() {
-  const facts = [
+  // Las cifras (count) se cuentan al cargar, mientras se trazan los renglones; el texto
+  // completo queda para lectores de pantalla y para quien no tiene JS o reduce movimiento.
+  const facts: { value: string; count?: number; prefix?: string; unit?: string; label: string }[] = [
     {
       value: `+${director.years ?? 15} años`,
+      count: director.years ?? 15,
+      prefix: "+",
+      unit: " años",
       label: "de experiencia en gestión contable y financiera",
     },
     {
       value: `${clientStats.total} clientes`,
+      count: clientStats.total,
+      unit: " clientes",
       label: `${clientStats.companies} sociedades y ${clientStats.individuals} personas físicas`,
     },
     { value: "Asunción", label: "Oficina en el centro · atendemos en todo el país" },
@@ -89,7 +96,18 @@ export function HomeHero() {
               <span aria-hidden="true" data-ledger-rule data-ledger-gate="rule" className="absolute inset-x-0 top-0 h-px origin-left bg-slate-600" />
               <div data-ledger-item data-ledger-gate="item">
                 <p className="font-display text-3xl tabular-nums text-paper sm:text-4xl">
-                  {f.value}
+                  {f.count === undefined ? (
+                    f.value
+                  ) : (
+                    <>
+                      <span className="sr-only">{f.value}</span>
+                      <span aria-hidden="true">
+                        {f.prefix}
+                        <span data-count={f.count}>{f.count}</span>
+                        {f.unit}
+                      </span>
+                    </>
+                  )}
                 </p>
                 <p className="mt-1 text-sm leading-snug text-slate-300">{f.label}</p>
               </div>

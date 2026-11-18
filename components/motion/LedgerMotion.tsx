@@ -11,7 +11,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
  * Movimiento de marca: el «filete contable». Las líneas se trazan de izquierda a
  * derecha, como quien raya un libro mayor, y los datos se asientan sobre ellas.
  *
- * - hero: la regla bajo «regla.» y luego los renglones de los datos (al cargar).
+ * - hero: la regla bajo «regla.» y luego los renglones de los datos (al cargar); las
+ *   cifras con data-count se cuentan mientras se asientan.
  * - steps: los filetes de una lista, en orden (al entrar en pantalla). Solo las
  *   líneas: el texto nunca se esconde.
  * - figures: las cifras se cuentan y la barra de composición se mide (al entrar).
@@ -68,6 +69,23 @@ export function LedgerMotion({ variant, children }: { variant: Variant; children
               { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.11 },
               0.5,
             );
+          // Las cifras se cuentan mientras se asientan en su renglón.
+          (q("[data-count]") as HTMLElement[]).forEach((el, i) => {
+            const end = Number(el.dataset.count) || 0;
+            const state = { v: 0 };
+            el.textContent = "0";
+            tl.to(
+              state,
+              {
+                v: end,
+                duration: 1.3,
+                onUpdate: () => {
+                  el.textContent = String(Math.round(state.v));
+                },
+              },
+              0.5 + i * 0.11,
+            );
+          });
           return;
         }
 

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button, Container } from "./ui";
 import { WhatsappIcon } from "./icons";
 import { WhoReplies } from "./WhoReplies";
+import { LedgerMotion } from "./motion/LedgerMotion";
 import { whatsappHref } from "@/lib/site.config";
 
 /**
@@ -21,7 +22,14 @@ export function CtaBand({
 }) {
   return (
     <section className="bg-navy-900">
-      <Container className="grid gap-8 py-14 sm:py-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
+      <Container className="grid gap-8 py-14 sm:py-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-x-16 lg:gap-y-10">
+        {/* El «saldo»: doble filete que cierra la página como se cierra una cuenta */}
+        <LedgerMotion variant="steps">
+          <div data-ledger-trigger aria-hidden="true" className="relative h-[5px] lg:col-span-2">
+            <span data-ledger-rule className="absolute inset-x-0 top-0 h-px origin-left bg-slate-500" />
+            <span data-ledger-rule className="absolute inset-x-0 bottom-0 h-px origin-left bg-slate-500" />
+          </div>
+        </LedgerMotion>
         <div className="min-w-0">
           <h2 className="font-display text-balance text-3xl text-paper sm:text-4xl">{title}</h2>
           <p className="mt-3 max-w-xl text-pretty text-slate-300">{subtitle}</p>

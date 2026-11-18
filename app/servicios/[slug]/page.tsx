@@ -189,7 +189,7 @@ export default async function ServicePage({
               {guide && (
                 <Link
                   href={`/guias/${guide.slug}`}
-                  className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-rule bg-surface px-6 py-5 transition-colors hover:border-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="group mt-8 flex items-center justify-between gap-4 border-y border-rule py-5 transition-colors hover:border-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
                 >
                   <span className="min-w-0">
                     <span className="block text-sm text-slate-600">Leé la guía paso a paso</span>
@@ -229,9 +229,14 @@ export default async function ServicePage({
                 </p>
                 <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-rule py-4">
                   <div>
-                    <dt className="text-xs text-slate-500">Clientes</dt>
+                    {/* La cifra de la cartera que corresponde a este servicio */}
+                    <dt className="text-xs text-slate-500">
+                      {service.clientStat === "individuals" ? "Personas físicas" : "Clientes"}
+                    </dt>
                     <dd className="font-display text-2xl tabular-nums text-navy-900">
-                      {clientStats.total}
+                      {service.clientStat === "individuals"
+                        ? clientStats.individuals
+                        : clientStats.total}
                     </dd>
                   </div>
                   {professional.years && (
