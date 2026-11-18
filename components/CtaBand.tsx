@@ -1,12 +1,17 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button, Container } from "./ui";
 import { WhatsappIcon } from "./icons";
 import { WhoReplies } from "./WhoReplies";
 import { whatsappHref } from "@/lib/site.config";
 
-/** Cierre de página: una frase y la acción. Navy sólido, alineado a la izquierda. */
+/**
+ * Cierre de página: una frase y la acción. Navy sólido, alineado a la izquierda.
+ * Una sola acción con peso (WhatsApp); el resto de los canales, como enlace de texto.
+ */
 export function CtaBand({
   title = "¿Listo para ordenar tu empresa?",
-  subtitle = "Agendá una consulta sin compromiso. Te respondemos por WhatsApp y te asesoramos según tu caso.",
+  subtitle = "Escribinos, contanos tu caso y coordinamos una primera consulta sin compromiso.",
   whatsapp = whatsappHref,
 }: {
   title?: string;
@@ -22,14 +27,21 @@ export function CtaBand({
           <p className="mt-3 max-w-xl text-pretty text-slate-300">{subtitle}</p>
         </div>
         <div className="min-w-0">
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-center">
             <Button href={whatsapp} external variant="whatsapp" size="lg" className="whitespace-nowrap">
               <WhatsappIcon className="h-5 w-5" />
               Escribinos por WhatsApp
             </Button>
-            <Button href="/contacto" variant="white" size="lg" className="whitespace-nowrap">
-              Otros contactos
-            </Button>
+            <Link
+              href="/contacto"
+              className="group inline-flex min-h-11 items-center gap-1.5 self-start whitespace-nowrap rounded-sm text-sm font-semibold text-paper underline decoration-slate-500 underline-offset-8 transition-colors hover:decoration-accent-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper sm:self-auto"
+            >
+              Teléfono y dirección
+              <ArrowRight
+                aria-hidden="true"
+                className="size-4 transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 motion-reduce:transition-none"
+              />
+            </Link>
           </div>
           <WhoReplies className="mt-5" />
         </div>

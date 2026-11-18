@@ -12,6 +12,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { LedgerMotion } from "@/components/motion/LedgerMotion";
 import { GuideToc } from "@/components/GuideToc";
+import { WhoReplies } from "@/components/WhoReplies";
 import { heroImages } from "@/lib/hero-images";
 import { getGuide, guideSlugs, type GuideSection } from "@/lib/guides";
 import { getService } from "@/lib/services";
@@ -295,7 +296,7 @@ export default async function GuidePage({
                     </p>
                     <Button href={waHref} external variant="whatsapp" className="shrink-0">
                       <WhatsappIcon className="h-4 w-4" />
-                      Consultá tu caso
+                      Escribinos por WhatsApp
                     </Button>
                   </div>
                 )}
@@ -314,15 +315,16 @@ export default async function GuidePage({
                 <p className="text-sm font-semibold text-navy-900">En esta guía</p>
                 <GuideToc sections={guide.sections.map(({ id, title }) => ({ id, title }))} />
               </nav>
-              <div className="rounded-2xl bg-navy-900 p-6 text-paper lg:mt-8">
-                <p className="font-display text-lg">¿Lo hacemos por vos?</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              <div className="border-t-2 border-navy-900 pt-6 lg:mt-8">
+                <p className="font-display text-lg text-navy-900">¿Lo hacemos por vos?</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   Constituimos tu empresa de principio a fin y la dejamos lista para facturar.
                 </p>
                 <Button href={waHref} external variant="whatsapp" className="mt-5 w-full">
                   <WhatsappIcon className="h-4 w-4" />
-                  Consultá tu caso
+                  Escribinos por WhatsApp
                 </Button>
+                <WhoReplies tone="light" className="mt-5" />
               </div>
             </div>
           </aside>

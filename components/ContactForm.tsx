@@ -135,7 +135,7 @@ export function ContactForm() {
           type="submit"
           disabled={!ready}
           data-wa-cta
-          className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-[background-color,scale] duration-200 ease-[var(--ease-out-soft)] hover:bg-whatsapp-600 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-55"
+          className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-center text-sm font-semibold text-paper transition-[background-color,scale] duration-200 ease-[var(--ease-out-soft)] hover:bg-whatsapp-600 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-55"
         >
           <WhatsappIcon className="h-5 w-5" />
           Abrir WhatsApp con mi consulta

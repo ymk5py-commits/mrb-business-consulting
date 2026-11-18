@@ -6,6 +6,7 @@ import { WhatsappIcon } from "./icons";
 import { whatsappHref, clientStats } from "@/lib/site.config";
 import { director } from "@/lib/team";
 import { LedgerMotion } from "./motion/LedgerMotion";
+import { WhoReplies } from "./WhoReplies";
 
 const ENTITIES = [
   "DNIT",
@@ -66,7 +67,7 @@ export function HomeHero() {
               className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-[background-color,scale] duration-200 ease-[var(--ease-out-soft)] hover:bg-whatsapp-600 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
             >
               <WhatsappIcon className="h-5 w-5" />
-              Consultá por WhatsApp
+              Escribinos por WhatsApp
             </a>
             <Link
               href="/servicios"
@@ -76,6 +77,8 @@ export function HomeHero() {
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+          {/* Quién contesta, justo donde se decide escribir por primera vez */}
+          <WhoReplies className="mt-7" />
         </div>
 
         {/* Respaldo: datos reales del estudio */}

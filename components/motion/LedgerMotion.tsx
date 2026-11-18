@@ -12,7 +12,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
  * derecha, como quien raya un libro mayor, y los datos se asientan sobre ellas.
  *
  * - hero: la regla bajo «regla.» y luego los renglones de los datos (al cargar).
- * - steps: los filetes de los pasos del proceso, en orden (al entrar en pantalla).
+ * - steps: los filetes de una lista, en orden (al entrar en pantalla). Solo las
+ *   líneas: el texto nunca se esconde.
  * - figures: las cifras se cuentan y la barra de composición se mide (al entrar).
  *
  * El contenido es visible por defecto: sin JS, o con «reducir movimiento», no se
@@ -74,17 +75,17 @@ export function LedgerMotion({ variant, children }: { variant: Variant; children
         if (!trigger) return;
 
         if (variant === "steps") {
+          // Solo se trazan los filetes. El texto queda siempre visible: así lo encuentran
+          // Ctrl+F y los lectores de pantalla, y no hay huecos al bajar rápido.
           const rules = q("[data-ledger-rule]");
-          const items = q("[data-ledger-item]");
           gsap.set(rules, { scaleX: 0 });
-          gsap.set(items, { autoAlpha: 0, y: 12 });
-          gsap
-            .timeline({
-              defaults: { ease: EASE },
-              scrollTrigger: { trigger, start: "top 82%", once: true },
-            })
-            .to(rules, { scaleX: 1, duration: 0.9, stagger: 0.14 }, 0)
-            .to(items, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.14 }, 0.18);
+          gsap.to(rules, {
+            scaleX: 1,
+            duration: 0.9,
+            stagger: 0.14,
+            ease: EASE,
+            scrollTrigger: { trigger, start: "top 85%", once: true },
+          });
           return;
         }
 

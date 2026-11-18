@@ -105,7 +105,7 @@ export default function ContactoPage() {
               <div className="mt-6 divide-y divide-rule border-y border-rule">
                 <ContactRow icon={<WhatsappIcon className="h-5 w-5" />} label="WhatsApp">
                   <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={rowLink}>
-                    Escribir por WhatsApp
+                    Escribinos por WhatsApp
                   </a>
                 </ContactRow>
                 <ContactRow icon={<Phone className="h-5 w-5" />} label="Teléfono">

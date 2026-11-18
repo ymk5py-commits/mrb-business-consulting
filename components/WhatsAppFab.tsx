@@ -41,7 +41,7 @@ export function WhatsAppFab() {
       href={whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escribir por WhatsApp"
+      aria-label="Escribinos por WhatsApp"
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
       className={cn(

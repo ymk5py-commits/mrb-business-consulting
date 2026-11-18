@@ -146,7 +146,7 @@ export default async function ServicePage({
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href={waHref} external variant="whatsapp" size="lg">
                 <WhatsappIcon className="h-5 w-5" />
-                Consultá por este servicio
+                Escribinos por WhatsApp
               </Button>
               <Button href="/servicios" variant="white" size="lg">
                 <ArrowLeft className="h-5 w-5" />
@@ -178,7 +178,7 @@ export default async function ServicePage({
               </div>
 
               <div>
-                <div className="mt-10 border-l-2 border-rule pl-6">
+                <div className="mt-10 border-t border-rule pt-6">
                   <h3 className="font-display text-lg text-navy-900">¿Para quién es?</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     {service.forWho}
@@ -219,24 +219,25 @@ export default async function ServicePage({
               </ul>
             </div>
 
-            {/* Aside CTA (sticky) */}
+            {/* Aside CTA (sticky): un bloque bajo un filete grueso, como la cabecera de
+                una columna del libro mayor; sin caja ni fondo propio. */}
             <aside className="lg:col-span-1">
-              <div className="sticky top-24 rounded-2xl bg-navy-900 p-7 text-paper">
-                <h3 className="font-display text-xl">Consulta sin compromiso</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              <div className="sticky top-24 border-t-2 border-navy-900 pt-6">
+                <h3 className="font-display text-xl text-navy-900">Consulta sin compromiso</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   Contanos tu caso y te asesoramos sobre {service.topic}.
                 </p>
-                <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-white/10 py-4">
+                <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-rule py-4">
                   <div>
-                    <dt className="text-xs text-slate-400">Clientes</dt>
-                    <dd className="font-display text-2xl tabular-nums text-paper">
+                    <dt className="text-xs text-slate-500">Clientes</dt>
+                    <dd className="font-display text-2xl tabular-nums text-navy-900">
                       {clientStats.total}
                     </dd>
                   </div>
                   {professional.years && (
                     <div>
-                      <dt className="text-xs text-slate-400">Experiencia</dt>
-                      <dd className="font-display text-2xl tabular-nums text-paper">
+                      <dt className="text-xs text-slate-500">Experiencia</dt>
+                      <dd className="font-display text-2xl tabular-nums text-navy-900">
                         +{professional.years} años
                       </dd>
                     </div>
@@ -245,17 +246,17 @@ export default async function ServicePage({
                 <div className="mt-6 flex flex-col gap-3">
                   <Button href={waHref} external variant="whatsapp" className="w-full">
                     <WhatsappIcon className="h-4 w-4" />
-                    Escribir por WhatsApp
+                    Escribinos por WhatsApp
                   </Button>
                   <a
                     href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-paper/10 px-5 py-2.5 text-sm font-medium text-paper ring-1 ring-paper/15 transition-colors hover:bg-paper/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-navy-900 ring-1 ring-inset ring-rule transition-colors hover:bg-surface hover:ring-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
                     <Phone className="h-4 w-4" />
                     {site.contact.phone}
                   </a>
                 </div>
-                <WhoReplies className="mt-6" />
+                <WhoReplies tone="light" className="mt-6" />
               </div>
             </aside>
           </div>

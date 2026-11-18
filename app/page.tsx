@@ -64,7 +64,8 @@ export default function HomePage() {
       {/* ============ SERVICIOS: texto | índice ============ */}
       <Section id="servicios" tone="light" className="lg:py-28">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
-          <div className="min-w-0">
+          {/* En escritorio, el texto acompaña la lista al bajar (la lista es mucho más larga) */}
+          <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
               title="Servicios"
               subtitle="Contabilidad, impuestos, sociedades, IPS y trámites, coordinados desde un solo estudio."
