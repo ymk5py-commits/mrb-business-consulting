@@ -91,7 +91,7 @@ export function Footer() {
         )}
 
         <div className="mt-8 flex flex-col gap-3 text-xs text-slate-400 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex flex-wrap gap-4"><Link href="/equipo" className={footerLink}>Equipo</Link><Link href="/privacidad" className={footerLink}>Privacidad</Link><CookiePreferences /></div>
+          <div className="flex flex-wrap gap-4"><Link href="/equipo" className={footerLink}>Equipo</Link><Link href="/guias" className={footerLink}>Guías</Link><Link href="/privacidad" className={footerLink}>Privacidad</Link><CookiePreferences /></div>
           <p>
             © {year} {site.legalName}.
           </p>

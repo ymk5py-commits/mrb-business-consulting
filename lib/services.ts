@@ -6,6 +6,8 @@ import {
   ClipboardCheck,
   Stamp,
   Scale,
+  UserRound,
+  Globe,
   type LucideIcon,
 } from "lucide-react";
 
@@ -35,6 +37,8 @@ export type Service = {
   faqs: ServiceFaq[];
   /** Slugs de servicios relacionados */
   related: string[];
+  /** Guía relacionada (slug de lib/guides.ts), si la hay */
+  guide?: string;
 };
 
 export const services: Service[] = [
@@ -147,7 +151,70 @@ export const services: Service[] = [
         a: "Si facturás por tus servicios, tenés que estar inscripto en el RUC, emitir comprobantes válidos y presentar tus declaraciones de IVA y, si tus ingresos superan el mínimo que fija la ley, del IRP. En MRB tramitamos tu RUC y llevamos tus liquidaciones aunque no tengas una empresa constituida.",
       },
     ],
-    related: ["contabilidad", "constitucion-de-sociedades", "auditoria-consultoria"],
+    related: ["contabilidad", "personas-fisicas", "constitucion-de-sociedades"],
+  },
+  {
+    slug: "personas-fisicas",
+    icon: UserRound,
+    title: "Personas físicas y profesionales",
+    excerpt:
+      "RUC, IVA, IRP y factura electrónica para profesionales independientes, comercios unipersonales y quienes cobran alquileres.",
+    metaTitle: "Contador para Personas Físicas en Paraguay: IVA e IRP | MRB",
+    metaDescription:
+      "Contador para profesionales independientes y personas físicas en Paraguay: RUC, IVA mensual, IRP, RESIMPLE y factura electrónica, al día ante la DNIT.",
+    kicker: "Servicio para personas",
+    h1: "Contador para personas físicas y profesionales en Paraguay",
+    intro:
+      "Si trabajás por tu cuenta, cobrás alquileres o tenés un comercio unipersonal, la DNIT te pide lo mismo que a una empresa: RUC, comprobantes, declaraciones y plazos. En MRB nos ocupamos de todo eso para que vos te dediques a tu trabajo, y te avisamos antes de cada vencimiento.",
+    includes: [
+      "Inscripción o actualización del RUC y de tus obligaciones ante la DNIT",
+      "Liquidación mensual del IVA y presentación en Marangatú",
+      "Declaración anual del IRP por servicios personales o por rentas del capital",
+      "Comercios unipersonales: IRE RESIMPLE, IRE SIMPLE o régimen general",
+      "Alta y acompañamiento en la factura electrónica (e-Kuatia o e-Kuatia'i)",
+      "Registro de compras y ventas, y control de tus comprobantes",
+      "Certificado de cumplimiento tributario cuando te lo pidan",
+      "Respuesta a notificaciones de la DNIT",
+    ],
+    forWho:
+      "Profesionales independientes (médicos, abogados, arquitectos, consultores, programadores, docentes), comerciantes unipersonales, quienes cobran alquileres y asalariados que además facturan por su cuenta o superan el monto a partir del cual se paga IRP.",
+    highlights: [
+      {
+        title: "Vencimientos a tiempo",
+        text: "Tus fechas dependen del último dígito de tu RUC: te avisamos antes y presentamos por vos.",
+      },
+      {
+        title: "El régimen que te conviene",
+        text: "Revisamos tus ingresos para ver si te corresponde RESIMPLE, IRE SIMPLE, IVA o IRP, y en qué orden.",
+      },
+      {
+        title: "Un IRP sin sorpresas",
+        text: "Ordenamos tus comprobantes durante el año para que la declaración anual no te tome desprevenido.",
+      },
+    ],
+    faqs: [
+      {
+        q: "¿Cuándo tengo que pagar IRP?",
+        a: "Si sos persona física y tus ingresos brutos gravados por servicios personales superan Gs.\u00a080.000.000 en el año, estás alcanzado por el IRP. Se paga sobre la renta neta, con tasas progresivas del 8\u00a0%, 9\u00a0% y 10\u00a0%. Las rentas y ganancias del capital, como los alquileres, tributan al 8\u00a0%.",
+      },
+      {
+        q: "¿Qué es el IRE RESIMPLE y quién puede usarlo?",
+        a: "Es el régimen más simple para empresas unipersonales con ingresos de hasta Gs.\u00a080.000.000 al año: en lugar de liquidar el IRE común se paga una cuota fija y se presenta una declaración anual. Si tus ingresos superan ese monto, pasás al IRE SIMPLE (hasta Gs.\u00a02.000 millones al año) o al régimen general.",
+      },
+      {
+        q: "¿Estoy obligado a emitir factura electrónica?",
+        a: "La DNIT incorpora a los contribuyentes por grupos, con un cronograma que avanza hasta 2027, y cualquiera puede adherirse antes en forma voluntaria. Para los pequeños contribuyentes existe e-Kuatia'i, el facturador gratuito de la DNIT. Revisamos si ya fuiste designado y te dejamos facturando.",
+      },
+      {
+        q: "¿Qué pasa si presento el IVA fuera de plazo?",
+        a: "Corresponde una multa por presentación tardía y, si había impuesto a pagar, intereses y recargos por mora. Cuanto antes se regulariza, menor es el costo: te ayudamos a ponerte al día y a que no se repita.",
+      },
+      {
+        q: "¿Puedo descontar gastos en el IRP?",
+        a: "Sí. En el IRP por servicios personales se deducen los gastos relacionados con tu actividad y otros que la ley admite, siempre con comprobantes legales emitidos a tu nombre. Por eso conviene ordenar las facturas durante todo el año y no en el último mes.",
+      },
+    ],
+    related: ["impuestos", "contabilidad", "tramites-inscripciones"],
   },
   {
     slug: "constitucion-de-sociedades",
@@ -200,7 +267,72 @@ export const services: Service[] = [
         a: "Depende del tipo societario. Una E.A.S. se constituye en línea por el SUACE en hasta 72 horas hábiles; una S.A. o una S.R.L. requiere escritura pública y suele llevar algunas semanas. En MRB gestionamos todo el circuito para acortar los plazos.",
       },
     ],
-    related: ["impuestos", "asesoria-legal-societaria", "tramites-inscripciones"],
+    related: ["extranjeros", "asesoria-legal-societaria", "impuestos"],
+    guide: "como-constituir-una-eas-en-paraguay",
+  },
+  {
+    slug: "extranjeros",
+    icon: Globe,
+    title: "Extranjeros e inversión",
+    excerpt:
+      "Para quienes llegan a Paraguay a invertir: constancia de inversionista, empresa, RUC e impuestos desde el primer día.",
+    metaTitle: "Abrir una Empresa en Paraguay Siendo Extranjero | MRB",
+    metaDescription:
+      "¿Sos extranjero y querés invertir en Paraguay? Te guiamos con la Constancia de Inversionista, tu E.A.S. o S.A., el RUC y los impuestos, de principio a fin.",
+    kicker: "Servicio para extranjeros",
+    h1: "Abrí tu empresa en Paraguay siendo extranjero",
+    intro:
+      "La Ley 117/91 le da al inversor extranjero los mismos derechos que al nacional, y una empresa puede tener capital 100\u00a0% extranjero. Lo que cambia es el orden de los trámites: primero tu situación migratoria y tus documentos, después la sociedad y el RUC. En MRB coordinamos cada paso y, una vez que operás, llevamos tu contabilidad e impuestos.",
+    includes: [
+      "Diagnóstico de tu caso: residencia, tipo de inversión y figura societaria",
+      "Gestión de la Constancia de Inversionista Extranjero ante el SUACE del MIC",
+      "Acompañamiento en la residencia y la cédula paraguaya",
+      "Constitución de tu E.A.S., S.A. o S.R.L.",
+      "RUC de la empresa y alta de sus obligaciones ante la DNIT",
+      "Inscripción como empleador en el IPS y el MTESS si vas a contratar",
+      "Contabilidad e impuestos mensuales desde que empezás a operar",
+      "Cada documento explicado antes de firmar",
+    ],
+    forWho:
+      "Inversores, emprendedores y profesionales de otros países que se instalan en Paraguay, o que quieren operar aquí con una empresa propia, solos o con socios locales.",
+    highlights: [
+      {
+        title: "El orden correcto",
+        text: "Empezamos por lo migratorio y lo documental, para que la sociedad y el RUC no se traben después.",
+      },
+      {
+        title: "Un solo interlocutor",
+        text: "Coordinamos MIC, escribanía, DNIT, IPS y MTESS; vos recibís un plan con fechas.",
+      },
+      {
+        title: "Después de abrir, también",
+        text: "Seguimos con la contabilidad y los impuestos mensuales, para que tu empresa nazca y siga en regla.",
+      },
+    ],
+    faqs: [
+      {
+        q: "¿Un extranjero puede tener una empresa 100\u00a0% propia en Paraguay?",
+        a: "Sí. La Ley 117/91 de Inversiones da al inversor extranjero las mismas garantías, derechos y obligaciones que al nacional, y una E.A.S. puede constituirse con un solo accionista, persona física o jurídica.",
+      },
+      {
+        q: "¿Qué es la Constancia de Inversionista Extranjero?",
+        a: "Es un documento que emite el Ministerio de Industria y Comercio a través del SUACE y que te permite tramitar la residencia permanente como inversionista. Se piden, entre otros, el formulario de solicitud, tu pasaporte o documento extranjero y los antecedentes penales del país de origen, legalizados o apostillados.",
+      },
+      {
+        q: "¿Necesito cédula paraguaya para abrir la empresa?",
+        a: "Para ser representante legal ante la DNIT, sí: si el representante es extranjero, tiene que presentar una cédula de identidad paraguaya vigente. Por eso conviene empezar la residencia antes o designar como representante a alguien que ya la tenga.",
+      },
+      {
+        q: "¿Cuánto tarda todo el proceso?",
+        a: "Depende de tu situación migratoria y del tipo de sociedad. Una E.A.S. se constituye en línea en hasta 72 horas hábiles cuando los documentos y las firmas están listos; lo que más tiempo lleva suele ser la residencia. En la primera reunión te damos un cronograma para tu caso.",
+      },
+      {
+        q: "¿Qué impuestos paga una empresa en Paraguay?",
+        a: "En general, el IRE (10\u00a0% sobre la renta neta), el IVA (10\u00a0% la tasa general) y el IDU cuando se distribuyen utilidades. Si contratás personal, también los aportes al IPS. Antes de empezar te explicamos cuáles aplican a tu actividad.",
+      },
+    ],
+    related: ["constitucion-de-sociedades", "tramites-inscripciones", "impuestos"],
+    guide: "como-constituir-una-eas-en-paraguay",
   },
   {
     slug: "asesoria-laboral-ips",

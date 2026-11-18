@@ -331,3 +331,27 @@ export function personSchema(m: TeamMember) {
     ...(m.email ? { email: m.email } : {}),
   };
 }
+
+/** Article de una guía (/guias/[slug]): autor = Person del equipo, editor = la Organization. */
+export function articleSchema(input: {
+  path: string;
+  headline: string;
+  description: string;
+  dateModified: string;
+  author: TeamMember;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${absoluteUrl(input.path)}#article`,
+    headline: input.headline,
+    description: input.description,
+    inLanguage: "es-PY",
+    datePublished: input.dateModified,
+    dateModified: input.dateModified,
+    author: { "@id": personId(input.author) },
+    publisher: { "@id": ORG_ID },
+    image: absoluteUrl("/opengraph-image"),
+    mainEntityOfPage: { "@id": webPageId(input.path) },
+  };
+}

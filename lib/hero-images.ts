@@ -10,6 +10,8 @@ export const heroImages = {
 export const serviceHeroImages: Record<string, string> = {
   contabilidad: heroImages.accounting,
   impuestos: heroImages.accounting,
+  "personas-fisicas": heroImages.accounting,
+  extranjeros: heroImages.office,
   "constitucion-de-sociedades": heroImages.legal,
   "asesoria-laboral-ips": heroImages.payroll,
   "auditoria-consultoria": heroImages.audit,

@@ -1,5 +1,6 @@
 import { site, clientStats, socialLinks, whatsappHref } from "@/lib/site.config";
 import { services, SERVICES_UPDATED_AT, type ServiceFaq } from "@/lib/services";
+import { guides } from "@/lib/guides";
 import { homeFaqs } from "@/lib/faqs";
 import { director, professionals, professionalPath, licensesOf } from "@/lib/team";
 
@@ -60,6 +61,10 @@ Sitio oficial: ${site.url}. Idioma: español de Paraguay (es-PY).
 
 ${services.map((s) => `- [${s.title}](${url(`/servicios/${s.slug}`)}): ${s.excerpt}`).join("\n")}
 
+## Guías
+
+${guides.map((g) => `- [${g.title}](${url(`/guias/${g.slug}`)}): ${g.excerpt} Revisada el ${g.updatedAt}.`).join("\n")}
+
 ## Equipo
 
 ${team}
@@ -71,6 +76,8 @@ ${team}
 ${faqLines(homeFaqs)}
 
 ${services.map((s) => `### ${s.title}\n\n${faqLines(s.faqs)}`).join("\n\n")}
+
+${guides.map((g) => `### ${g.title}\n\n${faqLines(g.faqs)}`).join("\n\n")}
 
 ## Contacto y redes oficiales
 
@@ -84,6 +91,7 @@ ${socialLinks.map((s) => `- [${s.label}](${s.href})`).join("\n")}
 - [Servicios](${url("/servicios")})
 - [Nosotros](${url("/nosotros")})
 - [Equipo profesional](${url("/equipo")})
+- [Guías](${url("/guias")})
 - [Sitemap XML](${url("/sitemap.xml")})
 
 ## Alcance
