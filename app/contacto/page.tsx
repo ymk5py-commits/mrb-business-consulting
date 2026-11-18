@@ -2,7 +2,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { heroImages } from "@/lib/hero-images";
 import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
-import { Container, Section, JsonLd } from "@/components/ui";
+import { Button, Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactForm } from "@/components/ContactForm";
 import { WhatsappIcon, socialIcons } from "@/components/icons";
@@ -21,7 +21,7 @@ const mapSrc = `https://www.google.com/maps?q=${site.contact.geo.lat},${site.con
 
 /** Links de texto dentro de las filas: hover + foco visible */
 const rowLink =
-  "rounded-sm transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+  "inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
 export default function ContactoPage() {
   return (
@@ -49,9 +49,26 @@ export default function ContactoPage() {
               Hablemos de tu empresa
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
-              Estamos para ayudarte. Escribinos por WhatsApp, completá el formulario o
-              visitanos en {site.city}. Te respondemos a la brevedad.
+              Escribinos por WhatsApp, llamanos o vení a la oficina en {site.city}. Atendemos
+              de lunes a viernes de 9 a 18 y los sábados de 9 a 12.
             </p>
+            {/* Lo primero en el celular: los dos canales directos */}
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={whatsappHref} external variant="whatsapp" size="lg" className="w-full sm:w-auto">
+                <WhatsappIcon className="h-5 w-5" />
+                Escribinos por WhatsApp
+              </Button>
+              <Button
+                href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
+                external
+                variant="white"
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                <Phone className="h-5 w-5" />
+                Llamar al {site.contact.phone}
+              </Button>
+            </div>
           </div>
         </Container>
       </HeroSection>
@@ -62,10 +79,10 @@ export default function ContactoPage() {
             {/* Form */}
             <div>
               <div>
-                <h2 className="font-display text-2xl text-navy-900">Envianos tu consulta</h2>
-                <p className="mt-2 text-sm text-slate-600">
-                  Completá tus datos y te contactamos. Los campos con{" "}
-                  <span className="text-accent">*</span> son obligatorios.
+                <h2 className="font-display text-2xl text-navy-900">Armá tu consulta</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Completá estos datos y se abre WhatsApp con el mensaje listo para enviar.
+                  Solo el nombre es obligatorio.
                 </p>
               </div>
               <div className="mt-6">
@@ -78,7 +95,7 @@ export default function ContactoPage() {
               <div>
                 <h2 className="font-display text-2xl text-navy-900">Datos de contacto</h2>
                 <p className="mt-2 text-sm text-slate-600">
-                  Elegí el canal que prefieras.
+                  Oficina, horario y redes.
                 </p>
               </div>
 
@@ -106,7 +123,7 @@ export default function ContactoPage() {
                     href={mapsHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${rowLink} mt-1 inline-flex items-center gap-1 font-semibold text-accent-600`}
+                    className={`${rowLink} gap-1 font-semibold text-accent-600`}
                   >
                     Cómo llegar
                     <ArrowUpRight className="h-3.5 w-3.5" />
@@ -162,7 +179,7 @@ function ContactRow({
     <div className="flex items-start gap-4 py-4">
       <span className="mt-0.5 shrink-0 text-accent-600">{icon}</span>
       <div className="min-w-0">
-        <p className="text-sm font-semibold text-slate-500">{label}</p>
+        <p className="text-sm font-semibold text-slate-600">{label}</p>
         <div className="mt-0.5 text-sm text-navy-900">{children}</div>
       </div>
     </div>

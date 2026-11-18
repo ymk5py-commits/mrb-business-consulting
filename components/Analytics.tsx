@@ -22,7 +22,7 @@ function choose(value: "accepted" | "rejected") {
   window.location.reload();
 }
 export function CookiePreferences() {
-  return <button type="button" className="cursor-pointer underline underline-offset-4" onClick={() => {
+  return <button type="button" className="min-h-11 cursor-pointer underline underline-offset-4" onClick={() => {
     localStorage.removeItem(CONSENT_KEY);
     window.location.reload();
   }}>Preferencias de cookies</button>;

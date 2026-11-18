@@ -8,7 +8,7 @@ import { services } from "@/lib/services";
 
 /** Links del footer: hover + foco visible sobre fondo navy */
 const footerLink =
-  "rounded-sm transition-colors hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950";
+  "inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950";
 
 /**
  * Footer "mast-headed": marca y datos de contacto en una franja, luego una línea
@@ -18,7 +18,7 @@ export function Footer() {
   const year = 2026;
   return (
     <footer className="bg-navy-950 text-slate-300">
-      <Container className="py-14">
+      <Container className="pb-28 pt-14 sm:pb-14">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end">
           <div className="min-w-0">
             <Logo variant="white" className="h-11" />
@@ -91,7 +91,7 @@ export function Footer() {
         )}
 
         <div className="mt-8 flex flex-col gap-3 text-xs text-slate-400 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex flex-wrap gap-4"><Link href="/equipo" className={footerLink}>Equipo</Link><Link href="/guias" className={footerLink}>Guías</Link><Link href="/privacidad" className={footerLink}>Privacidad</Link><CookiePreferences /></div>
+          <div className="flex flex-wrap gap-x-5"><Link href="/equipo" className={footerLink}>Equipo</Link><Link href="/guias" className={footerLink}>Guías</Link><Link href="/privacidad" className={footerLink}>Privacidad</Link><CookiePreferences /></div>
           <p>
             © {year} {site.legalName}.
           </p>

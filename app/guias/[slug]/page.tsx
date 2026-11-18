@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { HeroSection } from "@/components/HeroSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button, Container, Section, SectionHeading, JsonLd } from "@/components/ui";
@@ -11,6 +11,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
 import { WhatsappIcon } from "@/components/icons";
 import { LedgerMotion } from "@/components/motion/LedgerMotion";
+import { GuideToc } from "@/components/GuideToc";
 import { heroImages } from "@/lib/hero-images";
 import { getGuide, guideSlugs, type GuideSection } from "@/lib/guides";
 import { getService } from "@/lib/services";
@@ -227,15 +228,50 @@ export default async function GuidePage({
       <Section tone="light">
         <Container className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16">
           <article className="min-w-0">
+            {/* En el celular el índice va arriba y plegado (en escritorio está al costado) */}
+            <details className="group mb-10 border-y border-rule lg:hidden">
+              <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent [&::-webkit-details-marker]:hidden">
+                En esta guía
+                <ChevronDown
+                  className="h-5 w-5 shrink-0 text-accent-600 transition-transform duration-300 ease-[var(--ease-out-soft)] group-open:rotate-180"
+                  aria-hidden="true"
+                />
+              </summary>
+              <ol className="grid gap-1 pb-4 text-sm">
+                {guide.sections.map((section) => (
+                  <li key={section.id}>
+                    <a
+                      href={`#${section.id}`}
+                      className="flex min-h-11 items-center rounded-sm text-slate-700 hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      {section.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </details>
+
             {guide.sections.map((section, i) => (
               <section key={section.id} id={section.id} className={i > 0 ? "mt-14" : undefined}>
                 <h2 className="font-display text-balance text-2xl text-navy-900 sm:text-3xl">
                   {section.title}
                 </h2>
                 <SectionBody section={section} />
+                {/* Después de los pasos, la consulta en línea (en el celular el aside queda al final) */}
+                {section.steps && (
+                  <div className="mt-8 flex max-w-[68ch] flex-col gap-4 rounded-2xl bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-base leading-relaxed text-navy-900">
+                      ¿Preferís que lo hagamos nosotros, de principio a fin?
+                    </p>
+                    <Button href={waHref} external variant="whatsapp" className="shrink-0">
+                      <WhatsappIcon className="h-4 w-4" />
+                      Consultá tu caso
+                    </Button>
+                  </div>
+                )}
               </section>
             ))}
-            <p className="mt-14 max-w-[68ch] border-t border-rule pt-6 text-sm leading-relaxed text-slate-500">
+            <p className="mt-14 max-w-[60ch] border-t border-rule pt-6 text-sm leading-relaxed text-slate-600">
               Esta guía es informativa y resume la normativa vigente a la fecha de revisión. Requisitos,
               plazos y costos pueden cambiar: antes de constituir, consultá tu caso con un profesional.
             </p>
@@ -244,22 +280,11 @@ export default async function GuidePage({
           {/* Índice + consulta (fijos al costado en pantallas grandes) */}
           <aside className="min-w-0">
             <div className="lg:sticky lg:top-24">
-              <nav aria-label="En esta guía" className="border-t border-rule pt-5">
+              <nav aria-label="En esta guía" className="hidden border-t border-rule pt-5 lg:block">
                 <p className="text-sm font-semibold text-navy-900">En esta guía</p>
-                <ol className="mt-3 grid gap-2 text-sm">
-                  {guide.sections.map((section) => (
-                    <li key={section.id}>
-                      <a
-                        href={`#${section.id}`}
-                        className="rounded-sm text-slate-600 underline-offset-4 transition-colors hover:text-accent-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                      >
-                        {section.title}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
+                <GuideToc sections={guide.sections.map(({ id, title }) => ({ id, title }))} />
               </nav>
-              <div className="mt-8 rounded-2xl bg-navy-900 p-6 text-paper">
+              <div className="rounded-2xl bg-navy-900 p-6 text-paper lg:mt-8">
                 <p className="font-display text-lg">¿Lo hacemos por vos?</p>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300">
                   Constituimos tu empresa de principio a fin y la dejamos lista para facturar.

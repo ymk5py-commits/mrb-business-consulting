@@ -11,7 +11,7 @@ const steps = [
 /** "Cómo trabajamos": 4 pasos en orden, separados por filetes (sin tarjetas). */
 export function ProcessSteps() {
   return (
-    <section className="bg-surface py-20 sm:py-24">
+    <section className="bg-paper py-20 sm:py-24">
       <Container>
         <SectionHeading
           title="Un proceso simple y transparente"

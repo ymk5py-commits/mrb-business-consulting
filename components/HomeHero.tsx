@@ -62,6 +62,7 @@ export function HomeHero() {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
+              data-wa-cta
               className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-6 text-sm font-semibold text-paper transition-[background-color,scale] duration-200 ease-[var(--ease-out-soft)] hover:bg-whatsapp-600 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950"
             >
               <WhatsappIcon className="h-5 w-5" />
@@ -69,7 +70,7 @@ export function HomeHero() {
             </a>
             <Link
               href="/servicios"
-              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-sm text-sm font-semibold text-paper underline decoration-slate-500 underline-offset-8 transition-colors hover:decoration-accent-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+              className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-sm text-sm font-semibold text-paper underline decoration-slate-500 underline-offset-8 transition-colors hover:decoration-accent-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
             >
               Ver servicios
               <ArrowRight className="h-4 w-4" />

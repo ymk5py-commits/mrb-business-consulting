@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button, cn } from "./ui";
 import { WhatsappIcon } from "./icons";
@@ -127,17 +127,22 @@ export function Header() {
               </Link>
             ))}
           </div>
-          <Button
-            href={whatsappHref}
-            external
-            variant="secondary"
-            size="lg"
-            className="mt-4 w-full"
-            aria-label="Consultá ahora por WhatsApp"
-          >
-            <WhatsappIcon className="h-5 w-5" />
-            Consultá ahora
-          </Button>
+          <div className="mt-4 grid gap-3">
+            <Button href={whatsappHref} external variant="whatsapp" size="lg" className="w-full">
+              <WhatsappIcon className="h-5 w-5" />
+              Escribinos por WhatsApp
+            </Button>
+            <Button
+              href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
+              external
+              variant="ghost"
+              size="lg"
+              className="w-full"
+            >
+              <Phone className="h-5 w-5" />
+              Llamar al {site.contact.phone}
+            </Button>
+          </div>
         </div>
       )}
     </header>

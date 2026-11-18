@@ -113,7 +113,7 @@ export default function HomePage() {
       <ProcessSteps />
 
       {/* ============ SOBRE MRB: texto | retrato ============ */}
-      <Section tone="light" className="lg:py-32">
+      <Section tone="surface" className="lg:py-32">
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="min-w-0">
@@ -134,7 +134,7 @@ export default function HomePage() {
       </Section>
 
       {/* ============ FAQ: título | preguntas ============ */}
-      <Section id="faq" tone="surface" className="py-16 sm:py-20">
+      <Section id="faq" tone="light" className="py-16 sm:py-20">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
           <div className="min-w-0">
             <SectionHeading title="Preguntas frecuentes" />

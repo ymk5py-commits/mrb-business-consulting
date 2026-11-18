@@ -12,7 +12,9 @@
   /* Marca — acento (≤ 5 % de la pantalla: links, foco, detalles) */
   --color-accent: oklch(56.5% 0.218 259.1);
   --color-accent-600: oklch(51.9% 0.199 259.1);
-  --color-accent-bright: oklch(65.7% 0.17 246.6);
+  /* Acento sobre fondos oscuros: mismo tono que el acento (261), más claro para
+     contraste (5,5:1 sobre navy-950). No usar el celeste #0597F2: lo descartó Croman. */
+  --color-accent-bright: oklch(64% 0.19 261);
 
   /* Papel, tinta y filetes (neutros teñidos hacia el navy, nunca blanco/negro puro) */
   --color-paper: oklch(98.8% 0.004 258);

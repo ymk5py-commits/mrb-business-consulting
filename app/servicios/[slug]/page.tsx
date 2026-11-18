@@ -223,8 +223,7 @@ export default async function ServicePage({
               <div className="sticky top-24 rounded-2xl bg-navy-900 p-7 text-paper">
                 <h3 className="font-display text-xl">Consulta sin compromiso</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                  Contanos tu caso y te asesoramos sobre {service.title.toLowerCase()} para
-                  tu empresa.
+                  Contanos tu caso y te asesoramos sobre {service.title.toLowerCase()}.
                 </p>
                 <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-white/10 py-4">
                   <div>
@@ -290,7 +289,7 @@ export default async function ServicePage({
                 </h2>
                 <Link
                   href="/servicios"
-                  className="inline-flex items-center gap-1.5 rounded-sm text-sm font-semibold text-accent-600 hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm font-semibold text-accent-600 hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 >
                   Ver todos
                   <ArrowRight className="h-4 w-4" />

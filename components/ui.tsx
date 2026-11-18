@@ -138,13 +138,19 @@ export function Button({
     className,
   );
 
+  // Los CTA de WhatsApp se marcan para que el botón flotante se oculte mientras
+  // haya uno a la vista (components/WhatsAppFab.tsx).
+  const waMark = variant === "whatsapp" ? { "data-wa-cta": "" } : {};
+
   if (external) {
+    // tel:/mailto: abren en la misma pestaña; solo las URLs web van a una nueva.
+    const newTab = /^https?:/.test(href);
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className={classes}
+        {...waMark}
         {...rest}
       >
         {children}
@@ -153,7 +159,7 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={classes} {...rest}>
+    <Link href={href} className={classes} {...waMark} {...rest}>
       {children}
     </Link>
   );

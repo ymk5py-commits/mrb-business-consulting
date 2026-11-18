@@ -59,7 +59,7 @@ export function DirectorPortrait() {
             </span>
             <span className="leading-tight">
               <span className="block text-xs font-semibold text-navy-900 sm:text-sm">{h.title}</span>
-              <span className="block text-[11px] text-slate-600 sm:text-xs">{h.detail}</span>
+              <span className="block text-xs text-slate-600">{h.detail}</span>
             </span>
           </div>
         );
