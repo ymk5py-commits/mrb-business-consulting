@@ -87,7 +87,7 @@ export default function NosotrosPage() {
               </p>
               <p>
                 Reunimos en un mismo estudio a contadores y asesores que dominan el marco
-                normativo local —la DNIT, el IPS, los Registros Públicos— para que tengas
+                normativo local —la DNIT, el IPS, el MTESS— para que tengas
                 un único punto de contacto y una gestión más ordenada.
               </p>
               <p>

@@ -16,7 +16,7 @@ const homeFaqs = [
   },
   {
     q: "¿Atienden a empresas y personas de todo Paraguay?",
-    a: "Sí. Atendemos clientes de todo el país desde nuestra oficina en el centro de Asunción (Edificio Alfar 1, Cerro Corá 247). Gran parte de la gestión —Marangatú, IPS, Registros Públicos— se hace en forma digital, así que tu ubicación no es un impedimento.",
+    a: "Sí. Atendemos clientes de todo el país desde nuestra oficina en el centro de Asunción (Edificio Alfar 1, Cerro Corá 247). Gran parte de la gestión —Marangatú e IPS— se hace en forma digital, así que tu ubicación no es un impedimento.",
   },
   {
     q: "¿Puedo tercerizar toda la contabilidad e impuestos de mi empresa?",
@@ -24,7 +24,7 @@ const homeFaqs = [
   },
   {
     q: "¿Ayudan a constituir una empresa desde cero?",
-    a: "Sí. Te asesoramos para elegir el tipo societario adecuado y gestionamos todo el proceso: estatutos, inscripción en los Registros Públicos y obtención del RUC, para que arranques a operar cuanto antes.",
+    a: "Sí. Te asesoramos para elegir el tipo societario adecuado y gestionamos todo el proceso: estatutos, escritura pública y obtención del RUC, para que arranques a operar cuanto antes.",
   },
   {
     q: "¿Cómo empiezo a trabajar con MRB?",
@@ -35,7 +35,7 @@ const homeFaqs = [
 const whyUs = [
   {
     title: "Seguimiento de obligaciones",
-    text: "Te ayudamos a organizar vencimientos y gestiones ante la DNIT, el IPS y los Registros Públicos.",
+    text: "Te ayudamos a organizar vencimientos y gestiones ante la DNIT y el IPS.",
   },
   {
     title: "Todo en un solo estudio",

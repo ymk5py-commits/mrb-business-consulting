@@ -10,7 +10,6 @@ const ENTITIES = [
   "DNIT",
   "IPS",
   "MTESS",
-  "Registros Públicos",
   "DINAPI",
 ];
 
@@ -44,7 +43,7 @@ export function HomeHero() {
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
             Estudio contable, tributario y societario en Asunción. Llevamos tu empresa al
-            día ante la DNIT, el IPS y los Registros Públicos, estés donde estés.
+            día ante la DNIT y el IPS, estés donde estés.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
             <a

@@ -157,16 +157,15 @@ export const services: Service[] = [
       "Constituimos tu empresa de principio a fin: S.A., S.R.L., E.A.S. o unipersonal, con estatutos, inscripción y RUC.",
     metaTitle: "Constituir Empresa en Paraguay (S.A., S.R.L., E.A.S.) | MRB",
     metaDescription:
-      "Constitución de empresas en Paraguay llave en mano: S.A., S.R.L., E.A.S. (Ley 6480/2020) y unipersonal. Estatutos, inscripción en Registros Públicos y RUC.",
+      "Constitución de empresas en Paraguay llave en mano: S.A., S.R.L., E.A.S. (Ley 6480/2020) y unipersonal. Estatutos, escritura pública y RUC.",
     kicker: "Servicio societario",
     h1: "Constitución de sociedades en Paraguay",
     intro:
-      "Abrí tu empresa bien desde el primer día. En MRB te asesoramos para elegir el tipo societario correcto y nos encargamos de todo el proceso de constitución: redacción de estatutos, inscripción ante los Registros Públicos y obtención del RUC, para que arranques a operar sin demoras.",
+      "Abrí tu empresa bien desde el primer día. En MRB te asesoramos para elegir el tipo societario correcto y nos encargamos de todo el proceso de constitución: redacción de estatutos, escritura pública y obtención del RUC, para que arranques a operar sin demoras.",
     includes: [
       "Asesoría para elegir el tipo societario (S.A., S.R.L., E.A.S., E.I.R.L. o unipersonal)",
       "Redacción de estatutos y contrato social",
       "Escritura pública y trámites notariales",
-      "Inscripción en la Dirección General de los Registros Públicos",
       "Gestión ante la Abogacía del Tesoro",
       "Obtención del RUC y alta ante la DNIT",
       "Rubricación de libros sociales y contables",
@@ -198,7 +197,7 @@ export const services: Service[] = [
       },
       {
         q: "¿Cuánto tarda constituir una empresa en Paraguay?",
-        a: "Depende del tipo societario. Una E.A.S. se constituye en línea por el SUACE en hasta 72 horas hábiles; una S.A. o una S.R.L. requiere escritura e inscripción en los Registros Públicos y suele llevar algunas semanas. En MRB gestionamos todo el circuito para acortar los plazos.",
+        a: "Depende del tipo societario. Una E.A.S. se constituye en línea por el SUACE en hasta 72 horas hábiles; una S.A. o una S.R.L. requiere escritura pública y suele llevar algunas semanas. En MRB gestionamos todo el circuito para acortar los plazos.",
       },
     ],
     related: ["impuestos", "asesoria-legal-societaria", "tramites-inscripciones"],
@@ -395,7 +394,7 @@ export const services: Service[] = [
     faqs: [
       {
         q: "¿Cuándo se debe reformar el estatuto de una empresa?",
-        a: "Cuando cambian elementos esenciales de la sociedad: domicilio, objeto, capital, autoridades o tipo societario. La reforma debe aprobarse en asamblea e inscribirse en los Registros Públicos. Nosotros redactamos y gestionamos todo el proceso.",
+        a: "Cuando cambian elementos esenciales de la sociedad: domicilio, objeto, capital, autoridades o tipo societario. La reforma debe aprobarse en asamblea y formalizarse ante escribano. Nosotros redactamos y gestionamos todo el proceso.",
       },
       {
         q: "¿Qué son las actas de asamblea?",
