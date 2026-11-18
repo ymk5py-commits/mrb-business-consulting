@@ -105,12 +105,12 @@ function Cell({
 }) {
   return (
     <div className="grid grid-cols-[minmax(0,7rem)_minmax(0,1fr)] gap-4 lg:block">
-      <dt className="text-[15px] font-semibold text-navy-900 sm:text-sm lg:sr-only">{label}</dt>
+      <dt className="text-[15px] font-semibold text-navy-900 lg:sr-only">{label}</dt>
       <dd
         className={
           strong
-            ? "text-[15px] leading-relaxed text-navy-900 sm:text-sm"
-            : "text-[15px] leading-relaxed text-slate-600 sm:text-sm"
+            ? "text-[15px] leading-relaxed text-navy-900 lg:text-base"
+            : "text-[15px] leading-relaxed text-slate-600 lg:text-base"
         }
       >
         {children}

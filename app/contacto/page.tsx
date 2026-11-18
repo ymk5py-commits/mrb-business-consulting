@@ -113,7 +113,7 @@ export default function ContactoPage() {
                       </span>
                       <div>
                         <h3 className="font-display text-lg text-navy-900">{step.title}</h3>
-                        <p className="mt-1 text-[15px] leading-relaxed text-slate-600 sm:text-sm">{step.text}</p>
+                        <p className="mt-1 text-[15px] leading-relaxed text-slate-600 lg:text-base">{step.text}</p>
                       </div>
                     </li>
                   ))}

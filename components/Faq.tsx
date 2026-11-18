@@ -13,7 +13,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
               aria-hidden="true"
             />
           </summary>
-          <p className="-mt-1 max-w-xl pb-6 text-[15px] leading-relaxed text-slate-600 sm:text-sm">
+          <p className="-mt-1 max-w-2xl pb-6 text-[15px] leading-relaxed text-slate-600 lg:text-base">
             {item.a}
           </p>
         </details>

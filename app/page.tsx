@@ -55,34 +55,51 @@ export default function HomePage() {
       {/* ============ SERVICIOS: texto | índice ============ */}
       <Section id="servicios" tone="light" className="lg:py-28">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
-          {/* En escritorio, el texto acompaña la lista al bajar (la lista es mucho más larga) */}
-          <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
-            <SectionHeading
-              title="Servicios"
-              subtitle="Dejá de coordinar entre contador, gestor y abogado: contabilidad, impuestos, sociedades, IPS y trámites, desde un solo estudio."
-            />
-            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-slate-600 sm:text-sm">
-              Acompañamos a empresas de {rubros.join(", ")}, y a profesionales independientes.
-            </p>
-            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-slate-600 sm:text-sm">
-              ¿No sabés por dónde empezar? Contanos tu caso y te decimos qué servicio necesitás.
-            </p>
-            {/* Enlace propio (no dentro de la frase) para que tenga 44 px de alto al tocarlo */}
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-wa-cta
-              className="group mt-1 inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm font-semibold text-accent-600 transition-colors hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            >
-              Escribinos por WhatsApp
-              <ArrowRight
-                aria-hidden="true"
-                className="size-4 transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 motion-reduce:transition-none"
+          {/*
+            En el celular, el encabezado va primero, después la lista y recién abajo los rubros y la
+            ayuda (display: contents deja a los tres bloques en la grilla; `order` los acomoda).
+            En escritorio es una sola columna que acompaña la lista al bajar.
+          */}
+          <div className="contents lg:sticky lg:top-28 lg:block lg:self-start">
+            <div className="order-1 min-w-0 lg:order-none">
+              <SectionHeading
+                title="Servicios"
+                subtitle="Dejá de coordinar entre contador, gestor y abogado: contabilidad, impuestos, sociedades, IPS y trámites, desde un solo estudio."
               />
-            </a>
+            </div>
+            <div className="order-3 min-w-0 lg:order-none lg:mt-4">
+              <p className="max-w-sm text-[15px] leading-relaxed text-slate-600 lg:text-base">
+                {/* En el celular, tres ejemplos; desde tablet, todos los rubros */}
+                <span className="sm:hidden">
+                  Acompañamos a empresas de {rubros.slice(0, 3).join(", ")} y otros rubros, y a
+                  profesionales independientes.
+                </span>
+                <span className="hidden sm:inline">
+                  Acompañamos a empresas de {rubros.join(", ")}, y a profesionales independientes.
+                </span>
+              </p>
+              <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-slate-600 lg:mt-6 lg:text-base">
+                ¿No sabés por dónde empezar? Contanos tu caso y te decimos qué servicio necesitás.
+              </p>
+              {/* Enlace propio (no dentro de la frase) para que tenga 44 px de alto al tocarlo */}
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-wa-cta
+                className="group mt-1 inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm font-semibold text-accent-600 transition-colors hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Escribinos por WhatsApp
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 motion-reduce:transition-none"
+                />
+              </a>
+            </div>
           </div>
-          <ServicesGrid />
+          <div className="order-2 min-w-0 lg:order-none">
+            <ServicesGrid />
+          </div>
         </Container>
       </Section>
 
@@ -104,10 +121,10 @@ export default function HomePage() {
                         data-ledger-rule
                         className="absolute inset-x-0 top-0 h-px origin-left bg-rule"
                       />
-                      <span className="block text-[15px] font-semibold text-navy-900 sm:text-sm">
+                      <span className="block text-[15px] font-semibold text-navy-900 lg:text-base">
                         {row.title}
                       </span>
-                      <span className="block text-[15px] text-slate-600 sm:text-sm">{row.detail}</span>
+                      <span className="block text-[15px] text-slate-600 lg:text-base">{row.detail}</span>
                     </li>
                   ))}
                   <li aria-hidden="true" className="relative">

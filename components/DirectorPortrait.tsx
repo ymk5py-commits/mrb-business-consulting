@@ -27,7 +27,7 @@ export function DirectorPortrait() {
 
       <figcaption className="mt-5">
         <p className="font-display text-2xl text-navy-900">{director.name}</p>
-        <p className="mt-1 text-[15px] leading-snug text-slate-600 sm:text-sm">
+        <p className="mt-1 text-[15px] leading-snug text-slate-600 lg:text-base">
           {director.role} de {site.shortName}
           {director.headline && ` · ${director.headline}`}
         </p>
