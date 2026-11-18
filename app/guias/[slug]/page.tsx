@@ -102,8 +102,38 @@ function SectionBody({ section }: { section: GuideSection }) {
       )}
 
       {section.table && (
-        // La tabla puede ser más ancha que la pantalla: se desplaza dentro de su caja.
-        <div className="mt-6 overflow-x-auto" role="region" aria-label={section.table.caption} tabIndex={0}>
+        // En el celular, una ficha por columna (E.A.S., S.A., S.R.L.): la tabla entera no entra
+        // y obligaba a recordar columnas que no se veían.
+        <div className="mt-6 grid gap-8 md:hidden">
+          {section.table.columns.slice(1).map((col, c) => (
+            <div key={col}>
+              <h3 className="font-display border-b border-navy-900/20 pb-2 text-lg text-navy-900">
+                {col}
+              </h3>
+              <dl>
+                {section.table!.rows.map(([label, ...cells]) => (
+                  <div
+                    key={label}
+                    className="grid grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] gap-4 border-b border-rule py-3 text-sm"
+                  >
+                    <dt className="font-semibold text-navy-900">{label}</dt>
+                    <dd className="leading-relaxed text-slate-700">{cells[c]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {section.table && (
+        // Desde tablet, la tabla completa; si igual no entra, se desplaza dentro de su caja.
+        <div
+          className="mt-6 hidden overflow-x-auto md:block"
+          role="region"
+          aria-label={section.table.caption}
+          tabIndex={0}
+        >
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="sr-only">{section.table.caption}</caption>
             <thead>

@@ -4,7 +4,7 @@ import { useId, useRef, useState, useSyncExternalStore, type FormEvent } from "r
 import { WhatsappIcon } from "./icons";
 import { site } from "@/lib/site.config";
 import { trackContact } from "@/lib/analytics";
-import { services } from "@/lib/services";
+import { serviceGroups } from "@/lib/services";
 
 const inputClasses =
   "mt-1.5 w-full rounded-xl border border-slate-300 bg-paper px-4 text-base text-navy-900 outline-2 outline-offset-1 outline-transparent transition-colors placeholder:text-slate-500 hover:border-slate-400 focus:border-accent focus:outline-accent aria-[invalid=true]:border-red-700 aria-[invalid=true]:focus:outline-red-700 disabled:cursor-not-allowed disabled:opacity-55 sm:text-sm";
@@ -103,10 +103,14 @@ export function ContactForm() {
             className={`${inputClasses} h-12`}
           >
             <option value="">Seleccioná un servicio</option>
-            {services.map((s) => (
-              <option key={s.slug} value={s.title}>
-                {s.title}
-              </option>
+            {serviceGroups.map((group) => (
+              <optgroup key={group.title} label={group.title}>
+                {group.services.map((s) => (
+                  <option key={s.slug} value={s.title}>
+                    {s.title}
+                  </option>
+                ))}
+              </optgroup>
             ))}
             <option value="Otro / No estoy seguro">Otro / No estoy seguro</option>
           </select>

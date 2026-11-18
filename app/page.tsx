@@ -70,17 +70,22 @@ export default function HomePage() {
               subtitle="Contabilidad, impuestos, sociedades, IPS y trámites, coordinados desde un solo estudio."
             />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-slate-600">
-              ¿No sabés por dónde empezar?{" "}
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-sm font-semibold text-accent-600 underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-              >
-                Contanos tu caso
-              </a>{" "}
-              y te decimos qué servicio necesitás.
+              ¿No sabés por dónde empezar? Contanos tu caso y te decimos qué servicio necesitás.
             </p>
+            {/* Enlace propio (no dentro de la frase) para que tenga 44 px de alto al tocarlo */}
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-wa-cta
+              className="group mt-1 inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm font-semibold text-accent-600 transition-colors hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              Escribinos por WhatsApp
+              <ArrowRight
+                aria-hidden="true"
+                className="size-4 transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 motion-reduce:transition-none"
+              />
+            </a>
           </div>
           <ServicesGrid />
         </Container>

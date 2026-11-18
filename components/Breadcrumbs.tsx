@@ -14,7 +14,7 @@ export function Breadcrumbs({
             {item.href ? (
               <Link
                 href={item.href}
-                className="rounded-sm transition-colors hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+                className="inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
               >
                 {item.name}
               </Link>

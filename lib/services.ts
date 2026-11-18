@@ -18,6 +18,13 @@ export type Service = {
   icon: LucideIcon;
   /** Título corto para tarjetas y navegación */
   title: string;
+  /**
+   * El servicio dicho dentro de una frase («te asesoramos sobre …»), con sus mayúsculas.
+   * No derivarlo de `title` en minúscula: rompe siglas como IPS y deja frases sin sentido.
+   */
+  topic: string;
+  /** Pregunta de la banda final de la página del servicio, escrita para quien la necesita */
+  ctaTitle: string;
   /** Descripción breve para la tarjeta del índice */
   excerpt: string;
   metaTitle: string;
@@ -46,6 +53,8 @@ export const services: Service[] = [
     slug: "contabilidad",
     icon: Calculator,
     title: "Contabilidad",
+    topic: "la contabilidad de tu empresa",
+    ctaTitle: "¿Querés tus números al día todos los meses?",
     excerpt:
       "Llevamos tu contabilidad mensual al día: registros, libros, estados financieros y conciliaciones, bajo las normas vigentes en Paraguay.",
     metaTitle: "Contador para Empresas en Asunción: Outsourcing | MRB",
@@ -95,6 +104,8 @@ export const services: Service[] = [
     slug: "impuestos",
     icon: ReceiptText,
     title: "Impuestos y fiscal",
+    topic: "tus impuestos y vencimientos",
+    ctaTitle: "¿Querés declarar a tiempo y sin multas?",
     excerpt:
       "Liquidamos y presentamos tus impuestos (IVA, IRE, IRP, IDU) en Marangatú, con planificación tributaria y facturación electrónica.",
     metaTitle: "Asesoría Tributaria en Paraguay: IVA, IRE e IRP | MRB",
@@ -157,6 +168,8 @@ export const services: Service[] = [
     slug: "personas-fisicas",
     icon: UserRound,
     title: "Personas físicas y profesionales",
+    topic: "tus impuestos como persona física",
+    ctaTitle: "¿Trabajás por tu cuenta?",
     excerpt:
       "RUC, IVA, IRP y factura electrónica para profesionales independientes, comercios unipersonales y quienes cobran alquileres.",
     metaTitle: "Contador para Personas Físicas en Paraguay: IVA e IRP | MRB",
@@ -220,6 +233,8 @@ export const services: Service[] = [
     slug: "constitucion-de-sociedades",
     icon: Building2,
     title: "Constitución de sociedades",
+    topic: "la constitución de tu sociedad",
+    ctaTitle: "¿Vas a abrir tu empresa?",
     excerpt:
       "Constituimos tu empresa de principio a fin: S.A., S.R.L., E.A.S. o unipersonal, con estatutos, inscripción y RUC.",
     metaTitle: "Constituir Empresa en Paraguay (S.A., S.R.L., E.A.S.) | MRB",
@@ -274,6 +289,8 @@ export const services: Service[] = [
     slug: "extranjeros",
     icon: Globe,
     title: "Extranjeros e inversión",
+    topic: "tu inversión y tus trámites en Paraguay",
+    ctaTitle: "¿Venís a invertir en Paraguay?",
     excerpt:
       "Para quienes llegan a Paraguay a invertir: constancia de inversionista, empresa, RUC e impuestos desde el primer día.",
     metaTitle: "Abrir una Empresa en Paraguay Siendo Extranjero | MRB",
@@ -338,6 +355,8 @@ export const services: Service[] = [
     slug: "asesoria-laboral-ips",
     icon: Users,
     title: "Asesoría laboral e IPS",
+    topic: "sueldos, contratos y aportes al IPS",
+    ctaTitle: "¿Tenés o vas a contratar empleados?",
     excerpt:
       "Liquidación de salarios, aportes al IPS e inscripciones ante el MTESS, con tus planillas y contratos en regla.",
     metaTitle: "Payroll, Sueldos y Asesoría Laboral en Paraguay | MRB",
@@ -391,6 +410,8 @@ export const services: Service[] = [
     slug: "auditoria-consultoria",
     icon: ClipboardCheck,
     title: "Auditoría y consultoría",
+    topic: "auditorías y consultoría",
+    ctaTitle: "¿Un banco o un inversor pide tus números?",
     excerpt:
       "Auditoría de estados financieros, revisión tributaria preventiva, due diligence y consultoría de gestión.",
     metaTitle: "Auditoría Financiera y Consultoría en Paraguay | MRB",
@@ -440,6 +461,8 @@ export const services: Service[] = [
     slug: "tramites-inscripciones",
     icon: Stamp,
     title: "Trámites e inscripciones",
+    topic: "trámites e inscripciones",
+    ctaTitle: "¿Tenés un trámite o una inscripción pendiente?",
     excerpt:
       "RUC, patente municipal, habilitaciones, inscripción patronal y registro de marca: gestionamos tus trámites de principio a fin.",
     metaTitle: "Inscripción de RUC y Trámites en Paraguay | MRB",
@@ -493,6 +516,8 @@ export const services: Service[] = [
     slug: "asesoria-legal-societaria",
     icon: Scale,
     title: "Asesoría legal societaria",
+    topic: "actas, estatutos y cambios societarios",
+    ctaTitle: "¿Cambian los socios o el capital de tu empresa?",
     excerpt:
       "Reformas de estatutos, actas, aumentos de capital, transferencia de acciones y gobierno corporativo.",
     metaTitle: "Asesoría Societaria en Paraguay: Estatutos y Actas | MRB",
@@ -549,3 +574,33 @@ export function getService(slug: string): Service | undefined {
 }
 
 export const serviceSlugs = services.map((s) => s.slug);
+
+/**
+ * Los servicios en dos criterios que no se mezclan: lo que te pasa a vos (abrir una empresa,
+ * trabajar por tu cuenta, venir de afuera) y lo que necesita una empresa que ya funciona.
+ * Así quien entra por primera vez elige primero su situación y no una disciplina contable.
+ */
+export const serviceGroups: { title: string; services: Service[] }[] = [
+  {
+    title: "Según tu situación",
+    slugs: ["constitucion-de-sociedades", "personas-fisicas", "extranjeros"],
+  },
+  {
+    title: "Para tu empresa",
+    slugs: [
+      "contabilidad",
+      "impuestos",
+      "asesoria-laboral-ips",
+      "auditoria-consultoria",
+      "tramites-inscripciones",
+      "asesoria-legal-societaria",
+    ],
+  },
+].map(({ title, slugs }) => ({
+  title,
+  services: slugs.map((slug) => {
+    const service = getService(slug);
+    if (!service) throw new Error(`serviceGroups: no existe el servicio "${slug}"`);
+    return service;
+  }),
+}));

@@ -69,7 +69,7 @@ export function Header() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
-                "rounded-sm px-3 py-2 text-sm font-medium underline-offset-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                "inline-flex min-h-11 items-center rounded-sm px-3 text-sm font-medium underline-offset-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                 isActive(link.href)
                   ? "text-navy-900 underline decoration-accent decoration-2"
                   : "text-slate-600 hover:text-navy-900",
@@ -84,7 +84,7 @@ export function Header() {
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold text-navy-900 transition-colors hover:text-whatsapp focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:inline-flex"
+          className="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold text-navy-900 transition-colors hover:text-whatsapp focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:inline-flex"
         >
           <WhatsappIcon className="h-4 w-4 text-whatsapp" />
           {site.contact.phone}

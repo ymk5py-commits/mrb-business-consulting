@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 import { Button, Container, Section, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ContactForm } from "@/components/ContactForm";
+import { WhoReplies } from "@/components/WhoReplies";
 import { WhatsappIcon, socialIcons } from "@/components/icons";
 import { site, whatsappHref, addressLine, mapsHref, socialLinks } from "@/lib/site.config";
 import { pageMetadata, breadcrumbSchema, webPageSchema } from "@/lib/seo";
@@ -69,6 +70,8 @@ export default function ContactoPage() {
                 Llamar al {site.contact.phone}
               </Button>
             </div>
+            {/* El horario ya está en el párrafo de arriba: acá alcanza con quién contesta */}
+            <WhoReplies detail="Director del estudio" className="mt-6" />
           </div>
         </Container>
       </HeroSection>

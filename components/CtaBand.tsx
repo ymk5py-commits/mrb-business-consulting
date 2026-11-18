@@ -1,5 +1,6 @@
 import { Button, Container } from "./ui";
 import { WhatsappIcon } from "./icons";
+import { WhoReplies } from "./WhoReplies";
 import { whatsappHref } from "@/lib/site.config";
 
 /** Cierre de página: una frase y la acción. Navy sólido, alineado a la izquierda. */
@@ -20,14 +21,17 @@ export function CtaBand({
           <h2 className="font-display text-balance text-3xl text-paper sm:text-4xl">{title}</h2>
           <p className="mt-3 max-w-xl text-pretty text-slate-300">{subtitle}</p>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href={whatsapp} external variant="whatsapp" size="lg" className="whitespace-nowrap">
-            <WhatsappIcon className="h-5 w-5" />
-            Escribinos por WhatsApp
-          </Button>
-          <Button href="/contacto" variant="white" size="lg" className="whitespace-nowrap">
-            Otros contactos
-          </Button>
+        <div className="min-w-0">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button href={whatsapp} external variant="whatsapp" size="lg" className="whitespace-nowrap">
+              <WhatsappIcon className="h-5 w-5" />
+              Escribinos por WhatsApp
+            </Button>
+            <Button href="/contacto" variant="white" size="lg" className="whitespace-nowrap">
+              Otros contactos
+            </Button>
+          </div>
+          <WhoReplies className="mt-5" />
         </div>
       </Container>
     </section>

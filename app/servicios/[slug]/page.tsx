@@ -10,6 +10,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CtaBand } from "@/components/CtaBand";
+import { WhoReplies } from "@/components/WhoReplies";
 import { WhatsappIcon } from "@/components/icons";
 import { getService, serviceSlugs, SERVICES_UPDATED_AT } from "@/lib/services";
 import { getGuide } from "@/lib/guides";
@@ -65,7 +66,7 @@ export default async function ServicePage({
 
   // El mensaje de WhatsApp ya dice qué servicio se consulta (lead mejor calificado).
   const waHref = whatsappLink(
-    `Hola ${site.name}, quisiera consultar por el servicio de ${service.title.toLowerCase()}.`,
+    `Hola ${site.name}, quisiera consultar por el servicio «${service.title}».`,
   );
   const guide = service.guide ? getGuide(service.guide) : undefined;
   const related = service.related
@@ -223,7 +224,7 @@ export default async function ServicePage({
               <div className="sticky top-24 rounded-2xl bg-navy-900 p-7 text-paper">
                 <h3 className="font-display text-xl">Consulta sin compromiso</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                  Contanos tu caso y te asesoramos sobre {service.title.toLowerCase()}.
+                  Contanos tu caso y te asesoramos sobre {service.topic}.
                 </p>
                 <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-white/10 py-4">
                   <div>
@@ -248,15 +249,13 @@ export default async function ServicePage({
                   </Button>
                   <a
                     href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-paper/10 px-5 py-2.5 text-sm font-medium text-paper ring-1 ring-paper/15 transition-colors hover:bg-paper/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-paper/10 px-5 py-2.5 text-sm font-medium text-paper ring-1 ring-paper/15 transition-colors hover:bg-paper/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-bright"
                   >
                     <Phone className="h-4 w-4" />
                     {site.contact.phone}
                   </a>
                 </div>
-                <p className="mt-5 text-xs text-slate-400">
-                  Horario de atención: {site.contact.hours}
-                </p>
+                <WhoReplies className="mt-6" />
               </div>
             </aside>
           </div>
@@ -271,7 +270,7 @@ export default async function ServicePage({
           <div className="min-w-0">
             <SectionHeading
               title="Preguntas frecuentes"
-              subtitle={`Sobre ${service.title.toLowerCase()}.`}
+              subtitle={`Lo que más nos preguntan sobre ${service.topic}.`}
             />
           </div>
           <Faq items={service.faqs} />
@@ -310,7 +309,7 @@ export default async function ServicePage({
         </Section>
       )}
 
-      <CtaBand title={`¿Necesitás ${service.title.toLowerCase()}?`} whatsapp={waHref} />
+      <CtaBand title={service.ctaTitle} whatsapp={waHref} />
     </>
   );
 }
