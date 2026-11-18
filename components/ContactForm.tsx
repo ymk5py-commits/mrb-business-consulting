@@ -6,8 +6,9 @@ import { site } from "@/lib/site.config";
 import { trackContact } from "@/lib/analytics";
 import { serviceGroups } from "@/lib/services";
 
+/** Borde slate-500 (4,6:1 sobre el papel): el campo se distingue sin depender del relleno (mínimo 3:1). */
 const inputClasses =
-  "mt-1.5 w-full rounded-xl border border-slate-300 bg-paper px-4 text-base text-navy-900 outline-2 outline-offset-1 outline-transparent transition-colors placeholder:text-slate-500 hover:border-slate-400 focus:border-accent focus:outline-accent aria-[invalid=true]:border-red-700 aria-[invalid=true]:focus:outline-red-700 disabled:cursor-not-allowed disabled:opacity-55 sm:text-sm";
+  "mt-1.5 w-full rounded-xl border border-slate-500 bg-paper px-4 text-base text-navy-900 outline-2 outline-offset-1 outline-transparent transition-colors placeholder:text-slate-500 hover:border-slate-600 focus:border-accent focus:outline-accent aria-[invalid=true]:border-red-700 aria-[invalid=true]:focus:outline-red-700 disabled:cursor-not-allowed disabled:opacity-55 sm:text-sm";
 
 /** Tope del mensaje: más largo, el enlace de WhatsApp se vuelve frágil. */
 const MAX_MESSAGE = 1000;
@@ -99,7 +100,7 @@ export function ContactForm() {
             className={`${inputClasses} h-12`}
           />
           {nameError && (
-            <p id={errorId} className="mt-1.5 text-sm text-red-700">
+            <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-700">
               {nameError}
             </p>
           )}

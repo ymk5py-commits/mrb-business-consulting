@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { heroImages } from "@/lib/hero-images";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { Container, Section, SectionHeading, JsonLd } from "@/components/ui";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ServicesGrid } from "@/components/ServicesGrid";
@@ -154,9 +155,20 @@ export default function ServiciosPage() {
             title="Nuestros servicios"
             subtitle="Coordinados desde un mismo estudio en Asunción, para empresas y personas de todo Paraguay."
           />
-          <div className="mt-12">
-            <ServicesGrid wide />
-          </div>
+          {/* Plegado: la guía por situación de arriba es la entrada; acá, el índice completo para quien ya sabe qué busca */}
+          <details className="group mt-10 border-y border-rule">
+            <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-sm font-display text-lg text-navy-900 transition-colors hover:text-accent-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent [&::-webkit-details-marker]:hidden">
+              <span className="group-open:hidden">Ver los nueve servicios</span>
+              <span className="hidden group-open:inline">Ocultar los servicios</span>
+              <ChevronDown
+                className="h-5 w-5 shrink-0 text-accent-600 transition-transform duration-300 ease-[var(--ease-out-soft)] group-open:rotate-180 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
+            </summary>
+            <div className="pb-10 pt-4">
+              <ServicesGrid wide />
+            </div>
+          </details>
         </Container>
       </Section>
 
